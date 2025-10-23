@@ -3,16 +3,16 @@ import evanPreview from '@/assets/projects/evan.png';
 export default [
     {
         title: "Projet secret",
-        preview: evanPreview, // ✅ use imported variable
+        preview: evanPreview,
         link: "https://example.com/project1",
     },
     {
-        title: "Project 2",
+        title: "Projet top 2",
         preview: evanPreview,
         link: "https://example.com/project2",
     },
     {
-        title: "Project 3",
+        title: "Projet de fou 3",
         preview: "/projects/project3.jpg",
         link: "https://example.com/project3",
     },

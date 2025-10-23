@@ -3,6 +3,25 @@
     <canvas id="bgCanvas"></canvas>
     <div class="film-grain"></div>
 
+    <!-- 🔗 Projects Navigation (Desktop only) -->
+    <nav
+        v-if="isZoomed"
+        class="projects-nav"
+    >
+      <ul>
+        <li
+            v-for="project in projectsData"
+            :key="project.title"
+            @mouseenter="showPreview(project)"
+            @mouseleave="clearPreview()"
+            @click="openProject(project.link)"
+        >
+          {{ project.title }}
+        </li>
+      </ul>
+    </nav>
+
+
     <div class="content">
       <h1 class="headline">Basile</h1>
       <h2 class="subtitle">Développeur web</h2>
@@ -62,7 +81,7 @@ const toggleProjects = () => {
       if (!projectWindow) {
         projectWindow = createProjectWindow(
             three.scene,
-            4,
+            3.5,
             2.5,
             { x: -0.2, y: 0.1 },
             projectsData
@@ -96,31 +115,45 @@ const toggleProjects = () => {
 
 };
 
+function showPreview(project) {
+  if (projectWindow) projectWindow.updatePreview(project.preview);
+}
+
+function clearPreview() {
+  if (projectWindow) projectWindow.clearPreview();
+}
+
+function openProject(link) {
+  window.open(link, '_blank');
+}
+
+
 // ---- Mounted Hook ----
 onMounted(() => {
-  // Initialize Three.js background
   three = initThreeBackground();
-
-  // SplitText animation for headline
   if (!three) return;
-  const split = new SplitText(".headline", { type: "chars" });
-  const tl = gsap.timeline();
 
-  tl.from(split.chars, {
-    y: 100,
-    opacity: 0,
-    stagger: 0.05,
-    ease: "power4.out"
-  })
-      .from(".subtitle", {
-        y: 30,
-        opacity: 0,
-        ease: "power2.out"
-      }, "-=0.5")
-      .from(".cta", {
-        scale: 0.8,
-        ease: "back.out(1.7)"
-      }, "-=0.3");
+  // wait for fonts
+  document.fonts.ready.then(() => {
+    const split = new SplitText(".headline", { type: "chars" });
+    const tl = gsap.timeline();
+
+    tl.from(split.chars, {
+      y: 100,
+      opacity: 0,
+      stagger: 0.05,
+      ease: "power4.out"
+    })
+        .from(".subtitle", {
+          y: 30,
+          opacity: 0,
+          ease: "power2.out"
+        }, "-=0.5")
+        .from(".cta", {
+          scale: 0.8,
+          ease: "back.out(1.7)"
+        }, "-=0.3");
+  });
 });
 </script>
 
@@ -310,5 +343,39 @@ canvas#bgCanvas {
     transform: translate(1%, 1%);
   }
 }
+
+.projects-nav {
+  position: absolute;
+  top: 2rem;
+  right: 2rem;
+  z-index: 9999; /* must be higher than Three.js panel */
+  pointer-events: auto;
+}
+
+.projects-nav ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.projects-nav li {
+  margin-bottom: 1rem;
+  cursor: pointer;
+  color: #00ffee;
+  font-family: monospace;
+  transition: transform 0.2s;
+}
+
+.projects-nav li:hover {
+  transform: scale(1.05);
+}
+
+
+@media (max-width: 768px) {
+  .projects-nav {
+    display: none;
+  }
+}
+
 
 </style>
