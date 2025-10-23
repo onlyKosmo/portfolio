@@ -1,25 +1,17 @@
 import * as THREE from 'three';
 import { gsap } from 'gsap';
 
-/**
- * createProjectWindow(scene, width, height, tilt)
- * ------------------------------------------------------------------
- * A simple 3D panel that displays a preview texture.
- * Controlled externally by calling `updatePreview(url)` from Vue.
- * No text, no interactivity — only visual display.
- */
 export default function createProjectWindow(
     scene,
     width = 4,
     height = 2.5,
     tilt = { x: -0.2, y: 0.1 }
 ) {
-    // === GROUP SETUP ==================================================
     const group = new THREE.Group();
     group.position.set(0, 0, 0);
     scene.add(group);
 
-    // === PANEL GEOMETRY ===============================================
+    // === PANEL ===
     const panelGeom = createRoundedRectGeometry(width, height, 0.1);
     const panelMat = new THREE.MeshBasicMaterial({
         color: 0x0a1a2e,
@@ -34,16 +26,95 @@ export default function createProjectWindow(
     panel.rotation.y = tilt.y;
     group.add(panel);
 
-    // === PREVIEW HOLDER ===============================================
     const loader = new THREE.TextureLoader();
     let previewMesh = null;
+    let placeholderMesh = null;
 
-    /**
-     * Creates or replaces the current preview plane
-     * with a new texture (image URL)
-     */
+    // === ROUNDED MASK ===
+    const maskTexture = createRoundedMaskTexture(width, height, 0.1);
+
+    function createRoundedMaskTexture(w, h, radius) {
+        const canvas = document.createElement("canvas");
+        canvas.width = 1024;
+        canvas.height = 512;
+        const ctx = canvas.getContext("2d");
+
+        // transparent background
+        ctx.fillStyle = "black";
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+        // white rounded rectangle
+        ctx.fillStyle = "white";
+        const scaleX = canvas.width / w;
+        const scaleY = canvas.height / h;
+        const r = radius * Math.min(scaleX, scaleY);
+
+        ctx.beginPath();
+        ctx.moveTo(r, 0);
+        ctx.lineTo(canvas.width - r, 0);
+        ctx.quadraticCurveTo(canvas.width, 0, canvas.width, r);
+        ctx.lineTo(canvas.width, canvas.height - r);
+        ctx.quadraticCurveTo(canvas.width, canvas.height, canvas.width - r, canvas.height);
+        ctx.lineTo(r, canvas.height);
+        ctx.quadraticCurveTo(0, canvas.height, 0, canvas.height - r);
+        ctx.lineTo(0, r);
+        ctx.quadraticCurveTo(0, 0, r, 0);
+        ctx.closePath();
+        ctx.fill();
+
+        const texture = new THREE.CanvasTexture(canvas);
+        texture.minFilter = THREE.LinearFilter;
+        texture.needsUpdate = true;
+        return texture;
+    }
+
+    // ---- PLACEHOLDER ----
+    function createPlaceholderTexture(text = "Choisissez un projet", bgColor = "#000000", textColor = "#00ffee") {
+        const canvas = document.createElement("canvas");
+        canvas.width = 1024;
+        canvas.height = 512;
+        const ctx = canvas.getContext("2d");
+
+        ctx.fillStyle = bgColor;
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+        ctx.fillStyle = textColor;
+        ctx.font = "bold 60px monospace";
+        ctx.textAlign = "center";
+        ctx.textBaseline = "middle";
+        ctx.fillText(text, canvas.width / 2, canvas.height / 2);
+
+        const texture = new THREE.CanvasTexture(canvas);
+        texture.minFilter = THREE.LinearFilter;
+        texture.needsUpdate = true;
+        return texture;
+    }
+
+    const placeholderTexture = createPlaceholderTexture();
+    placeholderMesh = new THREE.Mesh(
+        new THREE.PlaneGeometry(width, height),
+        new THREE.MeshBasicMaterial({
+            map: placeholderTexture,
+            alphaMap: maskTexture,
+            transparent: true,
+            opacity: 1,
+            depthTest: false,
+            depthWrite: false,
+        })
+    );
+    placeholderMesh.position.set(0, 0, 0.02);
+    panel.add(placeholderMesh);
+
+    function showPlaceholder() {
+        if (placeholderMesh) placeholderMesh.visible = true;
+    }
+
+    function hidePlaceholder() {
+        if (placeholderMesh) placeholderMesh.visible = false;
+    }
+
+    // ---- PREVIEW ----
     function createOrUpdatePreview(texture) {
-        // clean old preview if it exists
         if (previewMesh) {
             panel.remove(previewMesh);
             previewMesh.geometry.dispose();
@@ -52,56 +123,56 @@ export default function createProjectWindow(
             previewMesh = null;
         }
 
-        const geom = new THREE.PlaneGeometry(width, height);
-        const mat = new THREE.MeshBasicMaterial({
-            map: texture,
-            transparent: true,
-            opacity: 1,
-            side: THREE.DoubleSide,
-            depthTest: false,
-            depthWrite: false,
-        });
-
-        previewMesh = new THREE.Mesh(geom, mat);
+        previewMesh = new THREE.Mesh(
+            new THREE.PlaneGeometry(width, height),
+            new THREE.MeshBasicMaterial({
+                map: texture,
+                alphaMap: maskTexture,
+                transparent: true,
+                opacity: 1,
+                side: THREE.DoubleSide,
+                depthTest: false,
+                depthWrite: false,
+            })
+        );
         previewMesh.position.set(0, 0, 0.02);
         panel.add(previewMesh);
 
         gsap.fromTo(previewMesh.material, { opacity: 0 }, { opacity: 1, duration: 0.6, ease: 'power2.out' });
     }
 
-    /**
-     * Loads a texture and updates the panel preview
-     */
     function updatePreview(url) {
-        if (!url) return;
+        if (!url) return showPlaceholder();
+        hidePlaceholder();
         loader.load(
             url,
             (texture) => createOrUpdatePreview(texture),
             undefined,
-            (err) => console.error('Error loading preview', err)
+            (err) => console.error("Error loading preview", err)
         );
     }
 
-    /**
-     * Clears preview (fade to empty panel)
-     */
     function clearPreview() {
-        if (!previewMesh) return;
-        gsap.to(previewMesh.material, {
-            opacity: 0,
-            duration: 0.4,
-            ease: 'power2.inOut',
-            onComplete: () => {
-                panel.remove(previewMesh);
-                if (previewMesh.material.map) previewMesh.material.map.dispose();
-                previewMesh.geometry.dispose();
-                previewMesh.material.dispose();
-                previewMesh = null;
-            },
-        });
+        if (previewMesh) {
+            gsap.to(previewMesh.material, {
+                opacity: 0,
+                duration: 0.4,
+                ease: 'power2.inOut',
+                onComplete: () => {
+                    panel.remove(previewMesh);
+                    if (previewMesh.material.map) previewMesh.material.map.dispose();
+                    previewMesh.geometry.dispose();
+                    previewMesh.material.dispose();
+                    previewMesh = null;
+                    showPlaceholder();
+                },
+            });
+        } else {
+            showPlaceholder();
+        }
     }
 
-    // === PUBLIC ANIMATIONS ============================================
+    // ---- PANEL ANIMATIONS ----
     function open(duration = 1) {
         group.visible = true;
         panelMat.opacity = 0;
@@ -113,9 +184,7 @@ export default function createProjectWindow(
             opacity: 0,
             duration,
             ease: 'power2.inOut',
-            onComplete: () => {
-                group.visible = false;
-            },
+            onComplete: () => { group.visible = false; },
         });
     }
 
@@ -125,12 +194,17 @@ export default function createProjectWindow(
             previewMesh.geometry.dispose();
             previewMesh.material.dispose();
         }
+        if (placeholderMesh) {
+            if (placeholderMesh.material.map) placeholderMesh.material.map.dispose();
+            placeholderMesh.geometry.dispose();
+            placeholderMesh.material.dispose();
+        }
         panel.geometry.dispose();
         panel.material.dispose();
         scene.remove(group);
     }
 
-    // === HELPER FUNCTION ==============================================
+    // ---- HELPERS ----
     function createRoundedRectGeometry(w, h, radius, segments = 8) {
         const shape = new THREE.Shape();
         const halfW = w / 2;
@@ -149,13 +223,14 @@ export default function createProjectWindow(
         return new THREE.ShapeGeometry(shape, segments);
     }
 
-    // === RETURN API ===================================================
     return {
         group,
         open,
         close,
         updatePreview,
         clearPreview,
+        showPlaceholder,
+        hidePlaceholder,
         destroy,
     };
 }

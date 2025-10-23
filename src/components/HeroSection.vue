@@ -116,11 +116,14 @@ const toggleProjects = () => {
 };
 
 function showPreview(project) {
-  if (projectWindow) projectWindow.updatePreview(project.preview);
+  if (projectWindow) {
+    projectWindow.hidePlaceholder(); // hide the default screen
+    projectWindow.updatePreview(project.preview);
+  }
 }
 
 function clearPreview() {
-  if (projectWindow) projectWindow.clearPreview();
+  if (projectWindow) projectWindow.clearPreview(); // shows placeholder
 }
 
 function openProject(link) {
