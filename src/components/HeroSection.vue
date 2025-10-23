@@ -18,17 +18,29 @@
     >
       Retour
     </button>
+    <ProjectsGrid v-if="isZoomed && isMobile" />
+
   </section>
 </template>
 
 
 <script setup>
-import { ref, onMounted } from 'vue';
+import ProjectsGrid from './ProjectsGrid.vue'
 import { gsap } from 'gsap';
 import { SplitText } from 'gsap/SplitText';
 import initThreeBackground from '../threeBackground.js';
 import projectsData from '../data/projects.js';
 import createProjectWindow from '../three/projectWindow.js';
+import { ref, onMounted, onUnmounted } from 'vue'
+
+const isMobile = ref(window.innerWidth <= 768)
+
+const handleResize = () => {
+  isMobile.value = window.innerWidth <= 768
+}
+
+onMounted(() => window.addEventListener('resize', handleResize))
+onUnmounted(() => window.removeEventListener('resize', handleResize))
 
 gsap.registerPlugin(SplitText);
 
@@ -45,19 +57,19 @@ const toggleProjects = () => {
   if (!isZoomed.value) {
     isZoomed.value = true;
 
-    // Initialize the project window if it doesn't exist yet
-    if (!projectWindow) {
-      projectWindow = createProjectWindow(
-          three.scene,
-          4,          // width
-          2.5,        // height
-          { x: -0.2, y: 0.1 }, // tilt
-          projectsData
-      );
+    // only desktop
+    if (!isMobile.value) {
+      if (!projectWindow) {
+        projectWindow = createProjectWindow(
+            three.scene,
+            4,
+            2.5,
+            { x: -0.2, y: 0.1 },
+            projectsData
+        );
+      }
+      projectWindow.open();
     }
-
-    // Always open it
-    projectWindow.open();
 
     // Timeline animations
     tl.to(three.camera.position, {
@@ -71,6 +83,8 @@ const toggleProjects = () => {
   }
   else {
     isZoomed.value = false;
+
+    if (!isMobile.value && projectWindow) projectWindow.close();
 
     if (projectWindow) projectWindow.close();
 
@@ -111,6 +125,26 @@ onMounted(() => {
 </script>
 
 <style scoped>
+@media (max-width: 768px) {
+  .headline {
+    font-size: 2.4rem;
+  }
+
+  .subtitle {
+    font-size: 1rem;
+  }
+
+  .cta {
+    font-size: 0.9rem;
+    padding: 0.6rem 1.5rem;
+  }
+
+  .hero.zoomed .content {
+    display: none; /* hide text when grid is shown */
+  }
+}
+
+
 .retro-btn {
   position: relative;
   background: black;
