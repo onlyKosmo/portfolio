@@ -76,7 +76,7 @@ const toggleProjects = () => {
   if (!isZoomed.value) {
     isZoomed.value = true;
 
-    // only desktop
+    // desktop only
     if (!isMobile.value) {
       if (!projectWindow) {
         projectWindow = createProjectWindow(
@@ -90,29 +90,29 @@ const toggleProjects = () => {
       projectWindow.open();
     }
 
-    // Timeline animations
+    // === Zoom In animation ===
     tl.to(three.camera.position, {
       z: 2.5,
       duration: 1.5,
       ease: "power2.inOut"
     })
-        .to(three.grainPass.uniforms.intensity, { value: 0.2, duration: 1, ease: "power1.inOut" }, 0)
-        .to(three.scanlinePass.uniforms.intensity, { value: 0.3, duration: 1, ease: "power1.inOut" }, 0)
+        .to(three.grainPass.uniforms.intensity, { value: 0.05, duration: 1, ease: "power1.inOut" }, 0)
+        .to(three.scanlinePass.uniforms.intensity, { value: 0.25, duration: 1, ease: "power1.inOut" }, 0)
+        .to(three.vignettePass.uniforms.darkness, { value: 0.4, duration: 1.2, ease: "power2.out" }, 0)
         .to(".content", { opacity: 0, scale: 0.9, duration: 1, ease: "power2.inOut" }, "<");
-  }
-  else {
+
+  } else {
     isZoomed.value = false;
 
     if (!isMobile.value && projectWindow) projectWindow.close();
 
-    if (projectWindow) projectWindow.close();
-
+    // === Zoom Out animation ===
     tl.to(three.camera.position, { z: 6, duration: 1.5, ease: "power2.inOut" })
         .to(three.grainPass.uniforms.intensity, { value: 0.07, duration: 1, ease: "power1.inOut" }, 0)
         .to(three.scanlinePass.uniforms.intensity, { value: 0.12, duration: 1, ease: "power1.inOut" }, 0)
+        .to(three.vignettePass.uniforms.darkness, { value: 1.2, duration: 1.2, ease: "power2.inOut" }, 0)
         .to(".content", { opacity: 1, scale: 1, duration: 1, ease: "power2.out" }, "<");
   }
-
 };
 
 function showPreview(project) {

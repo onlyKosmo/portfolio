@@ -21,6 +21,12 @@ export default function initThreeBackground() {
     renderer.setPixelRatio(window.devicePixelRatio);
     renderer.setClearColor(0x0e1f2b, 1);
 
+    window.addEventListener('resize', () => {
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        camera.aspect = window.innerWidth / window.innerHeight;
+        camera.updateProjectionMatrix();
+    });
+
     /* ---------- particles ---------- */
     const particleCount = 500;
     const geometry = new THREE.BufferGeometry();
@@ -152,8 +158,11 @@ export default function initThreeBackground() {
 
     /* ---------- animation loop ---------- */
     const clock = new THREE.Clock();
+
     function animate() {
         const t = clock.getElapsedTime();
+
+        // --- particle animation (keep for subtle motion) ---
         const posAttr = geometry.attributes.position;
         const arr = posAttr.array;
         for (let i = 0; i < particleCount * 3; i += 3) {
@@ -161,13 +170,28 @@ export default function initThreeBackground() {
         }
         posAttr.needsUpdate = true;
 
-        grainPass.uniforms.time.value = t * 60.0;
-        scanlinePass.uniforms.time.value = t;
+        // --- postprocessing uniform updates ---
+        grainPass.uniforms.time.value = t * 60.0; // keep for grain motion
+        scanlinePass.uniforms.time.value = t;     // keep for scanline wave animation
 
+        // --- dynamic vignette depending on zoom (can reuse pattern for others) ---
+        vignettePass.uniforms.darkness.value = THREE.MathUtils.mapLinear(
+            camera.position.z,
+            2.5,  // close zoom
+            6,    // far zoom
+            0.4,  // light vignette
+            1.2   // strong vignette
+        );
+
+        // ✅ only one render call per frame (keeps performance and avoids double draw)
         composer.render();
+
+        // --- next frame ---
         requestAnimationFrame(animate);
     }
+
     animate();
+
 
     // Handle window resize
     window.addEventListener('resize', () => {
