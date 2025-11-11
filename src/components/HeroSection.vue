@@ -14,7 +14,7 @@
             :key="project.title"
             @mouseenter="showPreview(project)"
             @mouseleave="clearPreview()"
-            @click="openProject(project.link)"
+            @click="openProject(project.slug)"
         >
           {{ project.title }}
         </li>
@@ -23,10 +23,44 @@
 
 
     <div class="content">
-      <h1 class="headline">Basile</h1>
-      <h2 class="subtitle">Développeur web</h2>
+      <h1 class="headline">Bienvenue</h1>
+      <h2 class="subtitle">DANS MON ESPACE</h2>
       <button class="cta retro-btn" @click="toggleProjects">Mes projets</button>
     </div>
+
+    <!-- Top-left -->
+    <div class="top-left">
+      <h3 class="portfolio">KOSMO.</h3>
+      <h1 class="name">by BASILE FERRAND-RICHARTE</h1>
+    </div>
+
+    <!-- Top-right -->
+    <div class="top-right">
+      <button class="about">À PROPOS</button>
+      <button class="contact-btn">ME CONTACTER</button>
+    </div>
+
+
+    <!-- Bottom-left -->
+    <div class="bottom-left">
+      <p class="location">Grenoble, France</p>
+      <p class="profession">Développeur Web</p>
+    </div>
+
+    <!-- Bottom-right -->
+    <div class="bottom-right">
+      <p class="quick-desc">Artiste 3D et Motion Designer à Paris, je conçois avec grande précision des univers aux visuels soignés et percutants au service des marques, agences et artistes.</p>
+      <div class="social-links">
+        <a href="https://github.com/onlyKosmo" target="_blank">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" alt="GitHub" />
+        </a>
+        <a href="https://linkedin.com/in/basileferi" target="_blank">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linkedin/linkedin-original.svg" alt="LinkedIn" />
+        </a>
+      </div>
+    </div>
+
+
 
 
     <!-- 🔙 Floating retro back button -->
@@ -51,6 +85,8 @@ import initThreeBackground from '../threeBackground.js';
 import projectsData from '../data/projects.js';
 import createProjectWindow from '../three/projectWindow.js';
 import { ref, onMounted, onUnmounted } from 'vue'
+import { useRouter } from 'vue-router';
+const router = useRouter();
 
 const isMobile = ref(window.innerWidth <= 768)
 
@@ -126,13 +162,27 @@ function clearPreview() {
   if (projectWindow) projectWindow.clearPreview(); // shows placeholder
 }
 
-function openProject(link) {
-  window.open(link, '_blank');
+function openProject(linkOrSlug) {
+  if (!linkOrSlug) return;
+  // si c'est un slug (pas de http), on navigue en SPA
+  if (typeof linkOrSlug === 'string' && !linkOrSlug.startsWith('http')) {
+    router.push({ name: 'project', params: { slug: linkOrSlug } });
+  } else {
+    // lien externe
+    window.open(linkOrSlug, '_blank');
+  }
+}
+
+// écoute l'événement custom dispatché par three.js (optionnel mais utile)
+function onOpenProjectEvent(e) {
+  const slug = e?.detail?.slug;
+  if (slug) openProject(slug);
 }
 
 
 // ---- Mounted Hook ----
 onMounted(() => {
+  window.addEventListener('openProject', onOpenProjectEvent);
   three = initThreeBackground();
   if (!three) return;
 
@@ -158,21 +208,116 @@ onMounted(() => {
         }, "-=0.3");
   });
 });
+onUnmounted(() => {
+  window.removeEventListener('openProject', onOpenProjectEvent);
+});
 </script>
 
 <style scoped>
+.top-left {
+  position: absolute;
+  top: 3rem;
+  left: 3rem;
+  z-index: 5;
+  text-align: left;
+  color: white;
+}
+
+.top-left .portfolio {
+  font-size: 1.4rem;
+  margin: 0;
+}
+
+.top-left .name {
+  font-size: 1rem;
+  margin: 0;
+}
+
+.top-right {
+  position: absolute;
+  top: 3rem;
+  right: 3rem;
+  z-index: 5;
+  display: flex;
+  gap: 0.5rem;
+}
+
+.bottom-left {
+  position: absolute;
+  bottom: 3rem;
+  left: 3rem;
+  z-index: 5;
+  color: white;
+  font-size: 0.9rem;
+}
+
+.bottom-right {
+  position: absolute;
+  bottom: 3rem;
+  right: 3rem;
+  z-index: 5;
+  text-align: right;
+  color: white;
+}
+
+.social-links {
+  display: inline-flex;
+  gap: 0.5rem;
+  margin-top: 0.3rem;
+}
+
+.social-links img {
+  width: 2.5rem;
+  height: 2.5rem;
+  cursor: pointer;
+}
+
+.hero.zoomed .top-left,
+.hero.zoomed .top-right,
+.hero.zoomed .bottom-left,
+.hero.zoomed .bottom-right {
+  opacity: 0;
+  pointer-events: none;
+  transform: scale(0.9);
+  transition: all 0.5s ease;
+}
+
+.hero .top-left,
+.hero .top-right,
+.hero .bottom-left,
+.hero .bottom-right {
+  transition: all 0.5s ease; /* smooth transition in/out */
+}
+
 @media (max-width: 768px) {
   .headline {
     font-size: 2.4rem;
+    font-weight: 800;
+    font-family: "Modern No. 20", monospace;
+    letter-spacing: 1px;
+    color: #00ffee;
   }
 
   .subtitle {
     font-size: 1rem;
+    font-weight: 400;
+    font-family: "Source Code Pro", monospace;
+    opacity: 0.8;
+    margin-top: 0.5rem;
   }
 
-  .cta {
-    font-size: 0.9rem;
-    padding: 0.6rem 1.5rem;
+  .cta, .top-right .contact-btn {
+    font-family: "Press Start 2P", monospace;
+    background: linear-gradient(90deg, #00ffee, #0072ff);
+    color: black;
+    border: 2px solid #00ffee;
+    box-shadow: 0 0 15px #00ffee, inset 0 0 10px #00ffee;
+    transition: all 0.3s ease;
+  }
+
+  .cta:hover, .top-right .contact-btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 25px #00ffee, inset 0 0 15px #00ffee;
   }
 
   .hero.zoomed .content {
@@ -378,6 +523,18 @@ canvas#bgCanvas {
   .projects-nav {
     display: none;
   }
+}
+
+.social-links img {
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+.social-links img:hover {
+  transform: scale(1.2);
+  opacity: 0.8;
+}
+
+.profession {
+  font-size: 2rem;
 }
 
 

@@ -1,9 +1,6 @@
 <template>
-  <div class="app">
-    <HeroSection />
-  </div>
+  <router-view />
 </template>
 
 <script setup>
-import HeroSection from './components/HeroSection.vue';
 </script>

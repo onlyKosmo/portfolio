@@ -4,7 +4,7 @@
         v-for="(project, index) in projects"
         :key="index"
         class="project-card"
-        @click="openLink(project.link)"
+        @click="openLink(project)"
         ref="cards"
     >
       <img :src="project.preview" :alt="project.title" />
@@ -17,10 +17,20 @@
 import { onMounted, ref } from 'vue'
 import { gsap } from 'gsap'
 import projects from '@/data/projects.js'
+import { useRouter } from 'vue-router'
+const router = useRouter()
+
 
 const cards = ref([])
 
-const openLink = (url) => window.open(url, '_blank')
+const openLink = (project) => {
+  if (project.slug) {
+    router.push({ name: 'project', params: { slug: project.slug } })
+  } else if (project.link) {
+    window.open(project.link, '_blank')
+  }
+}
+
 
 onMounted(() => {
   gsap.from(cards.value, {
