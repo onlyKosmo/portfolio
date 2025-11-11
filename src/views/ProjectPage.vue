@@ -1,5 +1,6 @@
 <template>
   <div class="project-page">
+    <Header :show="true" />
     <button class="back" @click="goBack">← Retour</button>
 
     <!-- Hero banner -->
@@ -23,6 +24,7 @@
         Voir en ligne
       </a>
     </main>
+    <Footer />
   </div>
 </template>
 
@@ -30,6 +32,8 @@
 import { ref, onMounted } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 import projects from '@/data/projects.js';
+import Header from '@/components/Header.vue'
+import Footer from '@/components/Footer.vue'
 
 const route = useRoute();
 const router = useRouter();

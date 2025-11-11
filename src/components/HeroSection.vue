@@ -25,19 +25,8 @@
     <div class="content">
       <h1 class="headline">Bienvenue</h1>
       <h2 class="subtitle">DANS MON ESPACE</h2>
-      <button class="cta retro-btn" @click="toggleProjects">Mes projets</button>
-    </div>
+      <button class="cta retro-btn" @click="handleClick">Mes projets</button>
 
-    <!-- Top-left -->
-    <div class="top-left">
-      <h3 class="portfolio">KOSMO.</h3>
-      <h1 class="name">by BASILE FERRAND-RICHARTE</h1>
-    </div>
-
-    <!-- Top-right -->
-    <div class="top-right">
-      <button class="about">À PROPOS</button>
-      <button class="contact-btn">ME CONTACTER</button>
     </div>
 
 
@@ -50,14 +39,6 @@
     <!-- Bottom-right -->
     <div class="bottom-right">
       <p class="quick-desc">Artiste 3D et Motion Designer à Paris, je conçois avec grande précision des univers aux visuels soignés et percutants au service des marques, agences et artistes.</p>
-      <div class="social-links">
-        <a href="https://github.com/onlyKosmo" target="_blank">
-          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" alt="GitHub" />
-        </a>
-        <a href="https://linkedin.com/in/basileferi" target="_blank">
-          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linkedin/linkedin-original.svg" alt="LinkedIn" />
-        </a>
-      </div>
     </div>
 
 
@@ -67,7 +48,7 @@
     <button
         v-if="isZoomed"
         class="retro-btn back-btn"
-        @click="toggleProjects"
+        @click="handleBack"
     >
       Retour
     </button>
@@ -86,6 +67,17 @@ import projectsData from '../data/projects.js';
 import createProjectWindow from '../three/projectWindow.js';
 import { ref, onMounted, onUnmounted } from 'vue'
 import { useRouter } from 'vue-router';
+import { defineEmits } from 'vue'
+const emit = defineEmits(['hide-header'])
+
+function handleClick() {
+  emit('hide-header')  // déclenche juste la disparition du header
+  toggleProjects()     // ton animation GSAP continue normalement
+}
+function handleBack() {
+  emit('show-header')  // fait réapparaître le header
+  toggleProjects()     // animation GSAP continue
+}
 const router = useRouter();
 
 const isMobile = ref(window.innerWidth <= 768)
@@ -242,38 +234,57 @@ onUnmounted(() => {
   gap: 0.5rem;
 }
 
-.bottom-left {
+.bottom-left, .bottom-right {
   position: absolute;
-  bottom: 3rem;
-  left: 3rem;
   z-index: 5;
+  transition: all 0.3s ease;
+}
+
+.bottom-left {
+  left: 3rem;
+  bottom: 3rem;
   color: white;
-  font-size: 0.9rem;
 }
 
 .bottom-right {
-  position: absolute;
-  bottom: 3rem;
   right: 3rem;
-  z-index: 5;
-  text-align: right;
+  bottom: 3rem;
   color: white;
+  max-width: 40%;
 }
 
-.social-links {
-  display: inline-flex;
-  gap: 0.5rem;
-  margin-top: 0.3rem;
+@media (max-width: 1024px) {
+  .bottom-left {
+    left: 1.5rem;
+    bottom: 2rem;
+    font-size: 0.8rem;
+  }
+  .bottom-right {
+    right: 1.5rem;
+    bottom: 2rem;
+    font-size: 0.8rem;
+    max-width: 60%;
+  }
 }
 
-.social-links img {
-  width: 2.5rem;
-  height: 2.5rem;
-  cursor: pointer;
+@media (max-width: 768px) {
+  .bottom-left {
+    left: 1rem;
+    bottom: 1.5rem;
+    font-size: 0.7rem;
+  }
+  .bottom-right {
+    right: 1rem;
+    bottom: 1.5rem;
+    font-size: 0.7rem;
+    max-width: 70%;
+  }
+  .bottom-right .quick-desc {
+    font-size: 0.65rem;
+    line-height: 1rem;
+  }
 }
 
-.hero.zoomed .top-left,
-.hero.zoomed .top-right,
 .hero.zoomed .bottom-left,
 .hero.zoomed .bottom-right {
   opacity: 0;
@@ -282,8 +293,6 @@ onUnmounted(() => {
   transition: all 0.5s ease;
 }
 
-.hero .top-left,
-.hero .top-right,
 .hero .bottom-left,
 .hero .bottom-right {
   transition: all 0.5s ease; /* smooth transition in/out */
@@ -400,14 +409,15 @@ onUnmounted(() => {
 
 .hero {
   position: relative;
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  height: 100%;
   overflow: hidden;
-  background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
 }
+
 
 canvas#bgCanvas {
   position: absolute;
@@ -523,14 +533,6 @@ canvas#bgCanvas {
   .projects-nav {
     display: none;
   }
-}
-
-.social-links img {
-  transition: transform 0.3s ease, opacity 0.3s ease;
-}
-.social-links img:hover {
-  transform: scale(1.2);
-  opacity: 0.8;
 }
 
 .profession {
