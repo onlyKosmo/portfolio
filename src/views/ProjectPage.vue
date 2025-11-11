@@ -29,7 +29,7 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from 'vue';
+import { ref, onMounted, onUnmounted } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 import projects from '@/data/projects.js';
 import Header from '@/components/Header.vue'
@@ -47,7 +47,23 @@ onMounted(() => {
   } else {
     window.scrollTo(0, 0);
   }
+  // scroll autorisé
+  document.documentElement.style.overflowY = 'auto';
+  document.body.style.overflowY = 'auto';
+
+  // forcer #app à hauteur auto pour scroll
+  const app = document.getElementById('app');
+  if (app) app.style.height = 'auto';
+
+  window.scrollTo(0, 0);
 });
+
+onUnmounted(() => {
+  document.documentElement.style.overflowY = 'hidden';
+  document.body.style.overflowY = 'hidden';
+  const app = document.getElementById('app');
+  if (app) app.style.height = '100%';
+})
 
 function goBack() {
   router.back();
@@ -57,7 +73,7 @@ function goBack() {
 <style scoped>
 .project-page {
   width: 100vw;
-  min-height: 100vh;
+  min-height: auto;
   background: #06101a;
   color: #fff;
   font-family: "Source Code Pro", monospace;
