@@ -31,17 +31,18 @@
 
 
     <!-- Bottom-left -->
-    <div class="bottom-left">
-      <p class="location">Grenoble, France</p>
-      <p class="profession">Développeur Web</p>
+    <div class="bottom-container">
+      <div class="bottom-left">
+        <p class="location">Grenoble, France</p>
+        <p class="profession">Développeur Web</p>
+      </div>
+
+      <!-- Bottom-right -->
+      <div class="bottom-right">
+        <p class="quick-desc">Artiste 3D et Motion Designer à Paris, je conçois avec grande précision des univers aux
+          visuels soignés et percutants au service des marques, agences et artistes.</p>
+      </div>
     </div>
-
-    <!-- Bottom-right -->
-    <div class="bottom-right">
-      <p class="quick-desc">Artiste 3D et Motion Designer à Paris, je conçois avec grande précision des univers aux visuels soignés et percutants au service des marques, agences et artistes.</p>
-    </div>
-
-
 
 
     <!-- 🔙 Floating retro back button -->
@@ -52,7 +53,7 @@
     >
       Retour
     </button>
-    <ProjectsGrid v-if="isZoomed && isMobile" />
+    <ProjectsGrid v-if="isZoomed && isMobile"/>
 
   </section>
 </template>
@@ -60,24 +61,27 @@
 
 <script setup>
 import ProjectsGrid from './ProjectsGrid.vue'
-import { gsap } from 'gsap';
-import { SplitText } from 'gsap/SplitText';
+import {gsap} from 'gsap';
+import {SplitText} from 'gsap/SplitText';
 import initThreeBackground from '../threeBackground.js';
 import projectsData from '../data/projects.js';
 import createProjectWindow from '../three/projectWindow.js';
-import { ref, onMounted, onUnmounted } from 'vue'
-import { useRouter } from 'vue-router';
-import { defineEmits } from 'vue'
+import {ref, onMounted, onUnmounted} from 'vue'
+import {useRouter} from 'vue-router';
+import {defineEmits} from 'vue'
+
 const emit = defineEmits(['hide-header'])
 
 function handleClick() {
   emit('hide-header')  // déclenche juste la disparition du header
   toggleProjects()     // ton animation GSAP continue normalement
 }
+
 function handleBack() {
   emit('show-header')  // fait réapparaître le header
   toggleProjects()     // animation GSAP continue
 }
+
 const router = useRouter();
 
 const isMobile = ref(window.innerWidth <= 768)
@@ -111,7 +115,7 @@ const toggleProjects = () => {
             three.scene,
             3.5,
             2.5,
-            { x: -0.2, y: 0.1 },
+            {x: -0.2, y: 0.1},
             projectsData
         );
       }
@@ -124,10 +128,10 @@ const toggleProjects = () => {
       duration: 1.5,
       ease: "power2.inOut"
     })
-        .to(three.grainPass.uniforms.intensity, { value: 0.05, duration: 1, ease: "power1.inOut" }, 0)
-        .to(three.scanlinePass.uniforms.intensity, { value: 0.25, duration: 1, ease: "power1.inOut" }, 0)
-        .to(three.vignettePass.uniforms.darkness, { value: 0.4, duration: 1.2, ease: "power2.out" }, 0)
-        .to(".content", { opacity: 0, scale: 0.9, duration: 1, ease: "power2.inOut" }, "<");
+        .to(three.grainPass.uniforms.intensity, {value: 0.05, duration: 1, ease: "power1.inOut"}, 0)
+        .to(three.scanlinePass.uniforms.intensity, {value: 0.25, duration: 1, ease: "power1.inOut"}, 0)
+        .to(three.vignettePass.uniforms.darkness, {value: 0.4, duration: 1.2, ease: "power2.out"}, 0)
+        .to(".content", {opacity: 0, scale: 0.9, duration: 1, ease: "power2.inOut"}, "<");
 
   } else {
     isZoomed.value = false;
@@ -135,11 +139,11 @@ const toggleProjects = () => {
     if (!isMobile.value && projectWindow) projectWindow.close();
 
     // === Zoom Out animation ===
-    tl.to(three.camera.position, { z: 6, duration: 1.5, ease: "power2.inOut" })
-        .to(three.grainPass.uniforms.intensity, { value: 0.07, duration: 1, ease: "power1.inOut" }, 0)
-        .to(three.scanlinePass.uniforms.intensity, { value: 0.12, duration: 1, ease: "power1.inOut" }, 0)
-        .to(three.vignettePass.uniforms.darkness, { value: 1.2, duration: 1.2, ease: "power2.inOut" }, 0)
-        .to(".content", { opacity: 1, scale: 1, duration: 1, ease: "power2.out" }, "<");
+    tl.to(three.camera.position, {z: 6, duration: 1.5, ease: "power2.inOut"})
+        .to(three.grainPass.uniforms.intensity, {value: 0.07, duration: 1, ease: "power1.inOut"}, 0)
+        .to(three.scanlinePass.uniforms.intensity, {value: 0.12, duration: 1, ease: "power1.inOut"}, 0)
+        .to(three.vignettePass.uniforms.darkness, {value: 1.2, duration: 1.2, ease: "power2.inOut"}, 0)
+        .to(".content", {opacity: 1, scale: 1, duration: 1, ease: "power2.out"}, "<");
   }
 };
 
@@ -158,7 +162,7 @@ function openProject(linkOrSlug) {
   if (!linkOrSlug) return;
   // si c'est un slug (pas de http), on navigue en SPA
   if (typeof linkOrSlug === 'string' && !linkOrSlug.startsWith('http')) {
-    router.push({ name: 'project', params: { slug: linkOrSlug } });
+    router.push({name: 'project', params: {slug: linkOrSlug}});
   } else {
     // lien externe
     window.open(linkOrSlug, '_blank');
@@ -180,7 +184,7 @@ onMounted(() => {
 
   // wait for fonts
   document.fonts.ready.then(() => {
-    const split = new SplitText(".headline", { type: "chars" });
+    const split = new SplitText(".headline", {type: "chars"});
     const tl = gsap.timeline();
 
     tl.from(split.chars, {
@@ -206,38 +210,33 @@ onUnmounted(() => {
 </script>
 
 <style scoped>
-.top-left {
-  position: absolute;
-  top: 3rem;
-  left: 3rem;
-  z-index: 5;
-  text-align: left;
-  color: white;
-}
 
-.top-left .portfolio {
+.top-left  {
   font-size: 1.4rem;
   margin: 0;
 }
 
-.top-left .name {
+.top-left  {
   font-size: 1rem;
   margin: 0;
 }
 
-.top-right {
+.bottom-container {
   position: absolute;
-  top: 3rem;
-  right: 3rem;
-  z-index: 5;
+  bottom: 3rem;
+  left: 0;
+  right: 0;
   display: flex;
-  gap: 0.5rem;
+  justify-content: space-between;
+  gap: 2rem;
+  padding: 0 3rem;
+  z-index: 5;
 }
 
 .bottom-left, .bottom-right {
-  position: absolute;
   z-index: 5;
   transition: all 0.3s ease;
+  max-width: 45%;
 }
 
 .bottom-left {
@@ -259,6 +258,7 @@ onUnmounted(() => {
     bottom: 2rem;
     font-size: 0.8rem;
   }
+
   .bottom-right {
     right: 1.5rem;
     bottom: 2rem;
@@ -268,17 +268,27 @@ onUnmounted(() => {
 }
 
 @media (max-width: 768px) {
+  .bottom-container {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+    padding: 0 1rem;
+  }
+
   .bottom-left {
     left: 1rem;
     bottom: 1.5rem;
     font-size: 0.7rem;
+    max-width: 100%;
   }
+
   .bottom-right {
     right: 1rem;
     bottom: 1.5rem;
     font-size: 0.7rem;
-    max-width: 70%;
+    max-width: 100%;
   }
+
   .bottom-right .quick-desc {
     font-size: 0.65rem;
     line-height: 1rem;
