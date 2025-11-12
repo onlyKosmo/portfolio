@@ -1,6 +1,6 @@
 <template>
   <footer class="footer">
-    <p>&copy; 2025 Basile Ferrand-Richarte</p>
+    <p>&copy; {{ new Date().getFullYear() }} Basile Ferrand-Richarte</p>
     <div class="social-links">
       <a href="https://github.com/onlyKosmo" target="_blank">
         <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" alt="GitHub" />
@@ -12,7 +12,8 @@
   </footer>
 </template>
 
-<script setup></script>
+<script setup>
+</script>
 
 <style scoped>
 .footer {

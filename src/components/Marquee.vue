@@ -42,7 +42,6 @@ const icons = [
   width: 100%;
   overflow: hidden;
   padding: 3rem 0;
-  background: #f0f0f0;
   mask-image: linear-gradient(to right, transparent 0%, black 15%, black 85%, transparent 100%);
   /* webkit-mask-image: linear-gradient(to right, transparent 0%, black 15%, black 85%, transparent 100%);
    */

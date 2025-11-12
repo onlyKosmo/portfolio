@@ -15,6 +15,23 @@
 
     <Marquee/>
 
+
+    <h2>En ce moment </h2>
+    <section id="currently">
+      <h1>Étudiant à l'</h1>
+      <div class="one">
+        <a href="https://www.linkedin.com/school/universit%C3%A9-grenoble-alpes/posts/?feedView=all">
+          <img src="../assets/logo/IUT1.png" alt="Logo UGA" class="logo" />
+        </a>
+      </div>
+      <h1>en</h1>
+      <div class="two">
+        <a href="https://www.linkedin.com/school/mmi-grenoble/posts/?feedView=all">
+          <img src="../assets/logo/mmi.png" alt="Logo MMI" class="logo" />
+        </a>
+      </div>
+    </section>
+
     <Footer />
   </div>
 </template>
@@ -56,6 +73,25 @@ import Marquee from "@/components/Marquee.vue";
   transition: all 0.3s ease;
 }
 .btn-cv:hover {
+  transform: scale(1.05);
+}
+
+#currently {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 3rem;
+  min-height: 10vh; /* take full screen height */
+  padding: 2rem;
+}
+
+#currently .logo {
+  max-width: 180px;
+  height: auto;
+  transition: transform 0.3s ease;
+}
+
+#currently .logo:hover {
   transform: scale(1.05);
 }
 </style>
