@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <meta charset="UTF-8">
+        <title>Man - Leaflet.js</title>
+        <link rel="stylesheet" href="./css/style.css">
+        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+              integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+              crossorigin=""/>
+    </head>
+    <header>
+        <h1>Manuel d'utilisation de Leaflet.js</h1>
+    </header>
+    <body>
+        <main>
+    <h3 id="hiddenText" hidden>Pour les newbies (comme moi) ;)</h3>
+
+    <section>
+        <h2>1. Initialisation de la carte</h2>
+        <p>Pour afficher une carte, vous devez d'abord créer un élément HTML où Leaflet pourra rendre la carte.</p>
+        <div id="map" style="height: 500px; width: 100%; margin: 20px auto;"></div>
+        <pre><code>var map = L.map('map').setView([latitude, longitude], zoom);</code></pre>
+    </section>
+
+    <section id="vide">
+        <h2>2. Ajouter une couche de tuiles</h2>
+        <p>Pour que la carte s'affiche avec des tuiles, vous devez ajouter une couche de tuiles comme sur OpenStreetMap :</p>
+        <pre><code>
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    maxZoom: 19,
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+}).addTo(map);
+            </code></pre>
+    </section>
+
+    <section>
+        <h2 id="stick">3. Ajouter un marqueur</h2>
+        <p>Vous pouvez ajouter des marqueurs sur votre carte et leur attacher des popups :</p>
+        <pre><code>
+L.marker([latitude, longitude]).addTo(map)
+    .bindPopup('Un marqueur Leaflet où je le souhaite !')
+    .openPopup();
+            </code></pre>
+
+        <h2>3.1 Ajouter un cercle </h2>
+        <p>Vous pouvez ajouter des cercles sur votre carte et leur attacher des popups :</p>
+        <pre><code>
+var circle = L.circle([latitude, longitude], {
+    color: 'red',
+    fillColor: '#f03',
+    fillOpacity: 0.5,
+    radius: 500
+}).addTo(map);
+            </code></pre>
+        <h2>3.2 Ajouter un polygone </h2>
+        <p>Vous pouvez ajouter des polygones sur votre carte et leur attacher des popups :</p>
+        <pre><code>
+var polygon = L.polygon([
+    [latitude1, longitude1],
+    [latitude2, longitude2],
+    [latitude3, longitude3]
+]).addTo(map);
+            </code></pre>
+    </section>
+
+    <section>
+        <h2>4. Gérer les popups</h2>
+        <p>Leaflet permet d'ajouter des interactions comme des clics sur la carte :</p>
+        <pre><code>
+function onMapClick(e) {
+    alert("Vous avez cliqué sur la carte à " + e.latlng);
+}
+map.on('click', onMapClick);
+            </code></pre>
+
+        <h2>4.1 Attacher des popups</h2>
+        <p>Leaflet permet aussi d'attacher des popups sûr des marqueurs ou des formes :</p>
+        <pre><code>
+marker.bindPopup("<b>Salut tout le monde !</b><br>Je suis un popup.").openPopup();
+circle.bindPopup("Je suis un cercle.");
+polygon.bindPopup("Je suis un polygon..");
+            </code></pre>
+    </section>
+        </main>
+    <section>
+        <input type="button" id="confetti" value="Un nouveau plugin dans la bibliothèque !" />
+    </section>
+
+    <button id="showTextButton">Ne cliquez surtout pas</button>
+    </body>
+    <footer>
+        FERRAND-RICHARTE Basile | DM Integration
+    </footer>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+            integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+            crossorigin=""></script>
+    <script src="./plugin/confetti/confetti.min.js"></script>
+    <script src="./js/script.js"></script>
+</html>

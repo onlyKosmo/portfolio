@@ -1,0 +1,231 @@
+/* Changement du styles de la partie principale "body" */
+body {
+  font-family: Arial, sans-serif; /* Police de caractère par défaut */
+  margin: 0; /* Suppression des marges par défaut */
+  padding: 0; /* Suppression des espacements internes */
+  background-color: #f8eadb; /* Couleur de fond de la page */
+}
+
+/* Ajout d'une police pour tout les plus grands titres */
+h1 {
+  font-family: 'Courier New', Courier, monospace; /* Police spécifique pour les titres principaux */
+  text-align: center; /* Centrage du texte */
+  color: #0f0d0e; /* Couleur du texte */
+  margin: 0; /* Suppression de la marge par défaut */
+  padding: 20px 0; /* Espacement interne au-dessus et en-dessous */
+}
+
+/* Ajout d'une police pour les titres plus petits (h2) */
+h2 {
+  font-family: "Oswald", serif; /* Police spécifique pour les sous-titres */
+  font-optical-sizing: auto; /* Ajuste automatiquement la taille de la police selon l'espace disponible */
+  font-style: normal; /* Police sans italique */
+}
+
+/* Ajout d'une police pour les paragraphes avec le sélecteur "p" */
+p {
+  font-family: 'Roboto b', monospace; /* Police pour les paragraphes */
+  text-align: left; /* Alignement à gauche du texte */
+}
+
+/* Modification du menu de navigation */
+header {
+  background-color: #137b40; /* Couleur de fond du header */
+  color: white; /* Couleur du texte */
+  padding: 20px 0; /* Espacement interne en haut et en bas */
+  text-align: center; /* Centrage du texte */
+}
+
+nav ul {
+  list-style-type: none; /* Suppression des puces de liste */
+  margin: 0; /* Suppression de la marge */
+  padding: 0; /* Suppression du padding */
+  text-align: center; /* Centrage des éléments de la liste */
+}
+
+nav ul li {
+  display: inline-block; /* Affichage des éléments de la liste en ligne */
+  margin: 0 15px; /* Espacement entre les éléments */
+}
+
+nav ul li a {
+  text-decoration: none; /* Suppression du soulignement par défaut des liens */
+  color: #f8eadb; /* Couleur des liens */
+  font-size: 18px; /* Taille de police pour les liens */
+}
+
+nav ul li a:hover {
+  text-decoration: underline; /* Soulignement du lien au survol */
+}
+
+/* Changement du style du tableau des albums */
+table {
+  width: 100%; /* Le tableau prend toute la largeur disponible */
+  border-collapse: collapse; /* Fusionne les bordures du tableau */
+  margin-top: 30px; /* Marge en haut du tableau */
+}
+
+th, td {
+  padding: 10px; /* Espacement à l'intérieur des cellules */
+  text-align: left; /* Alignement du texte à gauche */
+}
+
+th {
+  background-color: #137b40; /* Couleur de fond des en-têtes de colonne */
+}
+
+/* Affichage des couvertures des albums au survol du curseur de l'utilisateur */
+.album {
+  display: inline-block; /* Affiche les albums */
+  position: relative; /* Position relative pour gérer l'overlay */
+  text-align: left; /* Texte aligné à gauche */
+}
+
+.album::after {
+  content: ''; /* Contenu vide pour l'overlay */
+  position: absolute; /* Positionnement absolu par rapport à l'album */
+  top: 0; /* Aligner l'image en haut */
+  right: 0; /* Positionner l'image à droite */
+  width: 50%; /* Limiter la largeur de l'image à 50% pour ne pas occuper toute la place */
+  height: 100%; /* Laisser l'image prendre la hauteur complète du conteneur */
+  background-size: contain; /* Assure que l'image reste entièrement visible sans être coupée */
+  background-position: center; /* Centrer l'image à l'intérieur du conteneur */
+  background-repeat: no-repeat; /* Empêche la répétition de l'image */
+  opacity: 0; /* Départ avec une transparence totale */
+  transition: opacity 0.3s ease-in-out; /* Transition douce lors du changement d'opacité */
+}
+
+.album:hover::after {
+  opacity: 1; /* Affiche l'overlay au survol */
+}
+
+/* Changements des styles spécifiques pour chaque album */
+.album[data-album="goblin"]:hover::after {
+  background-image: url("../img/goblin.webp"); /* Image de l'album Goblin */
+}
+
+.album[data-album="wolf"]:hover::after {
+  background-image: url("../img/wolf.webp"); /* Image de l'album Wolf */
+}
+
+.album[data-album="cherrybomb"]:hover::after {
+  background-image: url("../img/cherrybomb.webp"); /* Image de l'album Cherrybomb */
+}
+
+.album[data-album="flowerboy"]:hover::after {
+  background-image: url("../img/flowerboy.webp"); /* Image de l'album Flowerboy */
+}
+
+.album[data-album="igor"]:hover::after {
+  background-image: url("../img/igor.webp"); /* Image de l'album Igor */
+}
+
+.album[data-album="callmeifyougetlost"]:hover::after {
+  background-image: url("../img/callmeifyougetlost.webp"); /* Image de l'album Call me if you get lost */
+}
+
+.album[data-album="chromakopia"]:hover::after {
+  background-image: url("../img/chromakopia.jpg"); /* Image de l'album Chromakopia */
+}
+
+
+/* Rendre le footer plus beau */
+footer {
+  background-color: #333; /* Couleur de fond du footer */
+  color: white; /* Couleur du texte */
+  text-align: center; /* Centrage du texte */
+  padding: 20px 20px; /* Espacement interne */
+  width: 100%; /* Prend toute la largeur */
+  bottom: 0; /* Positionne le footer en bas de la page */
+}
+
+section {
+  padding: 20px; /* Espacement interne des sections */
+}
+
+/* Style plus visuel pour le tableau avec bordures */
+table {
+  width: 100%; /* Tableau prenant toute la largeur */
+  border-collapse: collapse; /* Fusion des bordures */
+  margin: 20px 0; /* Marge autour du tableau */
+}
+
+table, th, td {
+  border: 1px solid #ddd; /* Bordure fine pour le tableau */
+  text-align: left; /* Alignement à gauche du texte */
+}
+
+th, td {
+  padding: 8px; /* Espacement interne des cellules */
+}
+
+/* Changement de style pour les boutons */
+button {
+  background-color: #333; /* Couleur de fond du bouton */
+  color: white; /* Couleur du texte */
+  border: none; /* Pas de bordure */
+  padding: 10px 20px; /* Espacement interne du bouton */
+  cursor: pointer; /* Curseur en forme de main */
+  border-radius: 5px; /* Bords arrondis */
+  transition: 0.5s; /* Transition douce pour les effets */
+}
+
+button:hover {
+  background-color: #555; /* Changement de couleur au survol */
+  transform: translate(-3px, -3px); /* Effet de déplacement du bouton */
+  transition: 0.5s; /* Transition douce */
+}
+
+/* Changement de style pour les images */
+img {
+  border-radius: 50px; /* Images rondes */
+}
+
+#portraittyler {
+  border-radius: 50px; /* Portrait rond de Tyler */
+  transition: 0.5s; /* Transition douce pour les effets */
+}
+
+#portraittyler:hover {
+  transform: translate(-3px, -3px); /* Effet de déplacement au survol */
+  box-shadow: 3px 3px 3px 3px #ffffff; /* Ombre au survol */
+  transition: 0.5s; /* Transition douce */
+  transition-duration: 0.5s; /* Durée de la transition */
+}
+
+/* Sélection et modification de la banderolle */
+#banderollechroma {
+  transform: scaleY(80%); /* Modification de la taille sur l'axe Y */
+}
+
+/* Positionnement de l'image */
+.image-container {
+  position: absolute; /* Positionnement absolu */
+  top: 20px; /* Position à 20px du haut */
+  right: 20px; /* Position à 20px de la droite */
+}
+
+/* Image ronde qui tourne */
+.rotating-image {
+  width: 100px;  /* Largeur de l'image */
+  height: 100px; /* Hauteur de l'image */
+  border-radius: 50%; /* Image ronde */
+  object-fit: cover; /* L'image couvre complètement le cercle */
+  animation: rotateImage 10s linear infinite; /* Animation de rotation */
+}
+
+/* Animation de rotation */
+@keyframes rotateImage {
+  0% {
+    transform: rotate(0deg); /* Position de départ */
+  }
+  100% {
+    transform: rotate(360deg); /* Rotation complète */
+  }
+}
+
+/* Positionnement et style des sections */
+section {
+  padding: 20px; /* Espacement interne */
+  text-align: center; /* Centrage du texte */
+}

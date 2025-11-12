@@ -2,6 +2,9 @@
   <div class="about-page">
     <Header :show-logo="true" />
 
+    <section class="breadcrumb">
+      <Breadcrumb current="À propos" />
+    </section>
     <main class="content">
       <h1>À propos de moi</h1>
       <p>
@@ -11,26 +14,25 @@
       <a href="/cv-basile-ferrand.pdf" download class="btn-cv">
         Télécharger mon CV
       </a>
+
+      <Marquee/>
+
+      <section id="currently">
+        <h1>Étudiant à l'</h1>
+        <div class="one">
+          <a href="https://www.linkedin.com/school/universit%C3%A9-grenoble-alpes/posts/?feedView=all">
+            <img src="../assets/logo/IUT1.png" alt="Logo UGA" class="logo" />
+          </a>
+        </div>
+        <h1>en</h1>
+        <div class="two">
+          <a href="https://www.linkedin.com/school/mmi-grenoble/posts/?feedView=all">
+            <img src="../assets/logo/mmi.png" alt="Logo MMI" class="logo" />
+          </a>
+        </div>
+      </section>
     </main>
 
-    <Marquee/>
-
-
-    <h2>En ce moment </h2>
-    <section id="currently">
-      <h1>Étudiant à l'</h1>
-      <div class="one">
-        <a href="https://www.linkedin.com/school/universit%C3%A9-grenoble-alpes/posts/?feedView=all">
-          <img src="../assets/logo/IUT1.png" alt="Logo UGA" class="logo" />
-        </a>
-      </div>
-      <h1>en</h1>
-      <div class="two">
-        <a href="https://www.linkedin.com/school/mmi-grenoble/posts/?feedView=all">
-          <img src="../assets/logo/mmi.png" alt="Logo MMI" class="logo" />
-        </a>
-      </div>
-    </section>
 
     <Footer />
   </div>
@@ -40,6 +42,7 @@
 import Header from '../components/Header.vue'
 import Footer from '../components/Footer.vue'
 import Marquee from "@/components/Marquee.vue";
+import Breadcrumb from '@/components/Breadcrumb.vue'
 </script>
 
 <style scoped>
@@ -60,7 +63,11 @@ import Marquee from "@/components/Marquee.vue";
   justify-content: center;
   text-align: center;
   gap: 1.5rem;
-  padding: 4rem 2rem;
+  padding: 1rem 2rem;
+}
+
+.breadcrumb {
+  margin-top: 4rem;
 }
 
 .btn-cv {

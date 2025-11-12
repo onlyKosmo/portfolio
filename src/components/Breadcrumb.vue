@@ -1,0 +1,41 @@
+<template>
+  <nav class="breadcrumb">
+    <RouterLink to="/" class="crumb">Accueil</RouterLink>
+    <span class="separator">›</span>
+    <span class="crumb current">{{ current }}</span>
+  </nav>
+</template>
+
+<script setup>
+const props = defineProps({
+  current: { type: String, required: true }
+});
+</script>
+
+<style scoped>
+.breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #ccc;
+  font-size: 0.9rem;
+  margin: 1rem 3rem;
+}
+
+.crumb {
+  text-decoration: none;
+  color: #00ffee;
+  transition: color 0.2s;
+}
+.crumb:hover {
+  color: #00bfb0;
+}
+
+.separator {
+  color: #888;
+}
+
+.current {
+  color: #fff;
+}
+</style>

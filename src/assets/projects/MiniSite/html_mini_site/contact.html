@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Discographie - Tyler, The Creator</title>
+  <!-- Lien vers le CSS -->
+  <link href="../css/style.css" rel="stylesheet">
+  <!-- Import d'une police personnalisé -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap" rel="stylesheet">
+</head>
+<body>
+<!-- Div pour l'image qui tourne -->
+<div class="image-container">
+  <img width="100" height="100" src="../img/wolf.webp" alt="Vinyle Image" class="rotating-image"> <!-- Appliquez la classe rotating-image -->
+</div>
+
+<header>
+  <h1>Tyler, The Creator</h1>
+  <nav>
+    <ul>
+      <li><a href="index.html">Accueil</a></li>
+      <li><a href="discographie.html">Discographie</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </nav>
+</header>
+
+<section>
+  <h2>Nous contacter / S'abonner à la Newsletter</h2>
+  <!-- Création du formulaire avec le lien pour envoyer les réponses et la méthode en "post" -->
+  <form action="https://formulaire.gremmi.fr/testformulaire2.php" method="post">
+    <label for="nom">Nom :</label>
+    <input type="text" id="nom" name="nom" required> <br> <br>
+    <label for="email">Email :</label>
+    <!-- Espace pour entrer son adresse mail -->
+    <input type="email" id="email" name="email" required> <br> <br>
+    <label>
+      <!-- Boîte à cocher pour l'utilisateur -->
+      <input type="checkbox" name="newsletter"> Je souhaite recevoir l'actualité de Tyler <br>
+    </label>
+    <!--Création d'espaces -->
+    <br><br>
+    <!-- Bouton envoyer fonctionnel -->
+    <button type="submit">Envoyer</button>
+  </form>
+  <img width="1220" height="690" id="banderollechroma" src="../img/chromakopia%20-%20Copie.jpg" alt="Chromakopia banderolle">
+</section>
+
+<!-- Footer personnalisé -->
+<footer>
+  <p>MMI Grenoble - Mini-site sur "Tyler, The Creator" par Basile.F-R</p>
+</footer>
+</body>
+</html>

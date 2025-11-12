@@ -41,7 +41,7 @@
 
       <!-- Bottom-right -->
       <RouterLink to="/about" class="bottom-right">
-        <p class="quick-desc">Étudiant apprenti Développeur Front-end, je me forme continuellement en réalisant des projets web divers. Je suis toujours curieux d'apprendre de jours en jours à utiliser de nouvelles technologies, que ce soit des langages, frameworks ou librairies.</p>
+        <p class="quick-desc">Étudiant apprenti Développeur Front-end, je me forme continuellement en réalisant des projets web divers. Je suis toujours curieux d'apprendre de jours en jours à utiliser de nouvelles technologies.</p>
         </RouterLink>
     </div>
 

@@ -1,0 +1,236 @@
+/* Styles de la partie principale "body" */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f8eadb;
+}
+
+/* Ajout d'une police pour tout les plus grand titre */
+h1 {
+  font-family: 'Courier New', Courier, monospace;
+  text-align: center;
+  color: #0f0d0e;
+  margin: 0;
+  padding: 20px 0;
+}
+/* Ajout d'une police pour tout les plus titres plus petits*/
+h2 {
+  font-family: "Oswald", serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+}
+/* Ajout d'une police pour les paragraphes aves le sélecteur "p" */
+p {
+  font-family: 'Roboto b', monospace;
+  text-align: left;
+}
+
+/* Modification du menu de navigation */
+header {
+  background-color: #137b40;
+  color: white;
+  padding: 20px 0;
+  text-align: center;
+}
+
+nav ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  text-align: center; /* Centre les éléments (li) */
+}
+
+nav ul li {
+  display: inline-block; /* Affiche les éléments de la liste en ligne */
+  margin: 0 15px;
+}
+
+nav ul li a {
+  text-decoration: none;
+  color: #f8eadb;
+  font-size: 18px;
+}
+
+nav ul li a:hover {
+  text-decoration: underline;
+}
+
+/* Styles du tableau des albums */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 30px;
+}
+
+th, td {
+  padding: 10px;
+  text-align: left;
+}
+
+th {
+  background-color: #137b40;
+}
+
+td.album {
+  cursor: pointer;
+  color: #000000;
+}
+
+td.album:hover {
+  text-decoration: underline;
+}
+
+/* Affichage des couvertures des albums au survol du curseur de l'utilisateur */
+.album {
+  display: inline-block;
+  position: relative;
+}
+
+.album:after {
+  content: '';
+  position: absolute;
+  bottom: -100px;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: 150px;
+  background-size: cover;
+  background-position: center;
+  text-align: right;
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.album[data-album="goblin"]:hover::after {
+  background-image: url("../img/goblin.webp");
+  opacity: 1;
+}
+
+.album[data-album="wolf"]:hover::after {
+  background-image: url("../img/wolf.webp");
+  opacity: 1;
+}
+
+.album[data-album="cherrybomb"]:hover::after {
+  background-image: url("../img/cherrybomb.webp");
+  opacity: 1;
+}
+
+.album[data-album="flowerboy"]:hover::after {
+  background-image: url("../img/flowerboy.webp");
+  opacity: 1;
+}
+
+.album[data-album="igor"]:hover::after {
+  background-image: url("../img/igor.webp");
+  opacity: 1;
+}
+
+.album[data-album="callmeifyougetlost"]:hover::after {
+  background-image: url("../img/callmeifyougetlost.webp");
+  opacity: 1;
+}
+
+.album[data-album="chromakopia"]:hover::after {
+  background-image: url("../img/chromakopia.jpg");
+  opacity: 1;
+}
+
+/* Autres styles pour le footer */
+footer {
+  background-color: #333;
+  color: white;
+  text-align: center;
+  padding: 20px 20px;
+  width: 100%;
+  bottom: 0;
+}
+
+section {
+  padding: 20px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px 0;
+}
+
+table, th, td {
+  border: 1px solid #ddd;
+  text-align: left;
+}
+
+th, td {
+  padding: 8px;
+}
+
+button {
+  background-color: #333;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: 0.5s;
+}
+
+button:hover {
+  background-color: #555;
+  transform: translate(-3px, -3px);
+  transition: 0.5s;
+}
+
+img {
+  border-radius: 50px;
+}
+
+#portraittyler {
+  border-radius: 50px;
+  transition: 0.5s;
+}
+
+#portraittyler:hover {
+  transform: translate(-3px, -3px);
+  box-shadow: 10px 10px 10px 10px #1d4c1a;
+  transition: 0.5s;
+  transition-duration: 0.5s;
+}
+
+/* Sélection et modification de la banderolle */
+#banderollechroma {
+  transform: scaleY(80%);
+}
+
+/* Changement de la position de l'image */
+.image-container {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+}
+
+/* Image ronde qui tourne */
+.rotating-image {
+  width: 100px;  /* Largeur de l'image */
+  height: 100px; /* Hauteur de l'image */
+  border-radius: 50%; /* Rendre l'image ronde */
+  object-fit: cover; /* Assurer que l'image couvre bien le cercle */
+  animation: rotateImage 10s linear infinite; /* Animation de rotation */
+}
+
+/* Animation de rotation */
+@keyframes rotateImage {
+  0% {
+    transform: rotate(0deg); /* Position de départ */
+  }
+  100% {
+    transform: rotate(360deg); /* Rotation complète */
+  }
+}
+
+/* Positionnement et style des sections */
+section {
+  padding: 20px;
+  text-align: center;
+}

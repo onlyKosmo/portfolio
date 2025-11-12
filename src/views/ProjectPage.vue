@@ -8,6 +8,11 @@
       <img :src="project.image" :alt="project.title" />
     </header>
 
+    <section class="breadcrumb">
+      <Breadcrumb v-if="project" :current="project.title" />
+    </section>
+
+
     <main class="container" v-if="project">
       <h1 class="title">{{ project.title }}</h1>
       <h2 v-if="project.subtitle" class="subtitle">{{ project.subtitle }}</h2>
@@ -34,6 +39,7 @@ import { useRoute, useRouter } from 'vue-router';
 import projects from '@/data/projects.js';
 import Header from '@/components/Header.vue'
 import Footer from '@/components/Footer.vue'
+import Breadcrumb from '@/components/Breadcrumb.vue'
 
 const route = useRoute();
 const router = useRouter();
