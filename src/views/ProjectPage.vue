@@ -1,6 +1,6 @@
 <template>
   <div class="project-page">
-    <Header :show="true" />
+    <Header :show="true" :show-logo="true" />
     <button class="back" @click="goBack">← Retour</button>
 
     <!-- Hero banner -->
@@ -77,6 +77,10 @@ function goBack() {
   background: #06101a;
   color: #fff;
   font-family: "Source Code Pro", monospace;
+}
+
+.header {
+  margin-top: 3rem;
 }
 
 /* Bouton retour */

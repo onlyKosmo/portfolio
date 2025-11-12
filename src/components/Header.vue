@@ -1,16 +1,16 @@
 <template>
   <header class="header" :class="{ zoomed: zoomed }">
-    <div class="top-left">
+    <RouterLink to="/" class="top-left">
       <h3 class="portfolio">KOSMO.</h3>
       <h1 class="name">by BASILE FERRAND-RICHARTE</h1>
-    </div>
+    </RouterLink>
 
-    <div class="top-center">
+    <RouterLink to="/" v-if="showLogo" class="top-center">
       <img src="../assets/logo/logo_b.png" alt="Logo" class="logo" />
-    </div>
+    </RouterLink>
 
     <div class="top-right">
-      <button class="about">À PROPOS</button>
+      <RouterLink to="/about" class="about">À PROPOS</RouterLink>
       <button @click="isModalOpen = true" class="btn-contact">ME CONTACTER</button>
     </div>
 
@@ -30,6 +30,10 @@
 <script setup>
 import { ref } from 'vue';
 import ContactModal from './ContactModal.vue';
+
+const props = defineProps({
+  showLogo: { type: Boolean, default: false }
+})
 
 const isModalOpen = ref(false);
 </script>
@@ -76,6 +80,20 @@ const isModalOpen = ref(false);
   z-index: 50;
   overflow-y: auto;
   padding: 2rem;
+}
+
+/* To avoid ugly hover effect */
+
+.header a,
+.header a:link,
+.header a:visited,
+.header a:hover,
+.header a:active,
+.header a:focus,
+.top-left,
+.top-center,
+.top-right {
+  background: transparent;
 }
 
 /* Transition */

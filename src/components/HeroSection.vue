@@ -2,6 +2,8 @@
   <section class="hero" :class="{ zoomed: isZoomed }">
     <canvas id="bgCanvas"></canvas>
     <div class="film-grain"></div>
+    <Header :show-logo="false" />
+
 
     <!-- 🔗 Projects Navigation (Desktop only) -->
     <nav
@@ -32,16 +34,15 @@
 
     <!-- Bottom-left -->
     <div class="bottom-container">
-      <div class="bottom-left">
+      <RouterLink to="/about" class="bottom-left">
         <p class="location">Grenoble, France</p>
         <p class="profession">Développeur Web</p>
-      </div>
+        </RouterLink>
 
       <!-- Bottom-right -->
-      <div class="bottom-right">
-        <p class="quick-desc">Artiste 3D et Motion Designer à Paris, je conçois avec grande précision des univers aux
-          visuels soignés et percutants au service des marques, agences et artistes.</p>
-      </div>
+      <RouterLink to="/about" class="bottom-right">
+        <p class="quick-desc">Étudiant apprenti Développeur Front-end, je me forme continuellement en réalisant des projets web divers. Je suis toujours curieux d'apprendre de jours en jours à utiliser de nouvelles technologies, que ce soit des langages, frameworks ou librairies.</p>
+        </RouterLink>
     </div>
 
 
@@ -68,7 +69,6 @@ import projectsData from '../data/projects.js';
 import createProjectWindow from '../three/projectWindow.js';
 import {ref, onMounted, onUnmounted} from 'vue'
 import {useRouter} from 'vue-router';
-import {defineEmits} from 'vue'
 
 const emit = defineEmits(['hide-header'])
 
@@ -237,6 +237,7 @@ onUnmounted(() => {
   z-index: 5;
   transition: all 0.3s ease;
   max-width: 45%;
+  background: transparent;
 }
 
 .bottom-left {
