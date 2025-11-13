@@ -41,7 +41,8 @@
 
       <!-- Bottom-right -->
       <RouterLink to="/about" class="bottom-right">
-        <p class="quick-desc">Étudiant apprenti Développeur Front-end, je me forme continuellement en réalisant des projets web divers. Je suis toujours curieux d'apprendre de jours en jours à utiliser de nouvelles technologies.</p>
+        <p class="quick-desc">Étudiant apprenti Développeur Front-end,<br>
+          je me forme continuellement en réalisant des projets web divers.<br>Je suis toujours curieux d'apprendre de nouvelles technologies.</p>
         </RouterLink>
     </div>
 
@@ -211,16 +212,6 @@ onUnmounted(() => {
 
 <style scoped>
 
-.top-left  {
-  font-size: 1.4rem;
-  margin: 0;
-}
-
-.top-left  {
-  font-size: 1rem;
-  margin: 0;
-}
-
 .bottom-container {
   position: absolute;
   bottom: 3rem;
@@ -251,6 +242,7 @@ onUnmounted(() => {
   bottom: 3rem;
   color: white;
   max-width: 40%;
+  text-align: end;
 }
 
 @media (max-width: 1024px) {
@@ -265,6 +257,7 @@ onUnmounted(() => {
     bottom: 2rem;
     font-size: 0.8rem;
     max-width: 60%;
+    text-align: left;
   }
 }
 
@@ -274,6 +267,7 @@ onUnmounted(() => {
     align-items: flex-start;
     gap: 1rem;
     padding: 0 1rem;
+    text-align: center;
   }
 
   .bottom-left {

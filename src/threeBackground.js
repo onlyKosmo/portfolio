@@ -19,7 +19,7 @@ export default function initThreeBackground() {
     const renderer = new THREE.WebGLRenderer({ canvas, antialias: true });
     renderer.setSize(window.innerWidth, window.innerHeight);
     renderer.setPixelRatio(window.devicePixelRatio);
-    renderer.setClearColor(0x0e1f2b, 1);
+    renderer.setClearColor(0x262645, 1);
 
     window.addEventListener('resize', () => {
         renderer.setSize(window.innerWidth, window.innerHeight);
@@ -33,8 +33,8 @@ export default function initThreeBackground() {
     const pos = new Float32Array(particleCount * 3);
     const colors = new Float32Array(particleCount * 3);
 
-    const c1 = new THREE.Color(0xff5f6d);
-    const c2 = new THREE.Color(0x0072ff);
+    const c1 = new THREE.Color(0x7E8099);
+    const c2 = new THREE.Color(0x5C6CFF);
 
     for (let i = 0; i < particleCount; i++) {
         const i3 = i * 3;
