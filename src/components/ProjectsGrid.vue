@@ -73,7 +73,7 @@ onMounted(() => {
 .project-card h3 {
   margin-top: 0.5rem;
   font-size: 0.9rem;
-  color: #00ffee;
+  color: var(--color-accent);
 }
 
 .project-card:active {

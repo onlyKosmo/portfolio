@@ -128,7 +128,7 @@ function onMenuLinkClick() {
 .top-left {
   display: flex;
   flex-direction: column;
-  color: white;
+  color: var(--color-text);
   text-decoration: none;
 }
 .top-left .portfolio { font-size: 1.4rem; margin:0; }
@@ -167,7 +167,7 @@ function onMenuLinkClick() {
   display: block;
   width: 100%;
   height: 2px;
-  background: white;
+  background: var(--color-text);
   transition: transform .25s ease, opacity .25s ease;
 }
 .hamburger .short { width: 70%; }
@@ -178,7 +178,7 @@ function onMenuLinkClick() {
   position: absolute;
   top: calc(100% + 8px);
   right: 1rem;
-  background: rgba(0,0,0,0.95);
+  background: var(--color-bg);
   padding: 1rem;
   display: flex;
   flex-direction: column;
@@ -187,7 +187,7 @@ function onMenuLinkClick() {
   z-index: 60;
 }
 .menu .menu-link {
-  color: white;
+  color: var(--color-text);
   background: transparent;
   border: 1px solid rgba(0,255,238,0.12);
   padding: 0.5rem 0.9rem;
@@ -201,7 +201,7 @@ function onMenuLinkClick() {
 .modal-overlay {
   position: fixed;
   inset: 0;
-  background: rgba(0,0,0,0.6);
+  background: var(--color-bg);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -237,7 +237,7 @@ function onMenuLinkClick() {
 
 .hamburger .line {
   height: 2px;
-  background: white;
+  background: var(--color-text);
   border-radius: 2px;
   transition: all 0.3s ease;
 }

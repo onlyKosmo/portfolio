@@ -1,0 +1,13 @@
+/* src/assets/tokens.css */
+:root {
+    /* Palette principale */
+    --color-bg: #131413;
+    --color-text: #f9f9f9;
+    --color-subtitle: #7f7f7f;
+    --color-accent: #897eff;
+
+    /* Autres variables globales si besoin */
+    --font-primary: 'Inter', sans-serif;
+    --font-secondary: 'Source Code Pro', monospace;
+    /*--gap-section: 160px;*/
+}

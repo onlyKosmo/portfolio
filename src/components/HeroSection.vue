@@ -212,6 +212,7 @@ onUnmounted(() => {
 
 <style scoped>
 
+
 .bottom-container {
   position: absolute;
   bottom: 3rem;
@@ -228,19 +229,18 @@ onUnmounted(() => {
   z-index: 5;
   transition: all 0.3s ease;
   max-width: 45%;
-  background: transparent;
 }
 
 .bottom-left {
   left: 3rem;
   bottom: 3rem;
-  color: white;
+  color: var(--color-text);
 }
 
 .bottom-right {
   right: 3rem;
   bottom: 3rem;
-  color: white;
+  color: var(--color-text);
   max-width: 40%;
   text-align: end;
 }
@@ -309,14 +309,13 @@ onUnmounted(() => {
     font-weight: 800;
     font-family: "Modern No. 20", monospace;
     letter-spacing: 1px;
-    color: #00ffee;
+    color: var(--color-accent);
   }
 
   .subtitle {
     font-size: 1rem;
     font-weight: 400;
     font-family: "Source Code Pro", monospace;
-    opacity: 0.8;
     margin-top: 0.5rem;
   }
 
@@ -437,7 +436,7 @@ canvas#bgCanvas {
   position: relative;
   text-align: center;
   z-index: 1;
-  color: white;
+  color: var(--color-text);
 }
 
 .headline {
@@ -451,7 +450,6 @@ canvas#bgCanvas {
   font-size: 1.5rem;
   font-family: "Source Code Pro", monospace;
   font-weight: 400;
-  opacity: 0.8;
   margin-top: 0.5rem;
 }
 
@@ -459,7 +457,7 @@ canvas#bgCanvas {
   margin-top: 2rem;
   padding: 0.8rem 2rem;
   font-size: 1rem;
-  color: white;
+  color: var(--color-text);
   background: radial-gradient(#00c6ff, #0072ff);
   border: none;
   border-radius: 30px;
@@ -524,7 +522,7 @@ canvas#bgCanvas {
 .projects-nav li {
   margin-bottom: 1rem;
   cursor: pointer;
-  color: #00ffee;
+  color: var(--color-accent);
   font-family: monospace;
   transition: transform 0.2s;
 }

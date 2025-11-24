@@ -51,7 +51,7 @@ import Breadcrumb from '@/components/Breadcrumb.vue'
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  background: radial-gradient(circle at top, #0f2027, #203a43, #2c5364);
+  background: var(--color-background);
   color: white;
 }
 

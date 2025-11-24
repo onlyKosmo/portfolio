@@ -21,8 +21,8 @@
   justify-content: space-between;
   align-items: center;
   padding: 1rem 2rem;
-  background: #06101a;
-  color: #fff;
+  background: var(--color-bg);
+  color: var(--color-text);
   position: relative;
   width: 100%;
   z-index: 10;

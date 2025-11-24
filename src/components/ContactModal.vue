@@ -64,7 +64,7 @@
   padding: 2rem;
   width: 100%;
   max-width: 600px;
-  color: white;
+  color: var(--color-text);
   box-shadow: 0 10px 25px rgba(0,0,0,0.5);
   font-family: 'NeueMontreal', sans-serif;
 }
@@ -85,7 +85,7 @@
 .close-btn {
   background: none;
   border: none;
-  color: white;
+  color: var(--color-text);
   cursor: pointer;
   padding: 0.25rem;
 }
@@ -101,9 +101,9 @@
   width: 100%;
   padding: 0.5rem;
   background-color: rgba(38, 38, 38, 0.3);
-  border: 1px solid rgba(120,120,120,0.8);
+  border: 1px solid var(--color-subtitle);
   border-radius: 8px;
-  color: white;
+  color: var(--color-text);
   font-family: 'NeueMontreal', sans-serif;
   font-weight: 400;
   backdrop-filter: blur(4px);
@@ -113,7 +113,7 @@
 .message-field textarea {
   resize: none;
   background-color: rgba(38,38,38,0.15);
-  border-color: rgba(120,120,120,0.7);
+  border-color: var(--color-subtitle);
 }
 
 .grid-form {
@@ -132,19 +132,19 @@
 .social-links a {
   margin-right: 1rem;
   font-size: 0.75rem;
-  color: white;
+  color: var(--color-text);
   text-decoration: none;
   transition: color 0.2s;
 }
 
 .social-links a:hover {
-  color: #ccc;
+  color: var(--color-accent);
 }
 
 .submit-btn {
   background: transparent;
-  border: 1px solid white;
-  color: white;
+  border: 1px solid var(--color-text);
+  color: var(--color-text);
   padding: 0.5rem 1.5rem;
   border-radius: 999px;
   cursor: pointer;
@@ -152,8 +152,8 @@
 }
 
 .submit-btn:hover {
-  background: white;
-  color: black;
+  background: var(--color-text);
+  color: var(--color-bg);
 }
 
 @media (max-width: 640px) {
