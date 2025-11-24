@@ -3,6 +3,7 @@ import LimboPreview from '@/assets/projects/suitlimbo/1.png';
 import PlayTestPreview from '@/assets/projects/playtest/1.png';
 import TylerPreview from '@/assets/projects/MiniSite/img/chromakopia - Copie.jpg';
 import LeafletPreview from '@/assets/projects/Manuel/leaflet.png';
+import SneakersPreview from '@/assets/projects/sneakers/sneakers.png';
 
 export default [
     {
@@ -11,19 +12,19 @@ export default [
         subtitle: '"PlayTest" | Site de notation de jeux vidéo',
         preview: PlayTestPreview,
         image: PlayTestPreview,
-        media: ['src/assets/projects/suitlimbo/1.png', 'src/assets/projects/suitlimbo/2.png'],
-        description: "<p>Élaboration d'un site avec sa base de données permettant à ses utilisateurs de se connecter, noter des jeux sur 5, laisser des commentaires et interagir en communauté de joueurs. Calcul de la note moyenne des jeux en temps réel selon celles des utilisateurs.</p>",
+        media: ['src/assets/projects/playtest/1.png', 'src/assets/projects/playtest/2.png'],
+        description: "<p>Élaboration d'un site avec sa base de données permettant à ses utilisateurs de se connecter, de noter des jeux sur 5, de laisser des commentaires et d'interagir en communauté de joueurs. Calcul de la note moyenne des jeux en temps réel selon celles des utilisateurs.</p>",
         tech_stack: "PHP, MariaDB, HTML & CSS, JavaScript",
-        link: ""
+        link: "",
     },
     {
         title: "SuitLimbo",
-        slug: "SuitLimbo",
+        slug: "SuitLimbo | Site de vente de costumes",
         subtitle: '"SuitLimbo" | Gestion de contenus et déploiement AWS',
         preview: LimboPreview,
         image: LimboPreview,
         media: ['/images/dals-1.jpg', '/images/dals-2.jpg'],
-        description: "<p>Site web avec une solution de gestion de contenus.</p>",
+        description: "<p>Site web avec une solution de gestion de contenus Wordpress avec l'extension Elementor.</p>",
         tech_stack: "Wordpress / Elementor / Amazon Web Service",
         link: ""
     },
@@ -49,4 +50,18 @@ export default [
         tech_stack: "HTML & CSS",
         link: "https://basileferi.fr/src/assets/projects/MiniSite/html_mini_site/index.html",
     },
+
+    {
+        title: "Boutique Sneakers",
+        slug: "Boutique Sneakers",
+        subtitle: 'Conception d’un site pour une boutique Sneakers fictive',
+        preview: SneakersPreview,
+        image: SneakersPreview,
+        media: ['', ''],
+        description: "<p>Ce site charge les produits depuis un fichier CSV et les affiche en colonne avec Bootstrap. De plus, une fonctionnalité de tri en JavaScript est disponible sur la page boutique. Enfin, ce site change la couleur de son header en fonction de l'heure de connexion de l'utilisateur. </p>",
+        tech_stack: "HTML, CSS, PHP, JavaScript",
+        link: "",
+        video: "https://www.youtube.com/embed/y2tu4FJsBso"
+    },
+
 ];

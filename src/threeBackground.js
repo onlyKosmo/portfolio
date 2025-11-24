@@ -67,6 +67,7 @@ export default function initThreeBackground() {
 // créer la texture à partir de ce canvas
     const particleTexture = new THREE.CanvasTexture(particleCanvas);
 
+
     const particles = new THREE.Points(
         geometry,
         new THREE.PointsMaterial({

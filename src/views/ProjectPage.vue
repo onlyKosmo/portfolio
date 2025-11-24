@@ -1,15 +1,15 @@
 <template>
   <div class="project-page">
-    <Header :show="true" :show-logo="true" />
+    <Header :show="true" :show-logo="true"/>
     <button class="back" @click="goBack">← Retour</button>
 
     <!-- Hero banner -->
     <header class="hero-banner" v-if="project">
-      <img :src="project.image" :alt="project.title" />
+      <img :src="project.image" :alt="project.title"/>
     </header>
 
     <section class="breadcrumb">
-      <Breadcrumb v-if="project" :current="project.title" />
+      <Breadcrumb v-if="project" :current="project.title"/>
     </section>
 
 
@@ -21,30 +21,55 @@
 
       <!-- Galerie média -->
       <div class="media" v-if="project.media">
-        <img v-for="(img, i) in project.media" :key="i" :src="img" :alt="project.title + ' image ' + (i+1)" />
+        <img v-for="(img, i) in project.media" :key="i" :src="img" :alt="project.title + ' image ' + (i+1)"/>
       </div>
 
+      <!-- Lecteur vidéo -->
+      <div v-if="project.video" class="video-container mb-6">
+        <iframe
+            :src="project.video"
+            title="Vidéo de présentation"
+            frameborder="0"
+            allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen
+            class="w-full h-64 md:h-96 rounded-lg shadow-lg"
+        ></iframe>
+      </div>
+
+
       <!-- Bouton vers le projet en ligne -->
-      <a v-if="project.link" :href="project.link" target="_blank" class="external-link">
-        Voir en ligne
-      </a>
+      <div class="flex justify-center mt-8">
+        <animated-button v-if="project.link"
+                         class="external-link"
+                         @click="openExternal(project.link)"
+        >
+          Voir en ligne
+        </animated-button>
+      </div>
     </main>
-    <Footer />
+    <Footer/>
   </div>
 </template>
 
 <script setup>
-import { ref, onMounted, onUnmounted } from 'vue';
-import { useRoute, useRouter } from 'vue-router';
+import {ref, onMounted, onUnmounted} from 'vue';
+import {useRoute, useRouter} from 'vue-router';
 import projects from '@/data/projects.js';
 import Header from '@/components/Header.vue'
 import Footer from '@/components/Footer.vue'
 import Breadcrumb from '@/components/Breadcrumb.vue'
+import AnimatedButton from "@/components/AnimatedButton.vue";
 
 const route = useRoute();
 const router = useRouter();
 const slug = route.params.slug;
 const project = ref(null);
+
+function openExternal(url) {
+  if (!url) return;
+  window.open(url, "_blank");
+}
+
 
 onMounted(() => {
   project.value = projects.find(p => p.slug === slug) || null;
@@ -80,8 +105,8 @@ function goBack() {
 .project-page {
   width: 100vw;
   min-height: auto;
-  background: #06101a;
-  color: #fff;
+  background: var(--color-bg);
+  color: var(--color-text);
   font-family: "Source Code Pro", monospace;
 }
 
@@ -96,15 +121,16 @@ function goBack() {
   left: 1rem;
   z-index: 50;
   padding: 0.5rem 1rem;
-  border: 1px solid #00ffea;
-  color: #00ffea;
+  border: 1px solid var(--color-subtitle);
+  color: var(--color-subtitle);
   background: transparent;
   border-radius: 6px;
   cursor: pointer;
   transition: all 0.2s;
 }
+
 .back:hover {
-  background: #00ffea;
+  background: var(--color-accent);
   color: #000;
 }
 
@@ -131,7 +157,7 @@ function goBack() {
 .subtitle {
   font-size: 1.5rem;
   margin-bottom: 1rem;
-  color: #00ffee;
+  color: var(--color-subtitle);
 }
 
 .description {
@@ -155,14 +181,15 @@ function goBack() {
 
 /* Bouton externe */
 .external-link {
-  display: inline-block;
-  padding: 0.8rem 1.5rem;
-  background: #00ffea;
-  color: #000;
-  border-radius: 8px;
-  text-decoration: none;
-  transition: all 0.2s;
+  margin-top: 2rem;
+  border-radius: 999px; /* capsule compatible avec le SVG */
+  position: relative;
+  cursor: pointer;
+  overflow: hidden;
+  justify-content: center;
+
 }
+
 .external-link:hover {
   transform: scale(1.05);
 }
@@ -189,4 +216,9 @@ function goBack() {
     grid-template-columns: 1fr;
   }
 }
+.video-container iframe {
+  width: 100%;
+  height: 40rem;
+}
+
 </style>

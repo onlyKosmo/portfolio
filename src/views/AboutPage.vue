@@ -62,7 +62,7 @@ import Breadcrumb from '@/components/Breadcrumb.vue'
   align-items: center;
   justify-content: center;
   text-align: center;
-  gap: 1.5rem;
+  gap: 0.5rem;
   padding: 1rem 2rem;
 }
 
@@ -87,9 +87,9 @@ import Breadcrumb from '@/components/Breadcrumb.vue'
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 3rem;
+  gap: 1rem;
   min-height: 10vh; /* take full screen height */
-  padding: 2rem;
+  padding: 0.5rem;
 }
 
 #currently .logo {
