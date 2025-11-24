@@ -52,6 +52,21 @@ export default function initThreeBackground() {
     geometry.setAttribute('position', new THREE.BufferAttribute(pos, 3));
     geometry.setAttribute('color', new THREE.BufferAttribute(colors, 3));
 
+    // canvas temporaire pour la texture des particules
+    const particleCanvas = document.createElement('canvas');
+    particleCanvas.width = 64;
+    particleCanvas.height = 64;
+    const ctx = particleCanvas.getContext('2d');
+
+// cercle blanc rempli
+    ctx.fillStyle = 'white';
+    ctx.beginPath();
+    ctx.arc(32, 32, 32, 0, Math.PI * 2);
+    ctx.fill();
+
+// créer la texture à partir de ce canvas
+    const particleTexture = new THREE.CanvasTexture(particleCanvas);
+
     const particles = new THREE.Points(
         geometry,
         new THREE.PointsMaterial({
@@ -61,6 +76,8 @@ export default function initThreeBackground() {
             opacity: 0.9,
             blending: THREE.AdditiveBlending,
             depthWrite: false,
+            map: particleTexture,
+            alphaTest: 0.01,
         })
     );
     scene.add(particles);
