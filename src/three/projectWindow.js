@@ -69,7 +69,7 @@ export default function createProjectWindow(
     }
 
     // ---- PLACEHOLDER ----
-    function createPlaceholderTexture(text = "Choisissez un projet", bgColor = "#000000", textColor = "#00ffee") {
+    function createPlaceholderTexture(text = "Choisissez un projet", bgColor = "7f7f7f", textColor = "#f9f9f9") {
         const canvas = document.createElement("canvas");
         canvas.width = 1024;
         canvas.height = 512;

@@ -27,7 +27,9 @@
     <div class="content">
       <h1 class="headline">Bienvenue</h1>
       <h2 class="subtitle">DANS MON ESPACE</h2>
-      <button class="cta retro-btn" @click="handleClick">Mes projets</button>
+      <AnimatedButton ref="animatedBtn" class="cta" @click="handleClick">
+        Mes projets
+      </AnimatedButton>
 
     </div>
 
@@ -50,7 +52,7 @@
     <!-- 🔙 Floating retro back button -->
     <button
         v-if="isZoomed"
-        class="retro-btn back-btn"
+        class="btn back-btn"
         @click="handleBack"
     >
       Retour
@@ -70,8 +72,11 @@ import projectsData from '../data/projects.js';
 import createProjectWindow from '../three/projectWindow.js';
 import {ref, onMounted, onUnmounted} from 'vue'
 import {useRouter} from 'vue-router';
+import AnimatedButton from "@/components/AnimatedButton.vue";
 
 const emit = defineEmits(['hide-header'])
+
+const animatedBtn = ref(null);
 
 function handleClick() {
   emit('hide-header')  // déclenche juste la disparition du header
@@ -145,6 +150,8 @@ const toggleProjects = () => {
         .to(three.scanlinePass.uniforms.intensity, {value: 0.12, duration: 1, ease: "power1.inOut"}, 0)
         .to(three.vignettePass.uniforms.darkness, {value: 1.2, duration: 1.2, ease: "power2.inOut"}, 0)
         .to(".content", {opacity: 1, scale: 1, duration: 1, ease: "power2.out"}, "<");
+    // mettre à jour la bordure après le dézoom
+    if (animatedBtn.value) animatedBtn.value.updateSize();
   }
 };
 
@@ -199,10 +206,6 @@ onMounted(() => {
           opacity: 0,
           ease: "power2.out"
         }, "-=0.5")
-        .from(".cta", {
-          scale: 0.8,
-          ease: "back.out(1.7)"
-        }, "-=0.3");
   });
 });
 onUnmounted(() => {
@@ -319,58 +322,19 @@ onUnmounted(() => {
     margin-top: 0.5rem;
   }
 
-  .cta, .top-right .contact-btn {
-    font-family: "Press Start 2P", monospace;
-    background: linear-gradient(90deg, #00ffee, #0072ff);
-    color: black;
-    border: 2px solid #00ffee;
-    box-shadow: 0 0 15px #00ffee, inset 0 0 10px #00ffee;
-    transition: all 0.3s ease;
-  }
-
-  .cta:hover, .top-right .contact-btn:hover {
-    transform: scale(1.05);
-    box-shadow: 0 0 25px #00ffee, inset 0 0 15px #00ffee;
-  }
-
   .hero.zoomed .content {
     display: none; /* hide text when grid is shown */
   }
 }
 
 
-.retro-btn {
-  position: relative;
-  background: black;
-  color: #00ffea;
-  border: 2px solid #00ffea;
+.btn {
+  position: relative;;
   font-family: "Press Start 2P", monospace;
   text-transform: uppercase;
-  box-shadow: 0 0 5px #00ffea, inset 0 0 10px #00ffea;
-  text-shadow: 0 0 5px #00ffea;
   transition: all 0.2s ease;
-}
-
-.retro-btn:hover {
-  background: #00ffea;
-  color: black;
-  box-shadow: 0 0 15px #00ffea, inset 0 0 10px #00ffea;
-  transform: scale(1.05);
-}
-
-.retro-btn::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: repeating-linear-gradient(
-      to bottom,
-      rgba(0, 255, 234, 0.2),
-      rgba(0, 255, 234, 0.1) 2px,
-      transparent 2px,
-      transparent 4px
-  );
-  opacity: 0.1;
-  pointer-events: none;
+  z-index: 2;
+  border-radius: 999px; /* capsule pour correspondre au SVG */
 }
 
 .back-btn {
@@ -393,6 +357,14 @@ onUnmounted(() => {
   transform: translateY(0);
 }
 
+.cta {
+  margin-top: 2rem;
+  border-radius: 999px; /* capsule compatible avec le SVG */
+  position: relative;
+  cursor: pointer;
+  overflow: hidden;
+}
+
 @keyframes fadeIn {
   to {
     opacity: 1;
@@ -400,12 +372,12 @@ onUnmounted(() => {
 }
 
 .hero.zoomed .back-btn:hover {
-  transform: scale(1.1);
+  transform: scale(1.2);
 }
 
 
 /* disable the main CTA inside the content when zoomed */
-.hero.zoomed .content .retro-btn {
+.hero.zoomed .content .btn {
   pointer-events: none;
   opacity: 0.6;
 }
@@ -451,23 +423,6 @@ canvas#bgCanvas {
   font-family: "Source Code Pro", monospace;
   font-weight: 400;
   margin-top: 0.5rem;
-}
-
-.cta {
-  margin-top: 2rem;
-  padding: 0.8rem 2rem;
-  font-size: 1rem;
-  color: var(--color-text);
-  background: radial-gradient(#00c6ff, #0072ff);
-  border: none;
-  border-radius: 30px;
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
-
-.cta:hover {
-  background: linear-gradient(90deg, #0072ff, #00c6ff);
-  transform: scale(1.05);
 }
 
 .film-grain {
@@ -520,7 +475,7 @@ canvas#bgCanvas {
 }
 
 .projects-nav li {
-  margin-bottom: 1rem;
+  margin-bottom: 3rem;
   cursor: pointer;
   color: var(--color-accent);
   font-family: monospace;

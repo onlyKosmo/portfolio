@@ -24,11 +24,11 @@ const props = defineProps({
 
 .crumb {
   text-decoration: none;
-  color: #00ffee;
+  color: var(--color-accent);
   transition: color 0.2s;
 }
 .crumb:hover {
-  color: #00bfb0;
+  color: var(--color-subtitle);
 }
 
 .separator {
