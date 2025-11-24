@@ -99,7 +99,7 @@ defineExpose({
 }
 
 .btn-animated:hover {
-  transform: scale(1.1);
+  transform: scale(1.05);
 }
 
 .btn-inner {
@@ -117,7 +117,6 @@ defineExpose({
 }
 
 .btn-inner:hover {
-  transform: scale(1.1);
 }
 
 .svg-border {

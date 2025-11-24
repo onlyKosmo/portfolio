@@ -41,17 +41,48 @@
       </div>
 
       <div class="modal-footer">
-        <div class="social-links">
-          <a href="https://linkedin.com/in/basileferi" target="_blank" aria-label="LinkedIn">LinkedIn</a>
-          <a href="https://github.com/onlyKosmo" target="_blank" aria-label="GitHub">GitHub</a>
+        <div class="social-links flex items-center gap-4 sm:gap-5">
+
+          <!-- LinkedIn -->
+          <a href="https://linkedin.com/in/basileferi"
+             target="_blank"
+             rel="noopener noreferrer"
+             class="flex items-center gap-1.5 text-white hover:text-gray-300 transition-colors"
+             aria-label="LinkedIn">
+
+            <img
+                src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/linkedin.svg"
+                class="w-2.5 h-2.5 invert opacity-90"
+                alt="LinkedIn">
+
+            <span class="text-[0.65rem] font-nord font-thin leading-none">LinkedIn</span>
+          </a>
+
+          <!-- GitHub -->
+          <a href="https://github.com/onlyKosmo"
+             target="_blank"
+             rel="noopener noreferrer"
+             class="flex items-center gap-1.5 text-white hover:text-gray-300 transition-colors"
+             aria-label="GitHub">
+
+            <img
+                src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/github.svg"
+                class="w-2.5 h-2.5 invert opacity-90"
+                alt="GitHub">
+
+            <span class="text-[0.65rem] font-nord font-thin leading-none">GitHub</span>
+          </a>
+
         </div>
-        <button type="submit" class="submit-btn">Envoyer</button>
+
+        <animated-button type="submit" class="submit-btn">Envoyer</animated-button>
       </div>
     </form>
   </div>
 </template>
 
 <script setup>
+import AnimatedButton from "@/components/AnimatedButton.vue";
 </script>
 
 <style scoped>
@@ -127,6 +158,29 @@
   flex-wrap: wrap;
 }
 
+.social-links {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 130px; /* empêche la compression */
+  flex-shrink: 0;   /* interdit d’écraser les icônes */
+}
+
+.social-links a {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.social-links img {
+  width: 14px;
+  height: 14px;
+  object-fit: contain;
+  filter: invert(1);
+  opacity: 0.9;
+}
+
+
 .social-links a {
   margin-right: 1rem;
   font-size: 0.75rem;
@@ -140,18 +194,11 @@
 }
 
 .submit-btn {
-  background: transparent;
-  border: 1px solid var(--color-text);
-  color: var(--color-text);
-  padding: 0.5rem 1.5rem;
-  border-radius: 999px;
+  margin-top: 2rem;
+  border-radius: 999px; /* capsule compatible avec le SVG */
+  position: relative;
   cursor: pointer;
-  transition: all 0.2s;
-}
-
-.submit-btn:hover {
-  background: var(--color-text);
-  color: var(--color-bg);
+  overflow: hidden;
 }
 
 @media (max-width: 640px) {
