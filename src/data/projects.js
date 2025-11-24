@@ -1,4 +1,3 @@
-import evanPreview from '@/assets/projects/evan.png';
 import LimboPreview from '@/assets/projects/suitlimbo/1.png';
 import PlayTestPreview from '@/assets/projects/playtest/1.png';
 import TylerPreview from '@/assets/projects/MiniSite/img/chromakopia - Copie.jpg';
@@ -23,7 +22,7 @@ export default [
         subtitle: '"SuitLimbo" | Gestion de contenus et déploiement AWS',
         preview: LimboPreview,
         image: LimboPreview,
-        media: ['/images/dals-1.jpg', '/images/dals-2.jpg'],
+        media: ['@/assets/projects/sneakers/1.png', '/@/assets/projects/sneakers/2.png'],
         description: "<p>Site web avec une solution de gestion de contenus Wordpress avec l'extension Elementor.</p>",
         tech_stack: "Wordpress / Elementor / Amazon Web Service",
         link: ""
@@ -54,7 +53,7 @@ export default [
     {
         title: "Boutique Sneakers",
         slug: "Boutique Sneakers",
-        subtitle: 'Conception d’un site pour une boutique Sneakers fictive',
+        subtitle: 'Conception d’un site pour une boutique de sneakers fictive',
         preview: SneakersPreview,
         image: SneakersPreview,
         media: ['', ''],
