@@ -42,7 +42,6 @@
 
       <div class="modal-footer">
         <div class="social-links">
-          <a href="https://instagram.com/basileferi" target="_blank" aria-label="Instagram">Instagram</a>
           <a href="https://linkedin.com/in/basileferi" target="_blank" aria-label="LinkedIn">LinkedIn</a>
           <a href="https://github.com/onlyKosmo" target="_blank" aria-label="GitHub">GitHub</a>
         </div>
@@ -58,12 +57,11 @@
 <style scoped>
 .modal-content {
   position: relative;
-  background-size: cover;
-  background: black center;
   border-radius: 12px;
   padding: 2rem;
   width: 100%;
   max-width: 600px;
+  background: var(--color-bg);
   color: var(--color-text);
   box-shadow: 0 10px 25px rgba(0,0,0,0.5);
   font-family: 'NeueMontreal', sans-serif;

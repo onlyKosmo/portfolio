@@ -189,19 +189,20 @@ function onMenuLinkClick() {
 .menu .menu-link {
   color: var(--color-text);
   background: transparent;
-  border: 1px solid rgba(0,255,238,0.12);
+  border: 1px solid var(--color-accent);
   padding: 0.5rem 0.9rem;
   border-radius: 6px;
   text-decoration: none;
   text-align: left;
 }
-.menu .menu-link:hover { background: rgba(0,255,238,0.12); }
+.menu .menu-link:hover { background: var(--color-accent); }
 
 /* modal overlay */
 .modal-overlay {
   position: fixed;
   inset: 0;
-  background: var(--color-bg);
+  background-color: rgba(0,0,0,0.7);
+  backdrop-filter: blur(0.09rem);
   display: flex;
   justify-content: center;
   align-items: center;
