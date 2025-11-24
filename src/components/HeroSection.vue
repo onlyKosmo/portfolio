@@ -27,7 +27,7 @@
     <div class="content">
       <h1 class="headline">Bienvenue</h1>
       <h2 class="subtitle">DANS MON ESPACE</h2>
-      <AnimatedButton ref="animatedBtn" class="cta" @click="handleClick">
+      <AnimatedButton class="cta" @click="handleClick">
         Mes projets
       </AnimatedButton>
 
@@ -75,8 +75,6 @@ import {useRouter} from 'vue-router';
 import AnimatedButton from "@/components/AnimatedButton.vue";
 
 const emit = defineEmits(['hide-header'])
-
-const animatedBtn = ref(null);
 
 function handleClick() {
   emit('hide-header')  // déclenche juste la disparition du header

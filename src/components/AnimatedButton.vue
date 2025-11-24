@@ -43,16 +43,22 @@ function updateSize() {
 
 function animateStroke() {
   const length = rect.value.getTotalLength();
-  rect.value.style.strokeDasharray = length;
-  rect.value.style.strokeDashoffset = length;
+
+  // partie visible et invisible pour créer l'effet de mouvement continu
+  const visible = length * 0.3;  // 30% visible
+  const invisible = length - visible;
+
+  rect.value.style.strokeDasharray = `${visible} ${invisible}`;
+  rect.value.style.strokeDashoffset = 0;
 
   gsap.to(rect.value, {
     strokeDashoffset: -length,
-    duration: 10,
-    ease: "none",
+    duration: 10,        // vitesse ajustable
+    ease: "linear",
     repeat: -1
   });
 }
+
 // expose la fonction pour que le parent puisse l'appeler
 defineExpose({
   updateSize
@@ -88,10 +94,11 @@ defineExpose({
   cursor: pointer;
   border-radius: 999px;
   transition: transform 0.3s ease;
+
 }
 
 .btn-animated:hover {
-  transform: scale(1.3);
+  transform: scale(1.1);
 }
 
 .btn-inner {
