@@ -1,5 +1,5 @@
 <script setup>
-import { ref, onMounted, nextTick, onUnmounted } from "vue";
+import { ref, onMounted, onUnmounted, nextTick, defineExpose } from "vue";
 import { gsap } from "gsap";
 
 const wrapper = ref(null);
@@ -8,27 +8,16 @@ const rect = ref(null);
 
 const emit = defineEmits(["click"]);
 
-// --- Couleur du glow (modifiable facilement) ---
+// Couleur et épaisseur du glow
 const glowColor = "255,255,255"; // format R,G,B
-const strokeWidth = 3; // épaisseur de la bordure
+const strokeWidth = 3;
 
-let resizeObserver;
+let frame;
 
-onMounted(async () => {
-  await nextTick();
-  updateSize();
-  animateStroke();
-
-  // Observer les changements de taille du bouton
-  resizeObserver = new ResizeObserver(updateSize);
-  resizeObserver.observe(wrapper.value);
-});
-
-onUnmounted(() => {
-  if (resizeObserver) resizeObserver.disconnect();
-});
-
+// --- Met à jour les dimensions du SVG et du rectangle ---
 function updateSize() {
+  if (!wrapper.value || !svg.value || !rect.value) return;
+
   const b = wrapper.value.getBoundingClientRect();
   const radius = b.height / 2;
 
@@ -41,11 +30,10 @@ function updateSize() {
   rect.value.setAttribute("stroke-width", strokeWidth);
 }
 
+// --- Animation continue du stroke façon “serpent” ---
 function animateStroke() {
   const length = rect.value.getTotalLength();
-
-  // partie visible et invisible pour créer l'effet de mouvement continu
-  const visible = length * 0.3;  // 30% visible
+  const visible = length * 0.3; // longueur visible de la queue
   const invisible = length - visible;
 
   rect.value.style.strokeDasharray = `${visible} ${invisible}`;
@@ -53,17 +41,31 @@ function animateStroke() {
 
   gsap.to(rect.value, {
     strokeDashoffset: -length,
-    duration: 10,        // vitesse ajustable
+    duration: 10,
     ease: "linear",
     repeat: -1
   });
 }
 
-// expose la fonction pour que le parent puisse l'appeler
+// --- Boucle qui suit la taille du bouton à chaque frame ---
+function resizeLoop() {
+  updateSize();
+  frame = requestAnimationFrame(resizeLoop);
+}
+
+onMounted(async () => {
+  await nextTick();
+  updateSize();
+  animateStroke();
+  resizeLoop();
+});
+
+onUnmounted(() => cancelAnimationFrame(frame));
+
+// Expose updateSize pour pouvoir l'appeler depuis le parent si besoin
 defineExpose({
   updateSize
 });
-
 </script>
 
 <template>
@@ -91,10 +93,9 @@ defineExpose({
 .btn-animated {
   position: relative;
   display: inline-block;
-  cursor: pointer;
   border-radius: 999px;
+  cursor: pointer;
   transition: transform 0.3s ease;
-
 }
 
 .btn-animated:hover {
@@ -108,10 +109,15 @@ defineExpose({
   box-sizing: border-box;
   cursor: pointer;
   font-size: 1rem;
-  padding: 1rem 2.5rem; /* padding définit la zone cliquable */
+  padding: 1rem 2.5rem; /* définit la zone cliquable */
   background: var(--color-accent);
   color: var(--color-text);
   border: none;
+  transition: transform 0.3s ease;
+}
+
+.btn-inner:hover {
+  transform: scale(1.1);
 }
 
 .svg-border {
