@@ -3,7 +3,7 @@
     <!-- left always visible (logo-link to home) -->
     <RouterLink to="/" class="top-left" @click="closeMenu">
       <h3 class="portfolio">KOSMO.</h3>
-      <h1 class="name">by BASILE FERRAND-RICHARTE</h1>
+      <h1 class="name">BASILE FERRAND-RICHARTE</h1>
     </RouterLink>
 
     <div

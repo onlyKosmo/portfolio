@@ -1,12 +1,15 @@
 <template>
-  <div class="project-page">
-    <Header :show="true" :show-logo="true"/>
-    <button class="back" @click="goBack">← Retour</button>
-
+  <div class="banner">
     <!-- Hero banner -->
     <header class="hero-banner" v-if="project">
       <img :src="project.image" :alt="project.title"/>
     </header>
+  </div>
+  <div class="project-page">
+    <Header :show="true" :show-logo="true"/>
+    <button class="back" @click="goBack">← Retour</button>
+
+
 
     <section class="breadcrumb">
       <Breadcrumb v-if="project" :current="project.title"/>
@@ -21,8 +24,22 @@
 
       <!-- Galerie média -->
       <div class="media" v-if="project.media">
-        <img v-for="(img, i) in project.media" :key="i" :src="img" :alt="project.title + ' image ' + (i+1)"/>
+        <img
+            v-for="(img, i) in project.media"
+            :key="i"
+            :src="img"
+            :alt="project.title + ' image ' + (i + 1)"
+            @click="openModal(i)"
+            class="clickable"
+        />
       </div>
+      <ImageModal
+          v-if="modalVisible"
+          v-model="modalVisible"
+          :images="project.media"
+          :startIndex="modalIndex"
+      />
+
 
       <!-- Lecteur vidéo -->
       <div v-if="project.video" class="video-container mb-6">
@@ -59,6 +76,15 @@ import Header from '@/components/Header.vue'
 import Footer from '@/components/Footer.vue'
 import Breadcrumb from '@/components/Breadcrumb.vue'
 import AnimatedButton from "@/components/AnimatedButton.vue";
+import ImageModal from "@/components/ImageModal.vue";
+
+const modalVisible = ref(false);
+const modalIndex = ref(0);
+
+function openModal(i) {
+  modalIndex.value = i;
+  modalVisible.value = true;
+}
 
 const route = useRoute();
 const router = useRouter();
@@ -145,8 +171,8 @@ function goBack() {
 /* Contenu principal */
 .container {
   max-width: 1000px;
-  margin: 2rem auto;
-  padding: 0 1rem;
+  margin: 1rem auto;
+  padding: 0 2rem;
 }
 
 .title {
@@ -177,6 +203,11 @@ function goBack() {
 .media img {
   width: 100%;
   border-radius: 12px;
+  transition: ease-in-out 0.2s;
+}
+
+.media img:hover {
+  transform: scale(1.02);
 }
 
 /* Bouton externe */

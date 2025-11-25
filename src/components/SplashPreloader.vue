@@ -12,8 +12,8 @@
 <script setup>
 import { ref, onMounted } from 'vue';
 import gsap from 'gsap';
+import logo from "@/assets/logo/logo_b.png";
 
-const logo = 'src/assets/logo/logo_b.png';
 const progressBar = ref(null);
 const visible = ref(true);
 
@@ -32,6 +32,7 @@ onMounted(() => {
     }
   });
 });
+
 </script>
 
 <style scoped>

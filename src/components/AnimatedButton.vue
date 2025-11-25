@@ -10,7 +10,7 @@ const emit = defineEmits(["click"]);
 
 // Couleur et épaisseur du glow
 const glowColor = "255,255,255"; // format R,G,B
-const strokeWidth = 3;
+const strokeWidth = 5;
 
 let frame;
 
