@@ -45,7 +45,7 @@ export default [
         subtitle: "Manuel d'utilisation du plugin Leaflet.js",
         preview: LeafletPreview,
         image: LeafletPreview,
-        media: ['/images/dals-1.jpg', '/images/dals-2.jpg'],
+        media: ['LeafletPreview'],
         description: "<p>Création d'un site web servant de manuel d'utilisation pour intégrer le plugin Leaflet.js à un site web.</p>",
         tech_stack: "JavaScript, HTML & CSS",
         link: "https://basileferi.fr/src/assets/projects/Manuel/man.html"
@@ -56,7 +56,6 @@ export default [
         subtitle: 'Conception d’un site vitrine pour un artiste',
         preview: TylerPreview,
         image: TylerPreview,
-        media: ['/images/dals-1.jpg', '/images/dals-2.jpg'],
         description: "<p>Promotion d'un artiste via un mini-site web intégrant un formulaire de contact et des animations CSS. </p>",
         tech_stack: "HTML & CSS",
         link: "https://basileferi.fr/src/assets/projects/MiniSite/html_mini_site/index.html",
