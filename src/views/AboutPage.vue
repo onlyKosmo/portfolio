@@ -11,9 +11,12 @@
         Développeur créatif passionné par l’interactivité, le design et la performance.
         J’aime concevoir des expériences visuelles uniques entre art et technologie.
       </p>
-      <a href="/cv-basile-ferrand.pdf" download class="btn-cv">
-        Télécharger mon CV
-      </a>
+      <animated-button href="/cv-basile-ferrand.pdf" @click="downloadCV" download class="btn-cv">
+        Mon CV <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 15v2a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3v-2m-8 1V4m0 12-4-4m4 4 4-4"/>
+      </svg>
+
+      </animated-button>
 
       <Marquee/>
 
@@ -43,6 +46,15 @@ import Header from '../components/Header.vue'
 import Footer from '../components/Footer.vue'
 import Marquee from "@/components/Marquee.vue";
 import Breadcrumb from '@/components/Breadcrumb.vue'
+import AnimatedButton from "@/components/AnimatedButton.vue";
+
+function downloadCV() {
+  const link = document.createElement("a");
+  link.href = "/cv-basile-ferrand.pdf";
+  link.download = "cv-basile-ferrand.pdf";
+  link.click();
+}
+
 </script>
 
 <style scoped>
@@ -71,16 +83,6 @@ import Breadcrumb from '@/components/Breadcrumb.vue'
 }
 
 .btn-cv {
-  background-color: #fff;
-  color: #000;
-  padding: 0.75rem 1.5rem;
-  border-radius: 9999px;
-  text-decoration: none;
-  font-weight: 600;
-  transition: all 0.3s ease;
-}
-.btn-cv:hover {
-  transform: scale(1.05);
 }
 
 #currently {
@@ -88,7 +90,7 @@ import Breadcrumb from '@/components/Breadcrumb.vue'
   justify-content: center;
   align-items: center;
   gap: 1rem;
-  min-height: 10vh; /* take full screen height */
+  min-height: 10vh;
   padding: 0.5rem;
 }
 
