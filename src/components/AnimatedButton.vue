@@ -83,7 +83,6 @@ defineExpose({
           <stop offset="100%" :stop-color="`rgba(${glowColor},0.05)`" />
         </linearGradient>
       </defs>
-
       <rect ref="rect" fill="none" stroke="url(#border-glow)" class="glowing-line" />
     </svg>
   </div>
@@ -114,6 +113,16 @@ defineExpose({
   color: var(--color-text);
   border: none;
   transition: transform 0.3s ease;
+  display: inline-flex;       /* ligne flexible, garde le bouton inline */
+  align-items: center;        /* centre l'icône et le texte verticalement */
+  gap: 0.5rem;                /* espace entre texte et svg */
+  white-space: nowrap;        /* empêche le retour à la ligne */
+}
+
+.btn-inner svg {
+  flex: 0 0 auto;
+  display: block;             /* évite comportement inline par défaut */
+  vertical-align: middle;
 }
 
 .btn-inner:hover {
