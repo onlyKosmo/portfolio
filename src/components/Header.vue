@@ -3,7 +3,7 @@
     <!-- left always visible (logo-link to home) -->
     <RouterLink to="/" class="top-left" @click="closeMenu">
       <h3 class="portfolio">KOSMO.</h3>
-      <h1 class="name">BASILE FERRAND-RICHARTE</h1>
+      <h1 class="name">par BASILE FERRAND-RICHARTE</h1>
     </RouterLink>
 
     <div
@@ -31,7 +31,7 @@
 
     <div class="top-right" v-if="!isMobile">
       <RouterLink to="/about" class="about">À PROPOS</RouterLink>
-      <button @click="openContact" class="btn-contact">ME CONTACTER</button>
+      <animated-button @click="openContact" class="btn-contact">ME CONTACTER</animated-button>
     </div>
 
     <!-- mobile menu (hamburger) -->
@@ -53,6 +53,7 @@
 import { ref, onMounted, onUnmounted, watch } from 'vue'
 import ContactModal from './ContactModal.vue'
 import { useRouter } from 'vue-router'
+import AnimatedButton from "@/components/AnimatedButton.vue";
 
 const props = defineProps({
   showLogo: { type: Boolean, default: false },
@@ -128,11 +129,10 @@ function onMenuLinkClick() {
 .top-left {
   display: flex;
   flex-direction: column;
-  color: var(--color-text);
   text-decoration: none;
 }
-.top-left .portfolio { font-size: 1.4rem; margin:0; }
-.top-left .name { font-size: 1rem; margin:0; }
+.top-left .portfolio { font-size: 1.6rem; margin:0; }
+.top-left .name { color: var(--color-subtitle); font-size: 0.8rem; margin:0; }
 
 /* center */
 .top-center {
@@ -143,9 +143,18 @@ function onMenuLinkClick() {
 .top-center .logo { height: 40px; object-fit: contain; }
 
 /* right (desktop) */
-.top-right { display: flex; gap: 0.5rem; margin-left: auto; }
+.top-right { display: flex; gap: 2rem; margin-left: auto;;
+  align-items: center; }
 .top-right .about,
-.top-right .btn-contact { cursor: pointer; }
+.top-right .btn-contact {
+  cursor: pointer;
+;
+}
+
+.top-right .btn-contact {
+  background-color: var(--color-subtitle);
+  padding: 0.3rem 0.5rem;
+}
 
 /* HAMBURGER */
 .hamburger {
