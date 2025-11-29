@@ -71,19 +71,19 @@ defineExpose({
 <template>
   <div class="btn-animated" ref="wrapper">
     <button class="btn-inner" :class="$attrs.class" @click="emit('click')">
-      <slot />
+      <slot/>
     </button>
 
     <svg ref="svg" class="svg-border">
       <defs>
         <linearGradient id="border-glow" x1="0%" y1="0%" x2="100%" y2="0%">
-          <stop offset="0%" :stop-color="`rgba(${glowColor},0.05)`" />
-          <stop offset="40%" :stop-color="`rgba(${glowColor},0.7)`" />
-          <stop offset="60%" :stop-color="`rgba(${glowColor},0.7)`" />
-          <stop offset="100%" :stop-color="`rgba(${glowColor},0.05)`" />
+          <stop offset="0%" :stop-color="`rgba(${glowColor},0.05)`"/>
+          <stop offset="40%" :stop-color="`rgba(${glowColor},0.7)`"/>
+          <stop offset="60%" :stop-color="`rgba(${glowColor},0.7)`"/>
+          <stop offset="100%" :stop-color="`rgba(${glowColor},0.05)`"/>
         </linearGradient>
       </defs>
-      <rect ref="rect" fill="none" stroke="url(#border-glow)" class="glowing-line" />
+      <rect ref="rect" fill="none" stroke="url(#border-glow)" class="glowing-line"/>
     </svg>
   </div>
 </template>
@@ -98,7 +98,8 @@ defineExpose({
 }
 
 .btn-animated:hover {
-  transform: scale(1.05);
+  transform: scale(1.03);
+
 }
 
 .btn-inner {
@@ -108,11 +109,11 @@ defineExpose({
   box-sizing: border-box;
   cursor: pointer;
   font-size: 1rem;
-  padding: 1rem 2.5rem; /* définit la zone cliquable */
+  padding: 0.8rem 2rem; /* définit la zone cliquable */
   background: var(--color-accent);
   color: var(--color-text);
   border: none;
-  transition: transform 0.3s ease;
+  transition: background-color 0.5s ease, transform 1s ease;
   display: inline-flex;       /* ligne flexible, garde le bouton inline */
   align-items: center;        /* centre l'icône et le texte verticalement */
   gap: 0.5rem;                /* espace entre texte et svg */
@@ -126,6 +127,7 @@ defineExpose({
 }
 
 .btn-inner:hover {
+  background: var(--color-bg);
 }
 
 .svg-border {

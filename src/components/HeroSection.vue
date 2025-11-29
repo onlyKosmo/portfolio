@@ -149,7 +149,7 @@ const toggleProjects = () => {
         .to(three.vignettePass.uniforms.darkness, {value: 1.2, duration: 1.2, ease: "power2.inOut"}, 0)
         .to(".content", {opacity: 1, scale: 1, duration: 1, ease: "power2.out"}, "<");
     // mettre à jour la bordure après le dézoom
-    if (animatedBtn.value) animatedBtn.value.updateSize();
+    if (AnimatedButton.value) AnimatedButton.value.updateSize();
   }
 };
 
@@ -308,7 +308,6 @@ onUnmounted(() => {
   .headline {
     font-size: 2.4rem;
     font-weight: 800;
-    font-family: "Modern No. 20", monospace;
     letter-spacing: 1px;
     color: var(--color-accent);
   }
@@ -316,7 +315,6 @@ onUnmounted(() => {
   .subtitle {
     font-size: 1rem;
     font-weight: 400;
-    font-family: "Source Code Pro", monospace;
     margin-top: 0.5rem;
   }
 
@@ -328,7 +326,6 @@ onUnmounted(() => {
 
 .btn {
   position: relative;;
-  font-family: "Press Start 2P", monospace;
   text-transform: uppercase;
   transition: all 0.2s ease;
   z-index: 2;
@@ -350,10 +347,6 @@ onUnmounted(() => {
 
 
 /* fade/slide in when shown */
-.back-btn.show {
-  opacity: 1;
-  transform: translateY(0);
-}
 
 .cta {
   margin-top: 2rem;
@@ -412,15 +405,14 @@ canvas#bgCanvas {
 .headline {
   font-size: 4rem;
   font-weight: 700;
-  font-family: "Modern No. 20", monospace;
-  letter-spacing: 1px;
+  letter-spacing: 0.5rem;
 }
 
 .subtitle {
   font-size: 1.5rem;
-  font-family: "Source Code Pro", monospace;
   font-weight: 400;
   margin-top: 0.5rem;
+  color: var(--color-subtitle);
 }
 
 .film-grain {
@@ -476,7 +468,6 @@ canvas#bgCanvas {
   margin-bottom: 3rem;
   cursor: pointer;
   color: var(--color-accent);
-  font-family: monospace;
   transition: transform 0.2s;
 }
 

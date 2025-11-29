@@ -1,0 +1,13 @@
+
+/* Google Mulish — imported once here */
+@import url('https://fonts.googleapis.com/css2?family=Mulish:wght@300;400;600;700&display=swap');
+
+/* Self-hosted TT Baker */
+@font-face {
+    font-family: "TT Baker";
+    src: url("@/assets/fonts/TT-Baker.woff2") format("woff2");
+    font-weight: 400 900; /* if variable font */
+    font-style: normal;
+    font-display: swap;
+}
+

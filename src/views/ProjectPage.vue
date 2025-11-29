@@ -46,7 +46,6 @@
         <iframe
             :src="project.video"
             title="Vidéo de présentation"
-            frameborder="0"
             allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
             allowfullscreen
             class="w-full h-64 md:h-96 rounded-lg shadow-lg"
@@ -133,11 +132,6 @@ function goBack() {
   min-height: auto;
   background: var(--color-bg);
   color: var(--color-text);
-  font-family: "Source Code Pro", monospace;
-}
-
-.header {
-  margin-top: 3rem;
 }
 
 /* Bouton retour */

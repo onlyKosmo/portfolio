@@ -7,7 +7,9 @@
     --color-accent: #897eff;
 
     /* Autres variables globales si besoin */
-    --font-primary: 'Inter', sans-serif;
-    --font-secondary: 'Source Code Pro', monospace;
+    --font-display: "TT_Baker", sans-serif;
+    --font-body: "Mulish", sans-serif;
     /*--gap-section: 160px;*/
 }
+
+

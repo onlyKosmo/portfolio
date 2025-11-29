@@ -153,7 +153,10 @@ function onMenuLinkClick() {
 
 .top-right .btn-contact {
   background-color: var(--color-subtitle);
-  padding: 0.3rem 0.5rem;
+  transition: background-color 0.5s ease, transform 1s ease
+}
+.top-right .btn-contact:hover {
+  background-color: var(--color-bg);
 }
 
 /* HAMBURGER */
