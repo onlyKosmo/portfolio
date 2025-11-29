@@ -5,30 +5,97 @@
     <section class="breadcrumb">
       <Breadcrumb current="À propos" />
     </section>
+
     <main class="content">
+      <!-- Hero Section -->
+      <section class="hero-section">
+        <div class="hero-container">
+          <div class="hero-text">
+            <h1 class="hero-title split-text">
+              Créer le <span class="accent-text">web de demain</span>
+            </h1>
+            <p class="hero-subtitle split-text">
+              Je suis Basile, développeur Front-End passionné par les expériences numériques immersives. Chaque pixel, chaque animation, chaque interaction raconte une histoire.
+            </p>
+            <animated-button @click="downloadCV" >
+              Télécharger mon CV
+              <svg class="icon-download" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M4 15v2a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3v-2M12 4v12m0 0l-4-4m4 4l4-4"/>
+              </svg>
+            </animated-button>
+          </div>
+          <div class="hero-visual">
+            <div class="hero-graphic">
+              <svg class="hero-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="16 18 22 12 16 6"></polyline>
+                <polyline points="8 6 2 12 8 18"></polyline>
+              </svg>
+            </div>
+          </div>
+        </div>
+      </section>
 
-      <h1 class="presentation">Bonjour, je m'appelle Basile</h1>
-      <h1 class="kosmo">Kosmo ?</h1>
+      <!-- Sections dynamiques alternées -->
+      <section class="dynamic-sections">
+        <div v-for="(item, index) in dynamicContent" :key="index" class="dynamic-row">
+          <!-- Numérotation badge -->
+          <div :class="['badge-number', { 'order-left': index % 2 === 0, 'order-right': index % 2 !== 0 }]">
+            {{ String(index + 1).padStart(2, '0') }}
+          </div>
 
-      <div class="name">
-        <img src="@/assets/logo/logo_b.png" alt="Logo" class="logo" />
-      </div>
+          <!-- Colonne texte (alternée) -->
+          <div :class="['left-column', { 'order-2': index % 2 !== 0, 'order-1': index % 2 === 0 }]">
+            <h2 class="section-title split-text">{{ item.title }}</h2>
+            <p class="section-text split-text">{{ item.text }}</p>
+            <p class="section-accent">→ {{ item.accent }}</p>
+          </div>
 
-      <h1>À propos de moi</h1>
-      <p>
-        Développeur créatif par les technologies du web, j’apprend à concevoir des expériences visuelles originales, en découvrant sans cesses de nouveaux procédé techniques. En ce moment, je m'entraîne à utiliser la bibliothèques Three.js et GSAP, comme vous pouvez le voir avec ce site.
-      </p>
-      <animated-button @click="downloadCV" download class="btn-cv">
-        Mon CV <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
-        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 15v2a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3v-2m-8 1V4m0 12-4-4m4 4 4-4"/>
-      </svg>
+          <!-- Colonne visuelle (alternée) -->
+          <div :class="['right-column', { 'order-1': index % 2 !== 0, 'order-2': index % 2 === 0 }]">
+            <div class="section-graphic">
+              <div class="graphic-emoji">{{ item.emoji }}</div>
+              <p class="graphic-label">{{ item.label }}</p>
+            </div>
+          </div>
+        </div>
+      </section>
 
-      </animated-button>
+      <!-- Section Compétences -->
+      <section class="skills-section">
+        <h2 class="section-title-center split-text">Mes compétences techniques</h2>
+        <div class="skills-grid">
+          <div v-for="(skill, index) in skillsData" :key="index" class="skill-card">
+            <div class="skill-icon">{{ skill.icon }}</div>
+            <h3 class="skill-label">{{ skill.label }}</h3>
+            <p class="skill-items">{{ skill.items }}</p>
+          </div>
+        </div>
+      </section>
+      <Marquee />
 
-      <Marquee/>
+      <!-- Partie Kosmo en bas -->
+      <section class="kosmo-section">
+        <h2 class="kosmo-title scramble-text">Kosmo ?</h2>
+        <p class="kosmo-explanation split-text">
+          Qu'est ce que Kosmo ? Kosmo est un pseudonyme que j'utilise parfois sur internet. J'ai choisi de nommer mon portfolio comme ceci car il s'agit de ma personne mais sur le Web, comme ce portfolio. Ce portfolio est mon tout premier site utilisant les bibliothèques GSAP et Three.js, j'ai adoré apprendre les bases de ces bibliothèques JavaScript tout au long du développement.
+        </p>
+        <p class="kosmo-accent">→ Mon portfolio d'apprenti développeur web</p>
+      </section>
 
+      <!-- CTA Final -->
+      <section class="cta-final">
+        <h3 class="cta-title split-text">Prêt à discuter ?</h3>
+        <p class="cta-subtitle">Contactez-moi ou explorez mon portfolio complet pour découvrir mes derniers projets</p>
+        <animated-button @click="downloadCV" >
+          Télécharger mon CV
+          <svg class="icon-download" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M4 15v2a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3v-2M12 4v12m0 0l-4-4m4 4l4-4"/>
+          </svg>
+        </animated-button>
+      </section>
+
+      <Marquee />
     </main>
-
 
     <Footer />
   </div>
@@ -37,30 +104,141 @@
 <script setup>
 import Header from '../components/Header.vue'
 import Footer from '../components/Footer.vue'
-import Marquee from "@/components/Marquee.vue";
+import Marquee from "@/components/Marquee.vue"
 import Breadcrumb from '@/components/Breadcrumb.vue'
-import AnimatedButton from "@/components/AnimatedButton.vue";
 import cvFile from '@/assets/CV_FERRAND-RICHARTE_Basile.pdf'
+import { onMounted } from 'vue'
+import gsap from 'gsap'
+import { SplitText } from 'gsap/SplitText'
+import AnimatedButton from "@/components/AnimatedButton.vue";
 
+gsap.registerPlugin(SplitText)
+
+// Fonction pour télécharger le CV
 function downloadCV() {
-  const link = document.createElement("a");
-  link.href = cvFile;
-  link.download = "CV_FERRAND-RICHARTE_Basile.pdf";
-  link.click();
+  const link = document.createElement("a")
+  link.href = cvFile
+  link.download = "CV_FERRAND-RICHARTE_Basile.pdf"
+  link.click()
 }
 
+// Contenu des sections dynamiques alternées
+const dynamicContent = [
+  {
+    title: "Bonjour, je m'appelle Basile",
+    text: "Je suis étudiant en 2ème année de BUT MMI avec une spécialisation en développement Front-End. Cette page incarne ma philosophie : créer des expériences web qui captivent et performent.",
+    accent: "Développeur créatif",
+    emoji: "🎯",
+    label: "Précision"
+  },
+  {
+    title: "Expériences immersives",
+    text: "Mes projets explorent les limites du web moderne : animations GSAP orchestrées, interactions Three.js, typographies dynamiques avec SplitText. Chaque ligne de code sert l'expérience utilisateur.",
+    accent: "Technologie au service du design",
+    emoji: "🚀",
+    label: "Innovation"
+  },
+  {
+    title: "Impact et résultats",
+    text: "Mes contributions se mesurent en qualité d'exécution, en performance et en accessibilité. J'intègre des bonnes pratiques dès la conception pour garantir que mes interfaces sont autant belles que fonctionnelles.",
+    accent: "Qualité pérenne",
+    emoji: "✨",
+    label: "Excellence"
+  }
+]
 
+// Données des compétences techniques
+const skillsData = [
+  {
+    icon: "💻",
+    label: "Front-End",
+    items: "Vue.js, React, GSAP, Three.js"
+  },
+  {
+    icon: "⚡",
+    label: "Performance",
+    items: "Optimisation, ScrollTrigger, Lazy Loading"
+  },
+  {
+    icon: "👁️",
+    label: "Design",
+    items: "Animations fluides, UX réfléchie, Accessibilité"
+  }
+]
 
+// Animations GSAP au montage du composant
+onMounted(() => {
+  // Animation SplitText pour tous les éléments .split-text
+  const splitEls = document.querySelectorAll('.split-text')
+  splitEls.forEach(el => {
+    const split = new SplitText(el, { type: "lines, words, chars" })
+    gsap.from(split.chars, {
+      opacity: 0,
+      y: 20,
+      stagger: 0.03,
+      duration: 0.6,
+      scrollTrigger: {
+        trigger: el,
+        start: "top 90%"
+      }
+    })
+  })
+
+  // Animation ScrambleText pour "Kosmo ?"
+  const kosmo = document.querySelector('.scramble-text')
+  if (kosmo) {
+    gsap.fromTo(kosmo, { textContent: "K____o ?" }, {
+      duration: 2,
+      textContent: "Kosmo ?",
+      ease: "power2.inOut",
+      scrollTrigger: {
+        trigger: kosmo,
+        start: "top 90%"
+      }
+    })
+  }
+
+  // Animation des cartes de compétences au scroll
+  const skillCards = document.querySelectorAll('.skill-card')
+  skillCards.forEach((card, i) => {
+    gsap.from(card, {
+      opacity: 0,
+      y: 30,
+      duration: 0.6,
+      delay: i * 0.1,
+      scrollTrigger: {
+        trigger: card,
+        start: "top 90%"
+      }
+    })
+  })
+
+  // Animation des sections dynamiques
+  const dynamicRows = document.querySelectorAll('.dynamic-row')
+  dynamicRows.forEach((row, i) => {
+    gsap.from(row, {
+      opacity: 0,
+      y: 40,
+      duration: 0.8,
+      delay: i * 0.15,
+      scrollTrigger: {
+        trigger: row,
+        start: "top 85%"
+      }
+    })
+  })
+})
 </script>
 
 <style scoped>
 .about-page {
+  padding: 8rem 3rem 1rem 3rem;
   position: relative;
-  height: 100vh;
   display: flex;
   flex-direction: column;
   overflow-y: auto;
   background: var(--color-bg);
+  height: 100vh;
 }
 
 .content {
@@ -68,29 +246,369 @@ function downloadCV() {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  gap: 3rem;
+  padding: 3rem 2rem;
   text-align: center;
-  gap: 0.5rem;
-  padding: 1rem 2rem;
 }
 
-.breadcrumb {
-  margin-top: 4rem;
+/* Hero Section */
+.hero-section {
+  width: 100%;
+  margin-bottom: 4rem;
 }
 
-.btn-cv {
+.hero-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
-.name .logo { height: 5rem;}
+.hero-text {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  text-align: left;
+}
 
-.name {
+.hero-title {
+  font-size: 3.5rem;
+  font-weight: 700;
+  line-height: 1.2;
+  color: var(--color-text);
+  letter-spacing: -0.02em;
+}
+
+.accent-text {
+  color: var(--color-accent);
+}
+
+.hero-subtitle {
+  font-size: 1.125rem;
+  line-height: 1.8;
+  color: var(--color-subtitle);
+}
+
+.hero-visual {
   display: flex;
   align-items: center;
-
+  justify-content: center;
 }
 
-h1 {
-  font-size: 2rem;
+.hero-graphic {
+  width: 250px;
+  height: 250px;
+  border-radius: 1rem;
+  border: 2px solid var(--color-accent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(139, 92, 246, 0.05);
+  backdrop-filter: blur(10px);
+}
+
+.hero-icon {
+  width: 120px;
+  height: 120px;
+  stroke: var(--color-accent);
+  stroke-width: 1.5;
+}
+
+/* Boutons */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.875rem 1.75rem;
+  background: var(--color-accent);
+  color: var(--color-bg);
+  font-weight: 700;
+  font-size: 1rem;
+  border: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  width: fit-content;
+}
+
+.btn-primary:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 20px rgba(139, 92, 246, 0.4);
+}
+
+.icon-download {
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+/* Sections dynamiques alternées */
+.dynamic-sections {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  gap: 5rem;
+}
+
+.dynamic-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  align-items: center;
+  position: relative;
+  padding: 2rem 0;
+}
+
+.badge-number {
+  position: absolute;
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--color-accent);
+  opacity: 0.15;
+  top: 0;
+  z-index: 0;
+}
+
+.order-left {
+  left: -2rem;
+}
+
+.order-right {
+  right: -2rem;
+}
+
+.order-1 {
+  order: 1;
+}
+
+.order-2 {
+  order: 2;
+}
+
+.left-column {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
   text-align: left;
+  position: relative;
+  z-index: 1;
+}
+
+.section-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--color-text);
+  line-height: 1.3;
+}
+
+.section-text {
+  font-size: 1rem;
+  line-height: 1.7;
+  color: var(--color-subtitle);
+}
+
+.section-accent {
+  font-size: 0.875rem;
+  color: var(--color-accent);
+  font-weight: 600;
+  font-style: italic;
+  margin-top: 0.5rem;
+}
+
+.right-column {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 300px;
+}
+
+.section-graphic {
+  width: 100%;
+  max-width: 280px;
+  aspect-ratio: 1;
+  border-radius: 1rem;
+  border: 2px solid var(--color-accent);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  background: rgba(139, 92, 246, 0.05);
+  backdrop-filter: blur(10px);
+}
+
+.graphic-emoji {
+  font-size: 3.5rem;
+}
+
+.graphic-label {
+  font-size: 0.875rem;
+  color: var(--color-subtitle);
+  font-weight: 600;
+}
+
+/* Section Compétences */
+.skills-section {
+  width: 100%;
+  max-width: 1200px;
+  margin: 3rem auto 0;
+  padding: 3rem 0;
+}
+
+.section-title-center {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--color-text);
+  margin-bottom: 3rem;
+  text-align: center;
+}
+
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+}
+
+.skill-card {
+  padding: 2rem;
+  border: 1px solid var(--color-accent);
+  border-radius: 0.75rem;
+  background: rgba(139, 92, 246, 0.08);
+  backdrop-filter: blur(10px);
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+.skill-card:hover {
+  border-color: var(--color-accent);
+  background: rgba(139, 92, 246, 0.15);
+  transform: translateY(-4px);
+  box-shadow: 0 10px 30px rgba(139, 92, 246, 0.2);
+}
+
+.skill-icon {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+.skill-label {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--color-text);
+  margin-bottom: 0.75rem;
+}
+
+.skill-items {
+  font-size: 0.875rem;
+  color: var(--color-subtitle);
+  line-height: 1.6;
+}
+
+/* Section Kosmo */
+.kosmo-section {
+  width: 100%;
+  max-width: 1200px;
+  margin: 5rem auto 0;
+  padding: 4rem 3rem;
+  text-align: center;
+  border-top: 1px solid var(--color-accent);
+  border-top-opacity: 0.3;
+}
+
+.kosmo-title {
+  font-size: 3rem;
+  font-weight: 700;
+  background: linear-gradient(135deg, var(--color-accent), #a78bfa);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 1.5rem;
+}
+
+.kosmo-explanation {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: var(--color-subtitle);
+  max-width: 700px;
+  margin: 0 auto 1rem;
+}
+
+.kosmo-accent {
+  font-size: 0.875rem;
+  color: var(--color-accent);
+  font-weight: 600;
+  font-style: italic;
+  margin-top: 1rem;
+}
+
+/* CTA Final */
+.cta-final {
+  width: 100%;
+  max-width: 1200px;
+  margin: 4rem auto 0;
+  padding: 3rem;
+  border: 1px solid var(--color-accent);
+  border-radius: 1rem;
+  background: rgba(139, 92, 246, 0.08);
+  backdrop-filter: blur(10px);
+  text-align: center;
+}
+
+.cta-title {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--color-text);
+  margin-bottom: 1rem;
+}
+
+.cta-subtitle {
+  font-size: 1rem;
+  color: var(--color-subtitle);
+  margin-bottom: 2rem;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .hero-container {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .hero-title {
+    font-size: 2.5rem;
+  }
+
+  .hero-visual {
+    display: none;
+  }
+
+  .dynamic-row {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    padding: 1rem 0;
+  }
+
+  .right-column {
+    display: none;
+  }
+
+  .section-title {
+    font-size: 1.75rem;
+  }
+
+  .skills-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .kosmo-title {
+    font-size: 2rem;
+  }
+
+  .cta-title {
+    font-size: 1.5rem;
+  }
 }
 </style>

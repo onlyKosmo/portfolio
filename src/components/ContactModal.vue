@@ -2,7 +2,7 @@
   <div class="modal-content">
     <div class="modal-header">
       <p class="modal-subtitle">
-        Parlez moi de votre projet, je le déclinerai en site web
+        Discutons ensemble, je suis certain de pouvoir être un atout pour votre équipe.
       </p>
       <button class="close-btn" @click="$emit('close')" aria-label="Close modal">
         <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
