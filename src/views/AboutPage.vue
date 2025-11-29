@@ -7,14 +7,16 @@
     </section>
     <main class="content">
 
+      <h1 class="presentation">Bonjour, je m'appelle Basile</h1>
+      <h1 class="kosmo">Kosmo ?</h1>
+
       <div class="name">
         <img src="@/assets/logo/logo_b.png" alt="Logo" class="logo" />
       </div>
 
       <h1>À propos de moi</h1>
       <p>
-        Développeur créatif passionné par l’interactivité, le design et la performance.
-        J’aime concevoir des expériences visuelles uniques entre art et technologie.
+        Développeur créatif par les technologies du web, j’apprend à concevoir des expériences visuelles originales, en découvrant sans cesses de nouveaux procédé techniques. En ce moment, je m'entraîne à utiliser la bibliothèques Three.js et GSAP, comme vous pouvez le voir avec ce site.
       </p>
       <animated-button @click="downloadCV" download class="btn-cv">
         Mon CV <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
@@ -47,14 +49,17 @@ function downloadCV() {
   link.click();
 }
 
+
+
 </script>
 
 <style scoped>
 .about-page {
   position: relative;
-  min-height: 100vh;
+  height: 100vh;
   display: flex;
   flex-direction: column;
+  overflow-y: auto;
   background: var(--color-bg);
 }
 
@@ -79,8 +84,13 @@ function downloadCV() {
 .name .logo { height: 5rem;}
 
 .name {
-  display: flex; /* h3 + img alignés sur une ligne */
-  align-items: center; /* centrage vertical */
+  display: flex;
+  align-items: center;
 
+}
+
+h1 {
+  font-size: 2rem;
+  text-align: left;
 }
 </style>

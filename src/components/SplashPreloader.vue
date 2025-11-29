@@ -13,7 +13,6 @@
 import { ref, onMounted } from 'vue';
 import gsap from 'gsap';
 import logo from "@/assets/logo/logo_b.png";
-
 const progressBar = ref(null);
 const visible = ref(true);
 
@@ -21,7 +20,7 @@ onMounted(() => {
   // Barre qui se remplit automatiquement sur 2s
   gsap.to(progressBar.value, {
     width: "100%",
-    duration: 2,
+    duration: 1,
     ease: "power2.inOut",
     onComplete: () => {
       gsap.to("#splash-preloader", {

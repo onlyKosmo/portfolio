@@ -73,6 +73,9 @@ import createProjectWindow from '../three/projectWindow.js';
 import {ref, onMounted, onUnmounted} from 'vue'
 import {useRouter} from 'vue-router';
 import AnimatedButton from "@/components/AnimatedButton.vue";
+import { ScrambleTextPlugin } from "gsap/ScrambleTextPlugin";
+
+gsap.registerPlugin(ScrambleTextPlugin);
 
 const emit = defineEmits(['hide-header'])
 
@@ -194,16 +197,46 @@ onMounted(() => {
     const tl = gsap.timeline();
 
     tl.from(split.chars, {
-      y: 100,
+      y: 50,
+      delay: 1,
       opacity: 0,
+      scale: 0.9,
+      rotation: 5,
+      duration: 0.8,
+      ease: 'power4.out',
       stagger: 0.05,
-      ease: "power4.out"
     })
         .from(".subtitle", {
-          y: 30,
+          y: 50,
+          delay: 0.1,
           opacity: 0,
-          ease: "power2.out"
+          scale: 0.9,
+          rotation: 5,
+          duration: 0.8,
+          ease: 'power4.out',
+          stagger: 0.05,
         }, "-=0.5")
+
+
+    // --- Bottom-left ---
+    const splitBottomLeft = new SplitText(".bottom-left", { type: "chars" });
+    tl.from(splitBottomLeft.chars, {
+      x: -50,
+      y: 50,
+      opacity: 0,
+      scale: 0.9,
+      rotation: 5,
+    }, "-=0.5");
+
+    // --- Bottom-right ---
+    const splitBottomRight = new SplitText(".bottom-right", { type: "chars" });
+    tl.from(splitBottomRight.chars, {
+      x: 50,
+      y: 50,
+      opacity: 0,
+      scale: 0.9,
+      rotation: 5,
+    }, "-=0.5");
   });
 });
 onUnmounted(() => {
