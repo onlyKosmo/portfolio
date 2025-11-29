@@ -108,7 +108,6 @@ function copyToClipboard() {
   background: var(--color-bg);
   color: var(--color-text);
   box-shadow: 0 10px 25px rgba(0,0,0,0.5);
-  font-family: 'NeueMontreal', sans-serif;
 }
 
 .modal-header {
@@ -147,7 +146,6 @@ function copyToClipboard() {
   border: 1px solid var(--color-subtitle);
   border-radius: 8px;
   color: var(--color-text);
-  font-family: 'NeueMontreal', sans-serif;
   font-weight: 400;
   backdrop-filter: blur(4px);
   margin-bottom: 1rem;

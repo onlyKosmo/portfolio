@@ -1,15 +1,12 @@
-/* src/assets/tokens.css */
 :root {
-    /* Palette principale */
+
     --color-bg: #131413;
     --color-text: #f9f9f9;
     --color-subtitle: #7f7f7f;
     --color-accent: #897eff;
 
-    /* Autres variables globales si besoin */
-    --font-display: "TT_Baker", sans-serif;
+    --font-display: "Righteous", sans-serif;
     --font-body: "Mulish", sans-serif;
-    /*--gap-section: 160px;*/
 }
 
 

@@ -1,8 +1,10 @@
 <template>
   <header class="header" :class="{ hidden: hiddenHeader }">
-    <!-- left always visible (logo-link to home) -->
     <RouterLink to="/" class="top-left" @click="closeMenu">
-      <h3 class="portfolio">KOSMO.</h3>
+      <div class="title-row">
+        <h3 class="portfolio">KOSMO.</h3>
+        <img src="@/assets/logo/logo_b.png" alt="Logo" class="logo" />
+      </div>
       <h1 class="name">par BASILE FERRAND-RICHARTE</h1>
     </RouterLink>
 
@@ -26,7 +28,7 @@
 
     <!-- center logo + right buttons only when not mobile -->
     <RouterLink to="/" v-if="!isMobile && showLogo" class="top-center" @click="closeMenu">
-      <img src="../assets/logo/logo_b.png" alt="Logo" class="logo" />
+
     </RouterLink>
 
     <div class="top-right" v-if="!isMobile">
@@ -125,11 +127,16 @@ function onMenuLinkClick() {
   pointer-events: none;
 }
 
-/* left */
 .top-left {
   display: flex;
   flex-direction: column;
   text-decoration: none;
+}
+
+.title-row {
+  display: flex; /* h3 + img alignés sur une ligne */
+  align-items: center; /* centrage vertical */
+  gap: 0.5rem; /* espace entre eux */
 }
 .top-left .portfolio { font-size: 1.6rem; margin:0; }
 .top-left .name { color: var(--color-subtitle); font-size: 0.8rem; margin:0; }
@@ -140,7 +147,7 @@ function onMenuLinkClick() {
   display: flex;
   justify-content: center;
 }
-.top-center .logo { height: 40px; object-fit: contain; }
+.top-left .logo { height: 2.5rem; object-fit: contain; }
 
 /* right (desktop) */
 .top-right { display: flex; gap: 2rem; margin-left: auto;;

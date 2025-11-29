@@ -6,12 +6,17 @@
       <Breadcrumb current="À propos" />
     </section>
     <main class="content">
+
+      <div class="name">
+        <img src="@/assets/logo/logo_b.png" alt="Logo" class="logo" />
+      </div>
+
       <h1>À propos de moi</h1>
       <p>
         Développeur créatif passionné par l’interactivité, le design et la performance.
         J’aime concevoir des expériences visuelles uniques entre art et technologie.
       </p>
-      <animated-button href="/cv-basile-ferrand.pdf" @click="downloadCV" download class="btn-cv">
+      <animated-button @click="downloadCV" download class="btn-cv">
         Mon CV <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
         <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 15v2a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3v-2m-8 1V4m0 12-4-4m4 4 4-4"/>
       </svg>
@@ -33,11 +38,12 @@ import Footer from '../components/Footer.vue'
 import Marquee from "@/components/Marquee.vue";
 import Breadcrumb from '@/components/Breadcrumb.vue'
 import AnimatedButton from "@/components/AnimatedButton.vue";
+import cvFile from '@/assets/CV_FERRAND-RICHARTE_Basile.pdf'
 
 function downloadCV() {
   const link = document.createElement("a");
-  link.href = "/cv-basile-ferrand.pdf";
-  link.download = "cv-basile-ferrand.pdf";
+  link.href = cvFile;
+  link.download = "CV_FERRAND-RICHARTE_Basile.pdf";
   link.click();
 }
 
@@ -70,22 +76,11 @@ function downloadCV() {
 .btn-cv {
 }
 
-#currently {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 1rem;
-  min-height: 10vh;
-  padding: 0.5rem;
-}
+.name .logo { height: 5rem;}
 
-#currently .logo {
-  max-width: 180px;
-  height: auto;
-  transition: transform 0.3s ease;
-}
+.name {
+  display: flex; /* h3 + img alignés sur une ligne */
+  align-items: center; /* centrage vertical */
 
-#currently .logo:hover {
-  transform: scale(1.05);
 }
 </style>

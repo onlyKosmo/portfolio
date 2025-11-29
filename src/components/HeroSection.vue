@@ -37,8 +37,8 @@
     <!-- Bottom-left -->
     <div class="bottom-container">
       <RouterLink to="/about" class="bottom-left">
+        <p class="display">Développeur Web</p>
         <p class="location">Grenoble, France</p>
-        <p class="profession">Développeur Web</p>
         </RouterLink>
 
       <!-- Bottom-right -->
@@ -482,8 +482,8 @@ canvas#bgCanvas {
   }
 }
 
-.profession {
-  font-size: 2rem;
+.display {
+  font-size: 2.1rem;
 }
 
 

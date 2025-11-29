@@ -98,7 +98,7 @@ defineExpose({
 }
 
 .btn-animated:hover {
-  transform: scale(1.03);
+  transform: scale(1.04);
 
 }
 
