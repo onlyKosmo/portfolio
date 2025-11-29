@@ -12,10 +12,10 @@
         <div class="hero-container">
           <div class="hero-text">
             <h1 class="hero-title split-text">
-              Créer le <span class="accent-text">web de demain</span>
+              Votre futur<span class="accent-text"> développeur</span>
             </h1>
             <p class="hero-subtitle split-text">
-              Je suis Basile, développeur Front-End passionné par les expériences numériques immersives. Chaque pixel, chaque animation, chaque interaction raconte une histoire.
+              Je suis Basile, futur développeur Front-End passionné par les expériences numériques immersives.
             </p>
             <animated-button @click="downloadCV" >
               Télécharger mon CV
@@ -38,7 +38,7 @@
       <!-- Sections dynamiques alternées -->
       <section class="dynamic-sections">
         <div v-for="(item, index) in dynamicContent" :key="index" class="dynamic-row">
-          <!-- Numérotation badge -->
+          <!-- badge -->
           <div :class="['badge-number', { 'order-left': index % 2 === 0, 'order-right': index % 2 !== 0 }]">
             {{ String(index + 1).padStart(2, '0') }}
           </div>
@@ -79,7 +79,7 @@
         <p class="kosmo-explanation split-text">
           Qu'est ce que Kosmo ? Kosmo est un pseudonyme que j'utilise parfois sur internet. J'ai choisi de nommer mon portfolio comme ceci car il s'agit de ma personne mais sur le Web, comme ce portfolio. Ce portfolio est mon tout premier site utilisant les bibliothèques GSAP et Three.js, j'ai adoré apprendre les bases de ces bibliothèques JavaScript tout au long du développement.
         </p>
-        <p class="kosmo-accent">→ Mon portfolio d'apprenti développeur web</p>
+        <p class="kosmo-accent">→ Mon portfolio de futur développeur web</p>
       </section>
 
       <!-- CTA Final -->
@@ -126,24 +126,31 @@ function downloadCV() {
 const dynamicContent = [
   {
     title: "Bonjour, je m'appelle Basile",
-    text: "Je suis étudiant en 2ème année de BUT MMI avec une spécialisation en développement Front-End. Cette page incarne ma philosophie : créer des expériences web qui captivent et performent.",
+    text: "Je suis étudiant en 2e année de BUT MMI avec une spécialisation en développement Web. En parallèle de mes études, je me forme continuellement à de nouveaux langages, frameworks et technologie pour créer des expériences web captivante, performante et immersive.",
     accent: "Développeur créatif",
-    emoji: "🎯",
-    label: "Précision"
+    emoji: "📖",
+    label: "Apprentissage"
   },
   {
-    title: "Expériences immersives",
-    text: "Mes projets explorent les limites du web moderne : animations GSAP orchestrées, interactions Three.js, typographies dynamiques avec SplitText. Chaque ligne de code sert l'expérience utilisateur.",
-    accent: "Technologie au service du design",
-    emoji: "🚀",
-    label: "Innovation"
+    title: "Mes projets en MMI",
+    text: "Dans mes projets de groupe à l’IUT, j’ai souvent été la personne qui fait le lien entre le design et la technique. J’aime imaginer une interface, puis lui donner vie dans le navigateur. Même si ces projets n’étaient pas tous orientés web, ils m’ont permis d’apprendre à travailler efficacement en équipe, à défendre des choix UX/UI, et à traduire des idées en solutions concrètes.",
+    accent: "La Technologie au service du design",
+    emoji: "🧑‍💻👨‍💻👩‍💻",
+    label: "Travail d'équipe"
   },
   {
     title: "Impact et résultats",
-    text: "Mes contributions se mesurent en qualité d'exécution, en performance et en accessibilité. J'intègre des bonnes pratiques dès la conception pour garantir que mes interfaces sont autant belles que fonctionnelles.",
-    accent: "Qualité pérenne",
+    text: "Je développe des interfaces accessibles, structurées et responsives. Mon but est simple : rendre l’expérience agréable pour l’utilisateur. J’accorde autant d’importance à la qualité du code qu’à l’esthétique du résultat.",
+    accent: "Qualité",
     emoji: "✨",
-    label: "Excellence"
+    label: "Impact"
+  },
+  {
+    title: "Ce que je veux construire demain",
+    text: "Je veux continuer à progresser en développement web, tout particulièrement en front-end, explorer de nouveaux frameworks et créer des sites plus rapides, plus immersifs, plus utiles. J’apprends un peu chaque jour, dans mes projets d'études comme dans mes projets personnels.",
+    accent: "Gagner de l'expérience",
+    emoji: "🌄",
+    label: "Devenir développeur confirmé"
   }
 ]
 
@@ -152,17 +159,27 @@ const skillsData = [
   {
     icon: "💻",
     label: "Front-End",
-    items: "Vue.js, React, GSAP, Three.js"
+    items: "Vue.js, GSAP, Three.js, CSS"
+  },
+  {
+    icon: "⚙️",
+    label: "Back-end",
+    items: "PHP, Node.js"
+  },
+  {
+    icon: "🗃️",
+    label: "Base de données",
+    items: "SQL, MariaDB"
   },
   {
     icon: "⚡",
-    label: "Performance",
-    items: "Optimisation, ScrollTrigger, Lazy Loading"
+    label: "Déploiement",
+    items: "Amazon Web Services, Infomaniak"
   },
   {
     icon: "👁️",
-    label: "Design",
-    items: "Animations fluides, UX réfléchie, Accessibilité"
+    label: "UI/UX Design",
+    items: "User Flow, Maquettes Figma animées, Design d'expérience"
   }
 ]
 
@@ -314,28 +331,6 @@ onMounted(() => {
   height: 120px;
   stroke: var(--color-accent);
   stroke-width: 1.5;
-}
-
-/* Boutons */
-.btn-primary {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.75rem;
-  padding: 0.875rem 1.75rem;
-  background: var(--color-accent);
-  color: var(--color-bg);
-  font-weight: 700;
-  font-size: 1rem;
-  border: none;
-  border-radius: 0.5rem;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  width: fit-content;
-}
-
-.btn-primary:hover {
-  transform: scale(1.05);
-  box-shadow: 0 0 20px rgba(139, 92, 246, 0.4);
 }
 
 .icon-download {
