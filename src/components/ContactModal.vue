@@ -78,7 +78,7 @@
           Email</button>
 
 
-        <animated-button type="submit" class="submit-btn">Envoyer</animated-button>
+        <animated-button type="submit" class="submit-btn modal-animated-btn">Envoyer</animated-button>
       </div>
     </form>
   </div>

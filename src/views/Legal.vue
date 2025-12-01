@@ -123,7 +123,7 @@
           <strong>Design et développement :</strong> Basile Ferrand-Richarte
         </p>
         <p>
-          <strong>Technologies utilisées :</strong> Vue.js, CSS, Html, JavaScript, Tailwind.css, Formspree
+          <strong>Technologies utilisées :</strong> Vue.js, Vite.js CSS, HTML, JavaScript, Tailwind.css, GSAP, Three.js, Pinia, Formspree
         </p>
         <p>
           <strong>Icônes :</strong> <a class="link" href="https://www.mingcute.com/">Mingcute</a>

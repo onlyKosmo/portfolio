@@ -18,7 +18,7 @@ let frame;
 function updateSize() {
   if (!wrapper.value || !svg.value || !rect.value) return;
 
-  const b = wrapper.value.getBoundingClientRect();
+  const b = wrapper.value.querySelector('button').getBoundingClientRect();
   const radius = b.height / 2;
 
   svg.value.setAttribute("width", b.width);
@@ -29,7 +29,6 @@ function updateSize() {
   rect.value.setAttribute("rx", radius);
   rect.value.setAttribute("stroke-width", strokeWidth);
 }
-
 // --- Animation continue du stroke façon “serpent” ---
 function animateStroke() {
   const length = rect.value.getTotalLength();
@@ -91,7 +90,7 @@ defineExpose({
 <style scoped>
 .btn-animated {
   position: relative;
-  display: inline-block;
+  display: inline-flex;
   border-radius: 999px;
   cursor: pointer;
   transition: transform 0.3s ease;
@@ -103,6 +102,7 @@ defineExpose({
 }
 
 .btn-inner {
+  width: auto;
   position: relative;
   z-index: 1;
   border-radius: 999px;
