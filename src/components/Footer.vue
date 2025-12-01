@@ -6,9 +6,9 @@
     <!-- Niveau 1 : Contenu principal (3 colonnes) -->
     <div class="footer-main">
       <!-- Colonne gauche : Logo -->
-      <div class="footer-logo">
+      <RouterLink to="/" class="footer-logo">
         <img src="@/assets/logo/logo_b.png" alt="Logo Basile Feri" class="logo-image">
-      </div>
+      </RouterLink>
 
       <!-- Colonne centre : Menu -->
       <nav class="footer-menu" aria-label="Navigation footer">
@@ -16,7 +16,9 @@
         <ul class="menu-list">
           <li><router-link to="/">Accueil</router-link></li>
           <li><router-link to="/about">À propos</router-link></li>
-          <li><a href="#" @click.prevent="openContactModal">Contact</a></li>
+          <li>
+            <button @click="modal.openContact()" class="footer-contact-btn"><strong>Me contacter</strong></button>
+          </li>
         </ul>
         <!-- Lien CV -->
         <a :href="cvFile" download="CV_FERRAND-RICHARTE_Basile.pdf" class="cv-link">
@@ -72,8 +74,11 @@
 import { computed } from 'vue';
 import AnimatedButton from "@/components/AnimatedButton.vue";
 import cvFile from '@/assets/CV_FERRAND-RICHARTE_Basile.pdf';
+import ContactModal from "@/components/ContactModal.vue";
 const currentYear = computed(() => new Date().getFullYear());
+import { useModalStore } from '@/stores/useModalStore'
 
+const modal = useModalStore()
 // Fonction pour ouvrir la modale Contact
 // À adapter selon votre implémentation (emit, store, etc.)
 const openContactModal = () => {
@@ -255,6 +260,18 @@ const openContactModal = () => {
   font-weight: 300;
 }
 
+.footer-contact-btn {
+  all: unset;
+  cursor: pointer;
+  color: inherit;
+  font-size: 0.85rem;
+  transition: color 0.2s ease;
+}
+
+
+.footer-contact-btn:hover {
+  color: var(--color-accent);
+}
 /* ===================================
    RESPONSIVE MOBILE (<768px)
    =================================== */
@@ -272,7 +289,7 @@ const openContactModal = () => {
   }
 
   .logo-image {
-    height: 35px;
+    height: 3rem;
   }
 
   .footer-menu,

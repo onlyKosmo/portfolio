@@ -44,8 +44,8 @@
 
     <!-- modal -->
     <transition name="fade">
-      <div v-if="isModalOpen" class="modal-overlay" @click.self="isModalOpen = false">
-        <ContactModal @close="isModalOpen = false" />
+      <div v-if="modal.isContactOpen" class="modal-overlay" @click.self="modal.closeContact()">
+        <ContactModal @close="modal.closeContact()" />
       </div>
     </transition>
   </header>
@@ -56,14 +56,16 @@ import { ref, onMounted, onUnmounted, watch } from 'vue'
 import ContactModal from './ContactModal.vue'
 import { useRouter } from 'vue-router'
 import AnimatedButton from "@/components/AnimatedButton.vue";
+import { useModalStore } from '@/stores/useModalStore'
+
+const modal = useModalStore()
 
 const props = defineProps({
   showLogo: { type: Boolean, default: false },
-  hiddenHeader: { type: Boolean, default: false } // optionnel si tu veux contrôler via prop
+  hiddenHeader: { type: Boolean, default: false }
 })
 
 const menuOpen = ref(false)
-const isModalOpen = ref(false)
 const isMobile = ref(window.innerWidth <= 768)
 
 const router = useRouter()
@@ -90,9 +92,10 @@ onUnmounted(() => {
 
 // helpers
 function openContact() {
-  isModalOpen.value = true
+  modal.openContact()
   menuOpen.value = false
 }
+
 
 function closeMenu() {
   menuOpen.value = false
