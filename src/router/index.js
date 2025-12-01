@@ -7,16 +7,21 @@ const routes = [
     {
         path: '/',
         name: 'home',
-        component: HomePage },
+        component: HomePage
+    },
     {
         path: '/projects/:slug',
         name: 'project',
         component: ProjectPage,
-        props: true },
+        props: true
+    },
     {
         path: '/about',
         name: 'About',
         component: () => import('../views/AboutPage.vue')
+    },
+    {
+        path: '/mentions-legales', component: () => import('@/views/Legal.vue')
     }
 ];
 

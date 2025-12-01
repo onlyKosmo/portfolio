@@ -21,15 +21,12 @@ html, body, #app {
 a,
 .green {
   text-decoration: none;
-  color: var(--color-accent);
-  transition: 0.4s;
-  padding: 3px;
+    transition: color 0.2s ease;
 }
 
-@media (hover: hover) {
-  a:hover {
-    background-color: var(--color-accent);
-  }
+a:hover {
+    color: var(--color-accent);
+    opacity: 1;
 }
 
 @media (min-width: 1024px) {
