@@ -2,6 +2,10 @@
   <div class="legal-wrapper">
     <Header />
 
+    <section class="breadcrumb">
+      <Breadcrumb current="Mentions légales" />
+    </section>
+
     <main class="legal-page">
       <h1 class="legal-main-title">Mentions légales</h1>
 
@@ -139,6 +143,7 @@
 <script setup>
 import Header from '@/components/Header.vue';
 import Footer from '@/components/Footer.vue';
+import Breadcrumb from "@/components/Breadcrumb.vue";
 
 const MailToCopy = "basileferi.pro@proton.me"; // remplace par ton texte
 
@@ -152,6 +157,10 @@ function copyToClipboard() {
 </script>
 
 <style scoped>
+
+.breadcrumb {
+  padding-top: 1rem;
+}
 
 .btn-inner {
   position: relative;

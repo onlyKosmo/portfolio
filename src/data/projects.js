@@ -45,7 +45,6 @@ export default [
         subtitle: "Manuel d'utilisation du plugin Leaflet.js",
         preview: LeafletPreview,
         image: LeafletPreview,
-        media: ['LeafletPreview'],
         description: "<p>Création d'un site web servant de manuel d'utilisation pour intégrer le plugin Leaflet.js à un site web.</p>",
         tech_stack: "JavaScript, HTML & CSS",
         link: "https://basileferi.fr/src/assets/projects/Manuel/man.html"
