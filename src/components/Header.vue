@@ -161,6 +161,12 @@ function onMenuLinkClick() {
 ;
 }
 
+.about {
+    color: var(--color-accent);
+    opacity: 1;
+}
+
+
 .top-right .btn-contact {
   background-color: var(--color-subtitle);
   transition: background-color 0.5s ease, transform 1s ease

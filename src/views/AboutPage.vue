@@ -48,6 +48,14 @@
             <h2 class="section-title split-text">{{ item.title }}</h2>
             <p class="section-text split-text">{{ item.text }}</p>
             <p class="section-accent">→ {{ item.accent }}</p>
+            <div class="projects-vif">  <RouterLink
+                v-if="item.link"
+                :to="item.link"
+                class="dynamic-link"
+            >
+              → Mes projets
+            </RouterLink>
+            </div>
           </div>
 
           <!-- Colonne visuelle (alternée) -->
@@ -92,6 +100,11 @@
             <path d="M4 15v2a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3v-2M12 4v12m0 0l-4-4m4 4l4-4"/>
           </svg>
         </animated-button>
+        <RouterLink to="/" class="retour-proj">
+          <div class="retour-row">
+            <h4 class="projects">Projets</h4>
+          </div>
+        </RouterLink>
       </section>
 
       <Marquee />
@@ -136,7 +149,8 @@ const dynamicContent = [
     text: "Dans mes projets de groupe à l’IUT, j’ai souvent été la personne qui fait le lien entre le design et la technique. J’aime imaginer une interface, puis lui donner vie dans le navigateur. Même si ces projets n’étaient pas tous orientés web, ils m’ont permis d’apprendre à travailler efficacement en équipe, à défendre des choix UX/UI, et à traduire des idées en solutions concrètes.",
     accent: "La Technologie au service du design",
     emoji: "🧑‍💻👨‍💻👩‍💻",
-    label: "Travail d'équipe"
+    label: "Travail d'équipe",
+    link: "/"
   },
   {
     title: "Impact et résultats",
@@ -551,6 +565,32 @@ onMounted(() => {
   backdrop-filter: blur(10px);
   text-align: center;
 }
+
+.retour-row {
+  padding: 2rem 1rem 0.1rem 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  text-align: center;
+}
+
+.projects {
+  text-transform: uppercase;
+  transition: transform 1s ease;
+}
+
+.projects:hover {
+  transform: scale(93%);
+}
+
+.projects-vif {
+  transition: transform 1s ease;
+}
+.projects-vif:hover {
+  transform: scale(102%);
+}
+
 
 .cta-title {
   font-size: 2rem;
