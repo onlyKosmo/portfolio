@@ -1,65 +1,68 @@
 <template>
-  <section class="hero" :class="{ zoomed: isZoomed }">
-    <canvas id="bgCanvas"></canvas>
-    <div class="film-grain"></div>
-    <Header :show-logo="false" />
+  <div class="hero-section">
+    <section class="hero" :class="{ zoomed: isZoomed }">
+      <canvas id="bgCanvas"></canvas>
+      <div class="film-grain"></div>
+      <Header :show-logo="false"/>
 
 
-    <!-- 🔗 Projects Navigation (Desktop only) -->
-    <nav
-        v-if="isZoomed"
-        class="projects-nav"
-    >
-      <ul>
-        <li
-            v-for="project in projectsData"
-            :key="project.title"
-            @mouseenter="showPreview(project)"
-            @mouseleave="clearPreview()"
-            @click="openProject(project.slug)"
-        >
-          {{ project.title }}
-        </li>
-      </ul>
-    </nav>
+      <!-- 🔗 Projects Navigation (Desktop only) -->
+      <nav
+          v-if="isZoomed"
+          class="projects-nav"
+      >
+        <ul>
+          <li
+              v-for="project in projectsData"
+              :key="project.title"
+              @mouseenter="showPreview(project)"
+              @mouseleave="clearPreview()"
+              @click="openProject(project.slug)"
+          >
+            {{ project.title }}
+          </li>
+        </ul>
+      </nav>
 
 
-    <div class="content">
-      <h1 class="headline">Bienvenue</h1>
-      <h2 class="subtitle">DANS MON ESPACE</h2>
-      <AnimatedButton class="cta" @click="handleClick">
-        Mes projets
-      </AnimatedButton>
+      <div class="content">
+        <h1 class="headline">Bienvenue</h1>
+        <h2 class="subtitle">DANS MON ESPACE</h2>
+        <AnimatedButton class="cta" @click="handleClick">
+          Mes projets
+        </AnimatedButton>
 
-    </div>
+      </div>
 
 
-    <!-- Bottom-left -->
-    <div class="bottom-container">
-      <RouterLink to="/about" class="bottom-left">
-        <p class="display">Développeur Web</p>
-        <p class="location">Grenoble, France</p>
+      <!-- Bottom-left -->
+      <div class="bottom-container">
+        <RouterLink to="/about" class="bottom-left">
+          <p class="display">Développeur Web</p>
+          <p class="location">Grenoble, France</p>
         </RouterLink>
 
-      <!-- Bottom-right -->
-      <RouterLink to="/about" class="bottom-right">
-        <p class="quick-desc">Étudiant apprenti Développeur Front-end,<br>
-          je me forme continuellement en réalisant des projets web divers.<br>Je suis toujours curieux d'apprendre de nouvelles technologies.</p>
+        <!-- Bottom-right -->
+        <RouterLink to="/about" class="bottom-right">
+          <p class="quick-desc">Étudiant apprenti Développeur Front-end,<br>
+            je me forme continuellement en réalisant des projets web divers.<br>Je suis toujours curieux d'apprendre de
+            nouvelles technologies.</p>
         </RouterLink>
-    </div>
+      </div>
 
 
-    <!-- 🔙 Floating retro back button -->
-    <button
-        v-if="isZoomed"
-        class="btn back-btn"
-        @click="handleBack"
-    >
-      Retour
-    </button>
-    <ProjectsGrid v-if="isZoomed && isMobile"/>
 
-  </section>
+      <button
+          v-if="isZoomed"
+          class="btn back-btn"
+          @click="handleBack"
+      >
+        Retour
+      </button>
+      <ProjectsGrid v-if="isZoomed && isMobile"/>
+
+    </section>
+  </div>
 </template>
 
 
@@ -73,7 +76,7 @@ import createProjectWindow from '../three/projectWindow.js';
 import {ref, onMounted, onUnmounted} from 'vue'
 import {useRouter} from 'vue-router';
 import AnimatedButton from "@/components/AnimatedButton.vue";
-import { ScrambleTextPlugin } from "gsap/ScrambleTextPlugin";
+import {ScrambleTextPlugin} from "gsap/ScrambleTextPlugin";
 
 gsap.registerPlugin(ScrambleTextPlugin);
 
@@ -219,7 +222,7 @@ onMounted(() => {
 
 
     // --- Bottom-left ---
-    const splitBottomLeft = new SplitText(".bottom-left", { type: "chars" });
+    const splitBottomLeft = new SplitText(".bottom-left", {type: "chars"});
     tl.from(splitBottomLeft.chars, {
       x: -50,
       y: 50,
@@ -229,7 +232,7 @@ onMounted(() => {
     }, "-=0.5");
 
     // --- Bottom-right ---
-    const splitBottomRight = new SplitText(".bottom-right", { type: "chars" });
+    const splitBottomRight = new SplitText(".bottom-right", {type: "chars"});
     tl.from(splitBottomRight.chars, {
       x: 50,
       y: 50,
@@ -245,6 +248,12 @@ onUnmounted(() => {
 </script>
 
 <style scoped>
+
+
+.hero-section, #bgCanvas {
+  width: 100vw;
+  height: 100vh;
+}
 
 
 .bottom-container {

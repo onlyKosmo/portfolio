@@ -93,7 +93,7 @@ defineExpose({
   display: inline-flex;
   border-radius: 999px;
   cursor: pointer;
-  transition: transform 0.3s ease;
+  transition: transform 0.5s ease;
 }
 
 .btn-animated:hover {

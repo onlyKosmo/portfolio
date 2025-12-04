@@ -1,5 +1,5 @@
 <template>
-  <header class="header" :class="{ hidden: hiddenHeader }">
+  <header class="header" :class="{ hidden: hiddenHeader, 'dark-text': isProjectPage}">
     <RouterLink to="/" class="top-left" @click="closeMenu">
       <div class="title-row">
         <h3 class="portfolio">KOSMO.</h3>
@@ -52,7 +52,7 @@
 </template>
 
 <script setup>
-import { ref, onMounted, onUnmounted, watch } from 'vue'
+import { ref, onMounted, onUnmounted, watch, computed } from 'vue'
 import ContactModal from './ContactModal.vue'
 import { useRouter } from 'vue-router'
 import AnimatedButton from "@/components/AnimatedButton.vue";
@@ -67,6 +67,10 @@ const props = defineProps({
 
 const menuOpen = ref(false)
 const isMobile = ref(window.innerWidth <= 768)
+
+const isProjectPage = computed(() => {
+  return router.currentRoute.value.name === 'project'
+})
 
 const router = useRouter()
 
@@ -161,19 +165,15 @@ function onMenuLinkClick() {
 ;
 }
 
-.about {
-    color: var(--color-accent);
-    opacity: 1;
+.top-right .about {
+    color: var(--color-text);
+  transition: color 0.2s ease;
 }
 
+.top-right .about:hover {
+  color: var(--color-accent);
+}
 
-.top-right .btn-contact {
-  background-color: var(--color-subtitle);
-  transition: background-color 0.5s ease, transform 1s ease
-}
-.top-right .btn-contact:hover {
-  background-color: var(--color-bg);
-}
 
 /* HAMBURGER */
 .hamburger {
@@ -297,6 +297,22 @@ function onMenuLinkClick() {
   background: transparent;
   z-index: 20;
 }
+
+.header.dark-text {
+  color: var(--color-bg);
+}
+
+/* Mais certains éléments ne suivent pas automatiquement color: inherit */
+.header.dark-text .about,
+.header.dark-text .portfolio,
+.header.dark-text .name {
+  color: var(--color-bg) !important;
+}
+
+.header.dark-text .hamburger .line {
+  background-color: var(--color-bg) !important;
+}
+
 
 
 </style>

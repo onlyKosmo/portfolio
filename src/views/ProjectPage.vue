@@ -138,7 +138,7 @@ function goBack() {
 /* Bouton retour */
 .back {
   position: fixed;
-  top: 1rem;
+  top: 6rem;
   left: 1rem;
   z-index: 50;
   padding: 0.5rem 1rem;

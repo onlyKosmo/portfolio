@@ -48,12 +48,13 @@
             <h2 class="section-title split-text">{{ item.title }}</h2>
             <p class="section-text split-text">{{ item.text }}</p>
             <p class="section-accent">→ {{ item.accent }}</p>
-            <div class="projects-vif">  <RouterLink
+            <div class="projects-vif">
+              <RouterLink
                 v-if="item.link"
                 :to="item.link"
                 class="dynamic-link"
             >
-              → Mes projets
+              → Mes projets ←
             </RouterLink>
             </div>
           </div>
@@ -585,10 +586,10 @@ onMounted(() => {
 }
 
 .projects-vif {
-  transition: transform 1s ease;
+  transition: all 1.5s ease;
 }
 .projects-vif:hover {
-  transform: scale(102%);
+  transform: translateY(0.2rem);
 }
 
 
