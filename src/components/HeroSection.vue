@@ -3,7 +3,6 @@
     <section class="hero" :class="{ zoomed: isZoomed }">
       <canvas id="bgCanvas"></canvas>
       <div class="film-grain"></div>
-      <Header :show-logo="false"/>
 
 
       <!-- 🔗 Projects Navigation (Desktop only) -->
@@ -73,14 +72,14 @@ import {SplitText} from 'gsap/SplitText';
 import initThreeBackground from '../threeBackground.js';
 import projectsData from '../data/projects.js';
 import createProjectWindow from '../three/projectWindow.js';
-import {ref, onMounted, onUnmounted} from 'vue'
+import {ref, onMounted, onUnmounted, defineEmits} from 'vue'
 import {useRouter} from 'vue-router';
 import AnimatedButton from "@/components/AnimatedButton.vue";
 import {ScrambleTextPlugin} from "gsap/ScrambleTextPlugin";
 
 gsap.registerPlugin(ScrambleTextPlugin);
 
-const emit = defineEmits(['hide-header'])
+const emit = defineEmits(['hide-header', 'show-header'])
 
 function handleClick() {
   emit('hide-header')  // déclenche juste la disparition du header

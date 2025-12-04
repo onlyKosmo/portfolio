@@ -187,14 +187,14 @@ const skillsData = [
     items: "SQL, MariaDB"
   },
   {
-    icon: "⚡",
-    label: "Déploiement",
-    items: "Amazon Web Services, Infomaniak"
-  },
-  {
     icon: "👁️",
     label: "UI/UX Design",
     items: "User Flow, Maquettes Figma animées, Design d'expérience"
+  },
+  {
+    icon: "⚡",
+    label: "Déploiement",
+    items: "Amazon Web Services, Infomaniak, OVH"
   }
 ]
 
@@ -230,20 +230,7 @@ onMounted(() => {
     })
   }
 
-  // Animation des cartes de compétences au scroll
-  const skillCards = document.querySelectorAll('.skill-card')
-  skillCards.forEach((card, i) => {
-    gsap.from(card, {
-      opacity: 0,
-      y: 30,
-      duration: 0.6,
-      delay: i * 0.1,
-      scrollTrigger: {
-        trigger: card,
-        start: "top 90%"
-      }
-    })
-  })
+
 
   // Animation des sections dynamiques
   const dynamicRows = document.querySelectorAll('.dynamic-row')
@@ -382,22 +369,6 @@ onMounted(() => {
   z-index: 0;
 }
 
-.order-left {
-  left: -2rem;
-}
-
-.order-right {
-  right: -2rem;
-}
-
-.order-1 {
-  order: 1;
-}
-
-.order-2 {
-  order: 2;
-}
-
 .left-column {
   display: flex;
   flex-direction: column;
@@ -487,7 +458,6 @@ onMounted(() => {
   border: 1px solid var(--color-accent);
   border-radius: 0.75rem;
   background: rgba(139, 92, 246, 0.08);
-  backdrop-filter: blur(10px);
   text-align: center;
   transition: all 0.3s ease;
 }

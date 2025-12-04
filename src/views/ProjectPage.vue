@@ -68,7 +68,7 @@
 </template>
 
 <script setup>
-import {ref, onMounted, onUnmounted} from 'vue';
+import {defineProps, ref, onMounted, onUnmounted} from 'vue';
 import {useRoute, useRouter} from 'vue-router';
 import projects from '@/data/projects.js';
 import Header from '@/components/Header.vue'
@@ -76,10 +76,13 @@ import Footer from '@/components/Footer.vue'
 import Breadcrumb from '@/components/Breadcrumb.vue'
 import AnimatedButton from "@/components/AnimatedButton.vue";
 import ImageModal from "@/components/ImageModal.vue";
-import CallToAction from "@/components/CallToAction.vue";
 
 const modalVisible = ref(false);
 const modalIndex = ref(0);
+
+const props = defineProps({
+  slug: String
+})
 
 function openModal(i) {
   modalIndex.value = i;
