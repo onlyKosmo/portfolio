@@ -30,6 +30,6 @@ jobs:
           server: ${{ secrets.FTP_HOST }}
           username: ${{ secrets.FTP_USER }}
           password: ${{ secrets.FTP_PASSWORD }}
-          local-dir: dist/
+          local-dir: ${{ github.workspace }}/dist/
           server-dir: /sites/basileferi.fr
           dry-run: false
