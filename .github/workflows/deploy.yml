@@ -33,6 +33,3 @@ jobs:
           local-dir: dist
           server-dir: /sites/basileferi.fr
           dry-run: false
-
-          remote_path: ${{ secrets.REMOTE_PATH }}
-          sftp_only: true
