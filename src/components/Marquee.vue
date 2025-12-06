@@ -21,29 +21,33 @@
 </template>
 
 <script type="module">
-import wordpressicons from 'https://cdn.jsdelivr.net/npm/@wordpress/icons@11.3.0/+esm'
 </script>
 
 <script setup>
+import figmaLogo from '@/assets/logo/Figma_logo.svg'
+import vueLogo from '@/assets/logo/vue.svg'
+import kIcon from '@/assets/logo/k-icon-blue-background.svg'
+import wpLogo from '@/assets/logo/WordPress_blue_logo.svg'
+import adobeLogo from '@/assets/logo/adobe-creative-cloud.svg'
 
 const icons = [
-  'src/assets/logo/Figma_logo.svg',
+  figmaLogo,
   'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg',
   'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg',
   'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg',
   'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/php/php-original.svg',
   'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original-wordmark.svg',
-  'src/assets/logo/vue.svg',
+  vueLogo,
   'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vitejs/vitejs-original.svg',
   'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/bootstrap/bootstrap-original.svg',
   'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg',
   'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/intellij/intellij-original.svg',
   'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mariadb/mariadb-original.svg',
   'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-original-wordmark.svg',
-  'src/assets/logo/k-icon-blue-background.svg',
+  kIcon,
   'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/bash/bash-original.svg',
-  'src/assets/logo/WordPress_blue_logo.svg',
-  'src/assets/logo/adobe-creative-cloud.svg'
+  wpLogo,
+  adobeLogo,
 ]
 </script>
 

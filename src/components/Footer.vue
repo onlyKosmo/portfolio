@@ -263,14 +263,14 @@ const openContactModal = () => {
 .footer-contact-btn {
   all: unset;
   cursor: pointer;
-  color: inherit;
   font-size: 0.85rem;
   transition: color 0.2s ease;
+  color: var(--color-accent);
 }
 
 
 .footer-contact-btn:hover {
-  color: var(--color-accent);
+  color: var(--color-text);
 }
 /* ===================================
    RESPONSIVE MOBILE (<768px)
