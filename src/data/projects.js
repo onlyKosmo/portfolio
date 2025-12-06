@@ -12,10 +12,16 @@ import LimboPreview10 from '@/assets/projects/suitlimbo/9.png';
 import PlayTestPreview from '@/assets/projects/playtest/1.png';
 import PlayTestPreview2 from '@/assets/projects/playtest/2.png';
 
-import TylerPreview from '@/assets/projects/MiniSite/img/chromakopia - Copie.jpg';
-import LeafletPreview from '@/assets/projects/Manuel/leaflet.png';
 import SneakersPreview from '@/assets/projects/sneakers/sneakers.png';
 import Kosmo from '@/assets/projects/Kosmo/Kosmo.png';
+
+const TylerPreview = 'public/projects/MiniSite/img/chromakopia_2.jpg';
+const LeafletPreview = 'public/projects/Manuel/leaflet.png';
+
+
+
+const linkTyler = '/projects/MiniSite/html_mini_site/index.html'
+const linkLeaflet = '/projects/Manuel/man.html';
 
 export default [
     {
@@ -58,7 +64,7 @@ export default [
         image: LeafletPreview,
         description: "<p>Création d'un site web servant de manuel d'utilisation pour intégrer le plugin Leaflet.js à un site web.</p>",
         tech_stack: "JavaScript, HTML & CSS",
-        link: "https://basileferi.fr/src/assets/projects/Manuel/man.html"
+        link: linkLeaflet
     },
     {
         title: "Tyler, The Creator",
@@ -68,7 +74,7 @@ export default [
         image: TylerPreview,
         description: "<p>Promotion d'un artiste via un mini-site web intégrant un formulaire de contact et des animations CSS. </p>",
         tech_stack: "HTML & CSS",
-        link: "https://basileferi.fr/src/assets/projects/MiniSite/html_mini_site/index.html",
+        link: linkTyler
     },
 
     {
