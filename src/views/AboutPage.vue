@@ -177,7 +177,12 @@ const skillsData = [
   {
     icon: "💻",
     label: "Front-End",
-    items: "Vue.js, GSAP, Three.js, CSS"
+    items: "JavaScript, Vue.js, GSAP, Three, CSS, Tailwind, Bootstrap"
+  },
+  {
+    icon: "👁️",
+    label: "UI/UX Design",
+    items: "User Flow, Maquettes Figma animées, Design d'expérience"
   },
   {
     icon: "⚙️",
@@ -190,14 +195,14 @@ const skillsData = [
     items: "SQL, MariaDB"
   },
   {
-    icon: "👁️",
-    label: "UI/UX Design",
-    items: "User Flow, Maquettes Figma animées, Design d'expérience"
-  },
-  {
     icon: "⚡",
     label: "Déploiement",
     items: "Amazon Web Services, Infomaniak, OVH"
+  },
+  {
+    icon: "📦",
+    label: "Autres",
+    items: "Bash, Wordpress, Figma, Adobe Creative Suite, Canva, Blender"
   }
 ]
 
