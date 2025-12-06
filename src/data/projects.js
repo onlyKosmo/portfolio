@@ -15,8 +15,19 @@ import PlayTestPreview2 from '@/assets/projects/playtest/2.png';
 import TylerPreview from '@/assets/projects/MiniSite/img/chromakopia - Copie.jpg';
 import LeafletPreview from '@/assets/projects/Manuel/leaflet.png';
 import SneakersPreview from '@/assets/projects/sneakers/sneakers.png';
+import Kosmo from '@/assets/projects/Kosmo/Kosmo.png';
 
 export default [
+    {
+        title: "Kosmo.",
+        slug: "kosmo",
+        subtitle: '"Kosmo." | Portfolio 3D Interactif | Site actuel',
+        preview: Kosmo,
+        image: Kosmo,
+        description: "<p>Développement et conçeption d’une expérience 3D immersive pour présenter mes projets. Optimisation des performances de rendu Three.js, réduisant les temps de chargement de ma scène Three de 30%. Déploiement du site sur Infomaniak via un pipeline DevOps simple avec GitHub Actions.</p>",
+        tech_stack: "Vue 3, Three.js, GSAP, JavaScript, Node.js, Tailwind.css, Pinia",
+        link: "",
+    },
     {
         title: "Playtest",
         slug: "playtest",
@@ -24,7 +35,7 @@ export default [
         preview: PlayTestPreview,
         image: PlayTestPreview,
         media: [PlayTestPreview, PlayTestPreview2],
-        description: "<p>Élaboration d'un site avec sa base de données permettant à ses utilisateurs de se connecter, de noter des jeux sur 5, de laisser des commentaires et d'interagir en communauté de joueurs. Calcul de la note moyenne des jeux en temps réel selon celles des utilisateurs.</p>",
+        description: "<p>Élaboration d'un site avec sa base de données permettant à ses utilisateurs de se connecter, de noter des jeux sur 5, de laisser des commentaires et d'interagir en communauté de joueurs. Calcul de la note moyenne des jeux en temps réel selon celles des utilisateurs. Consultation de nombreux jeux, architecture complète de cette plateforme web avec base de données MariaDB, soumission et consultation de nombreuses notes utilisateurs</p>",
         tech_stack: "PHP, MariaDB, HTML & CSS, JavaScript",
         link: "",
     },
@@ -61,13 +72,13 @@ export default [
     },
 
     {
-        title: "Boutique Sneakers",
+        title: "E-commerce | Boutique Sneakers",
         slug: "Boutique Sneakers",
-        subtitle: 'Conception d’un site pour une boutique de sneakers fictive',
+        subtitle: "Conception d’un site pour une boutique de sneakers fictive. Développement d’un site e-commerce dynamique avec gestion des produits en PHP, fichier CSV. Implémentation d'un système de panier, gérant plus de 10 références produits.",
         preview: SneakersPreview,
         image: SneakersPreview,
         description: "<p>Ce site charge les produits depuis un fichier CSV et les affiche en colonne avec Bootstrap. De plus, une fonctionnalité de tri en JavaScript est disponible sur la page boutique. Enfin, ce site change la couleur de son header en fonction de l'heure de connexion de l'utilisateur. </p>",
-        tech_stack: "HTML, CSS, PHP, JavaScript",
+        tech_stack: "HTML, CSS, PHP, JavaScript, Bootstrap",
         link: "",
         video: "https://www.youtube.com/embed/y2tu4FJsBso"
     },
