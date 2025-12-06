@@ -89,7 +89,7 @@ import AnimatedButton from "@/components/AnimatedButton.vue";
 import { useModalStore } from '@/stores/useModalStore'
 const modal = useModalStore()
 
-const MailToCopy = "basileferi.pro@proton.me"; // remplace par ton texte
+const MailToCopy = "basileferi.pro@proton.me";
 
 function copyToClipboard() {
   navigator.clipboard.writeText(MailToCopy)

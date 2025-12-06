@@ -86,7 +86,7 @@
       <section class="kosmo-section">
         <h2 class="kosmo-title scramble-text">Kosmo ?</h2>
         <p class="kosmo-explanation split-text">
-          Qu'est ce que Kosmo ? Kosmo est un pseudonyme que j'utilise parfois sur internet. J'ai choisi de nommer mon portfolio comme ceci car il s'agit de ma personne mais sur le Web, comme ce portfolio. Ce portfolio est mon tout premier site utilisant les bibliothèques GSAP et Three.js, j'ai adoré apprendre les bases de ces bibliothèques JavaScript tout au long du développement.
+          Qu'est ce que Kosmo ? Kosmo est un pseudonyme que j'utilise parfois sur internet. J'ai choisi de le nommer ainsi car Kosmo est une partie de moi sur le Web, comme ce portfolio. Ce projet est mon tout premier site utilisant les bibliothèques GSAP et Three.js, j'ai adoré apprendre les bases de ces bibliothèques JavaScript tout au long de son développement.
         </p>
         <p class="kosmo-accent">→ Mon portfolio de futur développeur web</p>
       </section>
@@ -94,12 +94,9 @@
       <!-- CTA Final -->
       <section class="cta-final">
         <h3 class="cta-title split-text">Prêt à discuter ?</h3>
-        <p class="cta-subtitle">Contactez-moi ou explorez mon portfolio complet pour découvrir mes derniers projets</p>
-        <animated-button @click="downloadCV" >
-          Télécharger mon CV
-          <svg class="icon-download" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="M4 15v2a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3v-2M12 4v12m0 0l-4-4m4 4l4-4"/>
-          </svg>
+        <p class="cta-subtitle"><button @click="modal.openContact()" class="cta-contact-btn"><strong>Contactez-moi </strong></button> ou explorez mon portfolio complet pour découvrir mes derniers projets</p>
+        <animated-button @click="modal.openContact()" >
+          Me Contacter
         </animated-button>
         <RouterLink to="/" class="retour-proj">
           <div class="retour-row">
@@ -126,6 +123,10 @@ import gsap from 'gsap'
 import { SplitText } from 'gsap/SplitText'
 import AnimatedButton from "@/components/AnimatedButton.vue";
 
+import { useModalStore } from '@/stores/useModalStore'
+
+const modal = useModalStore()
+
 gsap.registerPlugin(SplitText)
 
 // Fonction pour télécharger le CV
@@ -140,7 +141,7 @@ function downloadCV() {
 const dynamicContent = [
   {
     title: "Bonjour, je m'appelle Basile",
-    text: "Je suis étudiant en 2e année de BUT MMI avec une spécialisation en développement Web. En parallèle de mes études, je me forme continuellement à de nouveaux langages, frameworks et technologie pour créer des expériences web captivante, performante et immersive.",
+    text: "Je suis étudiant en 2e année de BUT MMI avec une spécialisation en Développement Web. En parallèle de mes études, je me forme continuellement à de nouveaux langages, frameworks et technologies pour créer des expériences web captivantes, performantes et immersives.",
     accent: "Développeur créatif",
     emoji: "📖",
     label: "Apprentissage"
@@ -495,7 +496,6 @@ onMounted(() => {
   padding: 4rem 3rem;
   text-align: center;
   border-top: 1px solid var(--color-accent);
-  border-top-opacity: 0.3;
 }
 
 .kosmo-title {
@@ -616,5 +616,18 @@ onMounted(() => {
   .cta-title {
     font-size: 1.5rem;
   }
+}
+
+.cta-contact-btn {
+  all: unset;
+  cursor: pointer;
+  font-size: 0.85rem;
+  transition: color 0.2s ease;
+  color: var(--color-accent);
+}
+
+
+.cta-contact-btn:hover {
+  color: var(--color-text);
 }
 </style>

@@ -12,6 +12,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@wordpress/icons": "^11.3.0",
     "gsap": "^3.13.0",
     "pinia": "^3.0.4",
     "three": "^0.180.0",

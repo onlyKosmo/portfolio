@@ -62,6 +62,25 @@
           Voir en ligne
         </animated-button>
       </div>
+
+      <!-- CTA Final -->
+      <section class="cta-final">
+        <h3 class="cta-title split-text">Prêt à discuter ?</h3>
+        <p class="cta-subtitle"><button @click="modal.openContact()" class="cta-contact-btn"><strong>Contactez-moi </strong></button>
+          ou apprenez en davantage</p>
+        <RouterLink to="/about">
+          <animated-button>
+            À propos de moi
+          </animated-button>
+        </RouterLink>
+        <RouterLink to="/" class="retour-proj">
+          <div class="retour-row">
+            <h4 class="projects">Autres Projets</h4>
+          </div>
+        </RouterLink>
+      </section>
+
+
     </main>
     <Footer/>
   </div>
@@ -76,6 +95,10 @@ import Footer from '@/components/Footer.vue'
 import Breadcrumb from '@/components/Breadcrumb.vue'
 import AnimatedButton from "@/components/AnimatedButton.vue";
 import ImageModal from "@/components/ImageModal.vue";
+
+import { useModalStore } from '@/stores/useModalStore'
+
+const modal = useModalStore()
 
 const modalVisible = ref(false);
 const modalIndex = ref(0);
@@ -131,6 +154,46 @@ function goBack() {
 </script>
 
 <style scoped>
+
+.cta-final {
+  width: 100%;
+  max-width: 1200px;
+  margin: 4rem auto 0;
+  padding: 3rem;
+  border: 1px solid var(--color-accent);
+  border-radius: 1rem;
+  background: rgba(139, 92, 246, 0.08);
+  backdrop-filter: blur(10px);
+  text-align: center;
+}
+
+.cta-title {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--color-text);
+  margin-bottom: 1rem;
+}
+
+.cta-subtitle {
+  font-size: 1rem;
+  color: var(--color-subtitle);
+  margin-bottom: 2rem;
+}
+
+.retour-row {
+  padding: 2rem 1rem 0.1rem 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  text-align: center;
+}
+
+.projects {
+  text-transform: uppercase;
+  transition: transform 1s ease;
+}
+
 .project-page {
   width: 100vw;
   min-height: auto;
@@ -248,6 +311,19 @@ function goBack() {
 .video-container iframe {
   width: 100%;
   height: 40rem;
+}
+
+.cta-contact-btn {
+  all: unset;
+  cursor: pointer;
+  font-size: 0.85rem;
+  transition: color 0.2s ease;
+  color: var(--color-accent);
+}
+
+
+.cta-contact-btn:hover {
+  color: var(--color-text);
 }
 
 </style>

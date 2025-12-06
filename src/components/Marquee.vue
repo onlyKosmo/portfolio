@@ -20,20 +20,30 @@
   </div>
 </template>
 
+<script type="module">
+import wordpressicons from 'https://cdn.jsdelivr.net/npm/@wordpress/icons@11.3.0/+esm'
+</script>
+
 <script setup>
+
 const icons = [
+  'src/assets/logo/Figma_logo.svg',
   'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg',
   'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg',
   'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg',
   'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/php/php-original.svg',
   'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original-wordmark.svg',
-  'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vuejs/vuejs-original.svg',
+  'src/assets/logo/vue.svg',
   'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vitejs/vitejs-original.svg',
   'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/bootstrap/bootstrap-original.svg',
-  'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/phpstorm/phpstorm-original.svg',
+  'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg',
+  'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/intellij/intellij-original.svg',
   'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mariadb/mariadb-original.svg',
   'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-original-wordmark.svg',
-  'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/wordpress/wordpress-plain.svg',
+  'src/assets/logo/k-icon-blue-background.svg',
+  'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/bash/bash-original.svg',
+  'src/assets/logo/WordPress_blue_logo.svg',
+  'src/assets/logo/adobe-creative-cloud.svg'
 ]
 </script>
 
