@@ -84,9 +84,9 @@
 
       <!-- Partie Kosmo en bas -->
       <section class="kosmo-section">
-        <h2 class="kosmo-title scramble-text">Kosmo ?</h2>
+        <h2 class="kosmo-title scramble-text">K___?</h2>
         <p class="kosmo-explanation split-text">
-          Qu'est ce que Kosmo ? Kosmo est un pseudonyme que j'utilise parfois sur internet. J'ai choisi de le nommer ainsi car Kosmo est une partie de moi sur le Web, comme ce portfolio. Ce projet est mon tout premier site utilisant les bibliothèques GSAP et Three.js, j'ai adoré apprendre les bases de ces bibliothèques JavaScript tout au long de son développement.
+          Qu'est ce que Kosmo ? Il s'agit d'un pseudonyme que j'utilise parfois sur internet. J'ai choisi de le nommer ainsi car Kosmo est une partie de moi sur le Web, comme ce portfolio. Ce projet est mon tout premier site utilisant les bibliothèques GSAP et Three.js, j'ai adoré apprendre les bases de ces bibliothèques JavaScript tout au long de son développement.
         </p>
         <p class="kosmo-accent">→ Mon portfolio de futur développeur web</p>
       </section>
@@ -121,13 +121,15 @@ import cvFile from '@/assets/CV_FERRAND-RICHARTE_Basile.pdf'
 import { onMounted } from 'vue'
 import gsap from 'gsap'
 import { SplitText } from 'gsap/SplitText'
+import ScrollTrigger from "gsap/ScrollTrigger";
+import { ScrambleTextPlugin } from "gsap/ScrambleTextPlugin"
 import AnimatedButton from "@/components/AnimatedButton.vue";
 
 import { useModalStore } from '@/stores/useModalStore'
 
 const modal = useModalStore()
 
-gsap.registerPlugin(SplitText)
+gsap.registerPlugin(SplitText, ScrollTrigger, ScrambleTextPlugin)
 
 // Fonction pour télécharger le CV
 function downloadCV() {
@@ -200,54 +202,77 @@ const skillsData = [
 ]
 
 // Animations GSAP au montage du composant
-onMounted(() => {
-  // Animation SplitText pour tous les éléments .split-text
+onMounted(async () => {
+  // Attendre que les polices soient chargées
+  await document.fonts.ready
+
+  const scroller = ".about-page"
+
+  // --- SplitText pour tous les éléments .split-text ---
   const splitEls = document.querySelectorAll('.split-text')
   splitEls.forEach(el => {
     const split = new SplitText(el, { type: "lines, words, chars" })
+
+    // Générer une direction aléatoire pour ce bloc
+    const xStart = gsap.utils.random(-50, 50)
+    const yStart = gsap.utils.random(-30, 30)
+
     gsap.from(split.chars, {
       opacity: 0,
-      y: 20,
-      stagger: 0.03,
-      duration: 0.6,
+      x: xStart,
+      y: yStart,
+      stagger: 0.007,
+      duration: 0.3,
+      ease: "power2.out",
       scrollTrigger: {
         trigger: el,
-        start: "top 90%"
+        start: "top 90%",
+        scroller: ".about-page"
       }
     })
   })
 
-  // Animation ScrambleText pour "Kosmo ?"
+
+  // --- ScrambleText pour "Kosmo ?" ---
   const kosmo = document.querySelector('.scramble-text')
   if (kosmo) {
-    gsap.fromTo(kosmo, { textContent: "K____o ?" }, {
+
+    kosmo.textContent = "K____ ?"
+
+    gsap.to(kosmo, {
       duration: 2,
-      textContent: "Kosmo ?",
+      scrambleText: "Kosmo ?",
       ease: "power2.inOut",
       scrollTrigger: {
         trigger: kosmo,
-        start: "top 90%"
+        start: "top 90%",
+        scroller: ".about-page"
       }
     })
   }
 
 
 
-  // Animation des sections dynamiques
+  // --- Animation des sections dynamiques ---
   const dynamicRows = document.querySelectorAll('.dynamic-row')
   dynamicRows.forEach((row, i) => {
     gsap.from(row, {
       opacity: 0,
       y: 40,
-      duration: 0.8,
-      delay: i * 0.15,
+      duration: 0.3,
+      delay: i * 0.05,
       scrollTrigger: {
         trigger: row,
-        start: "top 85%"
+        start: "top 85%",
+        scroller
       }
     })
   })
+
+  // --- Refresh de ScrollTrigger après toutes les animations ---
+  ScrollTrigger.refresh()
 })
+
 </script>
 
 <style scoped>

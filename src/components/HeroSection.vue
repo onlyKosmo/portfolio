@@ -83,7 +83,7 @@ const emit = defineEmits(['hide-header', 'show-header'])
 
 function handleClick() {
   emit('hide-header')  // déclenche juste la disparition du header
-  toggleProjects()     // ton animation GSAP continue normalement
+  toggleProjects()
 }
 
 function handleBack() {
