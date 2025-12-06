@@ -15,8 +15,8 @@ import PlayTestPreview2 from '@/assets/projects/playtest/2.png';
 import SneakersPreview from '@/assets/projects/sneakers/sneakers.png';
 import Kosmo from '@/assets/projects/Kosmo/Kosmo.png';
 
-const TylerPreview = 'public/projects/MiniSite/img/chromakopia_2.jpg';
-const LeafletPreview = 'public/projects/Manuel/leaflet.png';
+const TylerPreview = '/projects/MiniSite/img/chromakopia_2.jpg';
+const LeafletPreview = '/projects/Manuel/leaflet.png';
 
 
 
