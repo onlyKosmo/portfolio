@@ -177,12 +177,12 @@ const skillsData = [
   {
     icon: "💻",
     label: "Front-End",
-    items: "JavaScript, Vue.js, GSAP, Three, CSS, Tailwind, Bootstrap"
+    items: "JavaScript, Vue.js (Composition API, Pinia), GSAP, Three, CSS, Tailwind, Bootstrap"
   },
   {
     icon: "👁️",
     label: "UI/UX Design",
-    items: "User Flow, Maquettes Figma animées, Design d'expérience"
+    items: "User Flow, Maquettes Figma animées,prototypage UI/UX, Design d'expérience"
   },
   {
     icon: "⚙️",
@@ -192,12 +192,17 @@ const skillsData = [
   {
     icon: "🗃️",
     label: "Base de données",
-    items: "SQL, MariaDB"
+    items: "SQL, MariaDB (SQL, gestion de bases)"
   },
   {
     icon: "⚡",
     label: "Déploiement",
-    items: "Amazon Web Services, Infomaniak, OVH"
+    items: "Amazon Web Services, Infomaniak, OVH, CI/CD, Git, Github Actions"
+  },
+  {
+    icon: "⌨️",
+    label: "SEO",
+    items: "HTML, Sémantique, HaloScan"
   },
   {
     icon: "📦",
