@@ -39,8 +39,6 @@ Le projet utilise :
 
 ---
 
-## 📁 Structure du projet
-
 © 2025 Basile Ferrand-Richarte. All rights reserved.
 
 
