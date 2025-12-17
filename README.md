@@ -1,7 +1,7 @@
 # "Kosmo." Portfolio — onlyKosmo
 
 **Mon portfolio m’introduisant à Three.js et Vue 3 | Vite.js | Node.js**  
-Ce projet est un site web portfolio interactif développé pour expérimenter et apprendre à utiliser **Three.js**, **GSAP**, **Vue 3**, **Vite.js** et une configuration Node.js avec Tailwind CSS. :contentReference[oaicite:1]{index=1}
+Ce projet est un site web portfolio interactif développé pour expérimenter et apprendre à utiliser **Three.js**, **GSAP**, **Vue 3**, **Vite.js** et une configuration Node.js avec Tailwind CSS.
 
 ## 📌 Description
 
@@ -10,7 +10,7 @@ Ce dépôt contient mon portfolio personnel. Le but principal est d’explorer l
 Ce portfolio sert :
 - à présenter mes projets et compétences techniques,
 - à expérimenter des animations 3D et des interactions web modernes,
-- comme base pour d’autres projets Vue 3 + Three.js. :contentReference[oaicite:3]{index=3}
+- comme base pour d’autres projets Vue 3 + Three.js.
 
 ---
 
@@ -35,24 +35,13 @@ Le projet utilise :
 - **Vite** – Outil de build ultra-rapide  
 - **Node.js** – Gestionnaire de projet & outils de développement  
 - **Tailwind CSS** – Styles utilitaires (utilisé très peu)  
-- **npm** – Gestionnaire de paquets :contentReference[oaicite:5]{index=5}
+- **npm** – Gestionnaire de paquets
 
 ---
 
 ## 📁 Structure du projet
 
-```text
-/.
-├── .github/             # Workflows GitHub Actions
-├── .vscode/             # Configs VSCode
-├── public/              # Fichiers statiques
-├── src/                 # Code source Vue & Three.js
-├── index.html
-├── package.json
-├── tailwind.config.js   # Config Tailwind
-├── vite.config.js       # Config Vite
-├── README.md
-└── .gitignore
+© 2025 Basile Ferrand-Richarte. All rights reserved.
 
 
-# © 2025 Basile Ferrand-Richarte. All rights reserved.
+
